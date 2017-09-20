@@ -13,6 +13,13 @@ class Price extends React.Component {
 
   renderPriceByType = (priceObject) => {
     const priceElement = b('price');
+
+    if (!priceObject.price) {
+      return (
+        <div className={b('cell-placeholder')}>Не указана</div>
+      );
+    }
+
     switch (priceObject.type) {
       case 'range':
         return (

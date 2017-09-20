@@ -12,6 +12,7 @@ const filterTitle = {
 };
 
 const ActionsPanel = (props) => {
+  const historyButton = props.backHistory && props.nextHistory;
   const filterCol = props.columns &&
     props.columns.filter(col => col.filter && col.filter.value && col.filter.value !== 'all');
 
@@ -33,21 +34,23 @@ const ActionsPanel = (props) => {
           </div>
         </section>
         <section className={b('section-2')}>
-          <div className={b('last-actions-box')}>
-            <span className={b('last-actions-label')}>Последние действия:</span>
-            <button
-              type='button'
-              title='Отменить'
-              onClick={(e) => { props.backHistory && props.onActionBack(e); }}
-              className={b('button').is({back: true, active: props.backHistory})}
-            />
-            <button
-              type='button'
-              title='Вернуть'
-              onClick={(e) => { props.nextHistory && props.onActionNext(e); }}
-              className={b('button').is({next: true, active: props.nextHistory})}
-            />
-          </div>
+          {!!historyButton &&
+            <div className={b('last-actions-box')}>
+              <span className={b('last-actions-label')}>Последние действия:</span>
+              <button
+                type='button'
+                title='Отменить'
+                onClick={(e) => { props.backHistory && props.onActionBack(e); }}
+                className={b('button').is({back: true, active: props.backHistory})}
+              />
+              <button
+                type='button'
+                title='Вернуть'
+                onClick={(e) => { props.nextHistory && props.onActionNext(e); }}
+                className={b('button').is({next: true, active: props.nextHistory})}
+              />
+            </div>
+          }
           <div className={b('filter-box')}>
             {!!filterCol.length &&
               <span className={b('filter-title')}>Установлены фильтры:</span>

@@ -79,7 +79,7 @@ class ContainerTree extends Component {
 
   render() {
     const hasDragNode = true;
-    const hasSettingsNode = true;
+    const hasSettingsNode = this.props.hasSettingsNode;
     const treeData = this.state.filter ?
       this.filterTree(this.props.tree.data, new RegExp(this.state.filter, 'i')) :
       this.props.tree.data;

@@ -107,6 +107,8 @@ class Tree extends Component {
           moveStep={this.moveStep}
           moveEnd={this.moveEnd}
 
+          withoutSearch={this.props.withoutSearch}
+
           config={this.props.config}
           hoverNode={this.state.hover}
           hasDragNode={this.props.hasDragNode}
