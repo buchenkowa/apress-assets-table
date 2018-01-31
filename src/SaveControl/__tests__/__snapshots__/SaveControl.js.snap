@@ -1,25 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SaveControl should render a SaveControl state error 1`] = `
-<div
-  className={[Function]}
->
-  Ошибка сохранения
-</div>
+<StatusTextView
+  status="error"
+  text="Ошибка сохранения"
+/>
 `;
 
 exports[`SaveControl should render a SaveControl state progress 1`] = `
-<div
-  className={[Function]}
->
-  Изменения сохраняются
-</div>
+<StatusTextView
+  status="progress"
+  text="Изменения сохраняются"
+/>
 `;
 
 exports[`SaveControl should render a SaveControl state success 1`] = `
-<div
-  className={[Function]}
->
-  Все изменения сохранены
-</div>
+<StatusTextView
+  status="success"
+  text="Все изменения сохранены"
+/>
 `;

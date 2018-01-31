@@ -8,7 +8,8 @@ import * as remove from '../remove/sagas';
 import * as removeAction from '../remove/actions';
 import * as switchCategoryAction from '../SwitchCategory/actions';
 import * as switchCategorySaga from '../SwitchCategory/sagas';
-
+import * as onlineStoreImportActionTypes from '../actionTypes/onlineStoreImport';
+import pollingOnlineStoreImportStatus from '../sagas/onlineStoreImport';
 
 export default function* subscribeForLoadTableData() {
   yield takeLatest('TABLE_EDITOR_LOAD_START', loadTableData);
@@ -27,4 +28,5 @@ export default function* subscribeForLoadTableData() {
     switchCategorySaga.changeCategoryView
   );
   yield takeLatest(switchCategoryAction.SWITCH_CATEGORY_INIT, switchCategorySaga.init);
+  yield takeLatest(onlineStoreImportActionTypes.POLLING_ONLINE_STORE_IMPORT_STATUS, pollingOnlineStoreImportStatus);
 }
