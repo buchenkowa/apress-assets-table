@@ -12,6 +12,8 @@ import {
 import {mapFocusProps} from './utils';
 import TextCellEditor from '../components/Table/containers/TextCellEditor';
 import ConnectedTextCellCKEditor from '../components/Table/containers/TextCellCKEditor';
+import TouchEditTool from '../components/Table/views/TouchEditTool';
+import DragTool from '../components/Table/views/DragTool';
 
 
 const b = block('e-table');
@@ -113,7 +115,7 @@ class TextCell extends Component {
 
   render() {
     const {cell, handleCellClick, handleSelection, handleStartSelection, handleEndSelection, handleDrag} = this.props;
-    const {config, data, name, placeholder, isFocus, classMix, isSelected, isDragged, isLast, readonly} = cell;
+    const {config, data, name, placeholder, isFocus, classMix, isSelected, isDragged, isLast, readonly, isTouchDevice} = cell;
     const cellText = this.state.text;
     const binder = data.binder;
 
@@ -137,6 +139,7 @@ class TextCell extends Component {
             isEdit={this.state.edit}
             handlerEdit={this.handlerEdit}
             handlerSave={this.handlerSave}
+            isTouchDevice={isTouchDevice}
           />
         );
       }
@@ -167,8 +170,15 @@ class TextCell extends Component {
         onSelect={e => e.preventDefault}
       >
         {text}
-        {isLast && binder &&
-          <div onMouseDown={handleDrag} className={b('drag-tool')} />
+        {isLast && binder && !isTouchDevice &&
+          <DragTool
+            onMouseDown={handleDrag}
+          />
+        }
+        {isLast && isTouchDevice && !config.ckeditor &&
+          <TouchEditTool
+            onClick={() => binder && this.handlerEdit(true)}
+          />
         }
         {!this.state.edit && config.ckeditor && cellText &&
           <RcDropdown

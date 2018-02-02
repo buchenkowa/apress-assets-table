@@ -89,3 +89,7 @@ export const transformFromServer = (record, templateRecord) => {
 
   return newRecord;
 };
+
+export const getCallback = (callback, withCallback) => (
+  withCallback ? callback : null
+);

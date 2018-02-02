@@ -31,6 +31,7 @@ class Body extends Component {
     dispatch: PropTypes.func,
     placeholder: PropTypes.object,
     readonly: PropTypes.bool,
+    isTouchDevice: PropTypes.bool,
     scrollLeft: PropTypes.number,
     table: PropTypes.shape({
       checked: PropTypes.arrayOf(PropTypes.number),
@@ -85,7 +86,7 @@ class Body extends Component {
   isRowChecked = rowId => this.props.table.checked.includes(rowId);
 
   renderCell = (row, rowId, cell, columnIndex, rowIndex) => {
-    const {placeholder, config, actions, table, readonly} = this.props;
+    const {placeholder, config, actions, table, readonly, isTouchDevice} = this.props;
     const {focus, selected} = table;
     const dataRow = {
       id: rowId,
@@ -101,7 +102,8 @@ class Body extends Component {
       isDragged: !readonly && this.isCurrentCellDragged(rowIndex, columnIndex),
       column: columnIndex,
       row: rowIndex,
-      readonly
+      readonly,
+      isTouchDevice
     };
     const tableWidth = Object.keys(row).length;
     const key = (rowIndex * tableWidth) + columnIndex;

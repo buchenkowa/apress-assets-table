@@ -7,6 +7,8 @@ import {showImageEditor} from '../dialogs/actions';
 import {editImages} from '../ImageEditor/actions';
 import {block} from '../utils';
 import {mapFocusProps} from './utils';
+import TouchEditTool from '../components/Table/views/TouchEditTool';
+import DragTool from '../components/Table/views/DragTool';
 
 
 const b = block('e-table');
@@ -47,25 +49,27 @@ class ImageCell extends Component {
     }
   };
 
-  handeDoubleClick = () => {
+  handleDoubleClick = () => {
     this.editImages();
   };
 
   editImages = () => {
-    if (this.props.cell.data.common.copy_images_from) {
+    const {data: {common: {copy_images_from: copyImagesFrom}}, name, id} = this.props.cell;
+
+    if (copyImagesFrom) {
       return;
     }
+
     this.props.showImageEditor();
-    this.props.editImages({name: this.props.cell.name, id: this.props.cell.id});
+    this.props.editImages({name, id});
   };
 
   render() {
     const {cell, handleCellClick, handleStartSelection, handleSelection, handleEndSelection, handleDrag} = this.props;
-    const {isLast, isFocus, isDragged, isSelected, classMix, data} = cell;
+    const {isLast, isFocus, isDragged, isSelected, classMix, data, isTouchDevice} = cell;
+    const {binder, common: {images, copy_images_from: copyImagesFrom}} = data;
 
-    const src = data.common.images &&
-      data.common.images.length &&
-      data.common.images[0].src;
+    const src = images && images.length && images[0].src;
     const img = src ?
       <img src={src} alt='' className={b('img')} /> :
       <div className={b('img-empty')} />;
@@ -80,9 +84,9 @@ class ImageCell extends Component {
             'selected-to': isDragged
           })
         }
-        onKeyDown={data.binder && this.handleKeyPress}
-        onClick={data.binder && handleCellClick}
-        onDoubleClick={data.binder && this.handeDoubleClick}
+        onKeyDown={binder && this.handleKeyPress}
+        onClick={binder && handleCellClick}
+        onDoubleClick={binder && this.handleDoubleClick}
         ref={($td) => { $td && isFocus && $td.focus(); }}
         onMouseDown={handleStartSelection}
         onMouseEnter={handleSelection}
@@ -91,11 +95,22 @@ class ImageCell extends Component {
         onSelect={e => e.preventDefault}
       >
         {img}
-        {isLast &&
-          <div onMouseDown={handleDrag} className={b('drag-tool')} />
+        {isLast && !isTouchDevice &&
+          <DragTool
+            onMouseDown={handleDrag}
+          />
         }
-        {data.common.copy_images_from &&
-          <div title='Выполняется копирование изображений' className={b('loader')} />}
+        {isLast && isTouchDevice &&
+          <TouchEditTool
+            onClick={binder && this.handleDoubleClick}
+          />
+        }
+        {copyImagesFrom &&
+          <div
+            title='Выполняется копирование изображений'
+            className={b('loader')}
+          />
+        }
       </div>
     );
   }
