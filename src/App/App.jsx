@@ -21,6 +21,7 @@ import HelpExample from '../Help/example';
 import ContainerDialog from '../dialogs/ContainerDialog';
 import ErrorExample from '../Error/example';
 import SwitchCategoryExample from '../SwitchCategory/example';
+import OnlineStoreImportStatus from '../components/OnlineStoreImportStatus';
 import * as actionsTable from '../Table/actions';
 import * as actionsTree from '../Tree/actions';
 import * as actionsSave from '../SaveControl/actions';
@@ -79,6 +80,7 @@ class App extends React.Component {
             message={message}
             rows={this.props.table.rows}
           />
+          <OnlineStoreImportStatus />
         </div>
         <div className={b}>
           <button

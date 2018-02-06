@@ -37,6 +37,11 @@ const app = {
     },
     ckeditor: {
       toolbarTiger: []
+    },
+    onlineStoreImportStatus: {
+      messageDuringImport: '',
+      timeOut: 1,
+      statusbar: ''
     }
   }
 };
