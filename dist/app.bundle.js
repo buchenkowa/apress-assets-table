@@ -43101,28 +43101,20 @@ var b = (0, _utils.block)('e-table');
 var TextCell = function (_Component) {
   (0, _inherits3.default)(TextCell, _Component);
 
-  function TextCell() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
+  function TextCell(props) {
     (0, _classCallCheck3.default)(this, TextCell);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    var _this = (0, _possibleConstructorReturn3.default)(this, (TextCell.__proto__ || (0, _getPrototypeOf2.default)(TextCell)).call(this));
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = TextCell.__proto__ || (0, _getPrototypeOf2.default)(TextCell)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      edit: false,
-      visible: false,
-      charactersLeft: ''
-    }, _this.handlerEdit = function (edit) {
+    _this.handlerEdit = function (edit) {
       edit ? _this.props.startTextEdit() : _this.props.endTextEdit();
 
       _this.setState({
         edit: edit
       });
-    }, _this.handlerSave = function (text) {
+    };
+
+    _this.handlerSave = function (text) {
       var _this$props = _this.props,
           setData = _this$props.setData,
           cell = _this$props.cell;
@@ -43133,18 +43125,17 @@ var TextCell = function (_Component) {
       if (text !== data.common.text) {
         setData({ id: id, name: name, field: 'text', text: text });
       }
-    }, _this.handleKeyPress = function (e) {
-      var _this$props2 = _this.props,
-          setData = _this$props2.setData,
-          _this$props2$cell = _this$props2.cell,
-          id = _this$props2$cell.id,
-          name = _this$props2$cell.name,
-          isFocus = _this$props2$cell.isFocus;
+    };
+
+    _this.handleKeyPress = function (e) {
+      var isFocus = _this.props.cell.isFocus;
 
 
       if (isFocus && !_this.state.edit && e.key.length === 1) {
-        setData({ id: id, name: name, field: 'text', text: e.key });
         _this.handlerEdit(true);
+        _this.setState({
+          text: e.key
+        });
       }
 
       if (e.keyCode === 13) {
@@ -43155,10 +43146,29 @@ var TextCell = function (_Component) {
       if (e.keyCode === 27) {
         _this.handlerEdit(false);
       }
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+    };
+
+    _this.state = {
+      edit: false,
+      visible: false,
+      text: props.cell.data.common.text
+    };
+    return _this;
   }
 
   (0, _createClass3.default)(TextCell, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var text = nextProps.cell.data.common.text;
+
+
+      if (this.props.cell.data.common.text !== text) {
+        this.setState({
+          text: text
+        });
+      }
+    }
+  }, {
     key: 'shouldComponentUpdate',
     value: function shouldComponentUpdate(nextProps, nextState) {
       return !(0, _isEqual3.default)(this.props, nextProps) || !(0, _isEqual3.default)(this.state, nextState);
@@ -43186,7 +43196,7 @@ var TextCell = function (_Component) {
           isLast = cell.isLast,
           readonly = cell.readonly;
 
-      var cellText = data.common.text;
+      var cellText = this.state.text;
       var binder = data.binder;
 
       var text = null;

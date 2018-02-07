@@ -53,11 +53,25 @@ class TextCell extends Component {
     }
   };
 
-  state = {
-    edit: false,
-    visible: false,
-    charactersLeft: ''
-  };
+  constructor(props) {
+    super();
+
+    this.state = {
+      edit: false,
+      visible: false,
+      text: props.cell.data.common.text
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {cell: {data: {common: {text}}}} = nextProps;
+
+    if (this.props.cell.data.common.text !== text) {
+      this.setState({
+        text
+      });
+    }
+  }
 
   shouldComponentUpdate(nextProps, nextState) {
     return !_isEqual(this.props, nextProps) || !_isEqual(this.state, nextState);
@@ -80,11 +94,13 @@ class TextCell extends Component {
   };
 
   handleKeyPress = (e) => {
-    const {setData, cell: {id, name, isFocus}} = this.props;
+    const {cell: {isFocus}} = this.props;
 
     if (isFocus && !this.state.edit && e.key.length === 1) {
-      setData({id, name, field: 'text', text: e.key});
       this.handlerEdit(true);
+      this.setState({
+        text: e.key
+      });
     }
 
     if (e.keyCode === 13) {
@@ -98,7 +114,7 @@ class TextCell extends Component {
   render() {
     const {cell, handleCellClick, handleSelection, handleStartSelection, handleEndSelection, handleDrag} = this.props;
     const {config, data, name, placeholder, isFocus, classMix, isSelected, isDragged, isLast, readonly} = cell;
-    const cellText = data.common.text;
+    const cellText = this.state.text;
     const binder = data.binder;
 
     let text = null;
