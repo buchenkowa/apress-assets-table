@@ -45409,12 +45409,16 @@ var TextCellCKEditor = function (_Component) {
 
         CKEDITOR.replace(name, {
           on: {
-            instanceReady: function instanceReady() {
-              return setTimeout(function () {
-                var editor = CKEDITOR.instances[name];
-                editor.focus();
-                _this2.setCharactersCountLeft(editor);
-              });
+            instanceReady: function instanceReady(event) {
+              var editor = event.editor;
+
+              var range = editor.createRange();
+
+              range.moveToElementEditablePosition(range.root, true);
+              editor.focus();
+              editor.getSelection().selectRanges([range]);
+
+              _this2.setCharactersCountLeft(editor);
             }
           }
         });
