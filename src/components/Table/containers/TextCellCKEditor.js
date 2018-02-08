@@ -18,11 +18,16 @@ class TextCellCKEditor extends Component {
 
       CKEDITOR.replace(name, {
         on: {
-          instanceReady: () => setTimeout(() => {
-            const editor = CKEDITOR.instances[name];
+          instanceReady: (event) => {
+            const {editor} = event;
+            const range = editor.createRange();
+
+            range.moveToElementEditablePosition(range.root, true);
             editor.focus();
+            editor.getSelection().selectRanges([range]);
+
             this.setCharactersCountLeft(editor);
-          })
+          }
         }
       });
     }
