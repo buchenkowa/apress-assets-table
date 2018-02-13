@@ -1,6 +1,6 @@
-@import '../styles/mixins/icons';
+@import '../../../styles/mixins/icons';
 
-.e-save-control {
+.status-text {
   color: #1f2532; font-size: 12px; line-height: 40px; display: inline-block; margin: 0 0 0 30px;
   &.is-success:before { margin: 0 4px -2px 0; display: inline-block; @include check-icon(); width: 12px; height: 12px; content: ''; }
   &.is-progress:before { @include spin-loader-icon(); margin: 0 4px 0 0; display: inline-block; width: 12px; height: 12px; content: ''; }

@@ -1,32 +1,38 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {block} from '../utils';
-import './e-save-control.scss';
 
-const b = block('e-save-control');
+import StatusText from '../components/StatusText';
+import statusTextStatuses from '../constants/StatusText';
 
-const getMessage = (message, isError, isProgress) => {
-  if (isError) {
-    return message.error;
+
+class SaveControl extends Component {
+  getStatus() {
+    if (!this.props.isError && !this.props.isProgress) {
+      return statusTextStatuses.success;
+    }
+
+    if (this.props.isError) {
+      return statusTextStatuses.error;
+    }
+
+    if (this.props.isProgress || this.props.removeInProgrees) {
+      return statusTextStatuses.progress;
+    }
+
+    return '';
   }
 
-  if (isProgress) {
-    return message.progress;
+  render() {
+    const status = this.getStatus();
+
+    return (
+      <StatusText
+        status={status}
+        text={this.props.message[status]}
+      />
+    );
   }
-
-  return message.success;
-};
-
-const SaveControl = props =>
-  <div
-    className={b.is({
-      success: !props.isError && !props.isProgress,
-      error: props.isError,
-      progress: props.isProgress || props.removeInProgrees
-    })}
-  >
-    {getMessage(props.message, props.isError, props.isProgress)}
-  </div>;
+}
 
 SaveControl.propTypes = {
   isProgress: PropTypes.bool,

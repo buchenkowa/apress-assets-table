@@ -11,6 +11,7 @@ import ActionsPanel from './ActionsPanel/ActionsPanel';
 import Filter from './Filter/Filter';
 import ComponentError from './Error/Error';
 import Dialog from './Dialog/Dialog';
+import OnlineStoreImportStatus from './components/OnlineStoreImportStatus';
 
 import * as actionsTree from './Tree/actions';
 import * as actionsTable from './Table/actions';
@@ -19,6 +20,8 @@ import * as actionsFilter from './Filter/actions';
 import * as actionsError from './Error/actions';
 import * as actionsDialog from './dialogs/actions';
 import * as actionsCable from './Cable/actions';
+
+import * as onlineStoreImportActionTypes from './actionTypes/onlineStoreImport';
 
 import reducerTree from './Tree/reducer';
 import tableReducer from './Table/tableReducer';
@@ -32,6 +35,7 @@ import error from './Error/reducer';
 import dialogs from './dialogs/reducers';
 import ContainerDialog from './dialogs/ContainerDialog';
 import reducerCable from './Cable/reducer';
+import onlineStoreImportReducer from './reducers/onlineStoreImport';
 
 import imageEditor from './ImageEditor/reducer';
 import * as imageEditorActions from './ImageEditor/actions';
@@ -45,6 +49,7 @@ import * as removeAction from './remove/actions';
 import * as removeSagas from './remove/sagas';
 import removeReducer from './remove/reducer';
 import cableSagas from './Cable/sagas';
+import * as onlineStoreImportSagas from './sagas/onlineStoreImport';
 
 import SwitchCategory from './SwitchCategory/SwitchCategory';
 import * as switchCategorySaga from './SwitchCategory/sagas';
@@ -64,6 +69,7 @@ export const sagas = {
   removeSagas,
   switchCategorySaga,
   cableSagas,
+  onlineStoreImportSagas
 };
 
 export const reducers = {
@@ -81,6 +87,7 @@ export const reducers = {
   removeReducer,
   switchCategoryReducer,
   reducerCable,
+  onlineStoreImportReducer
 };
 
 export const actions = {
@@ -94,6 +101,10 @@ export const actions = {
   removeAction,
   switchCategoryAction,
   actionsCable,
+};
+
+export const actionTypes = {
+  onlineStoreImportActionTypes
 };
 
 export const components = {
@@ -113,5 +124,6 @@ export const components = {
   Error: ComponentError,
   ContainerDialog,
   SwitchCategory,
-  Dialog
+  Dialog,
+  OnlineStoreImportStatus
 };

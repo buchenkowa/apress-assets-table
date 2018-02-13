@@ -8,6 +8,7 @@ import dialogs from './dialogs/reducers';
 import imageEditor from './ImageEditor/reducer';
 import remove from './remove/reducer';
 import switchCategoryView from './SwitchCategory/reducer';
+import onlineStoreImport from './reducers/onlineStoreImport';
 
 
 export default combineReducers({
@@ -20,6 +21,7 @@ export default combineReducers({
   dialogs,
   remove,
   switchCategoryView,
+  onlineStoreImport,
 
   config: () => ({})
 });
