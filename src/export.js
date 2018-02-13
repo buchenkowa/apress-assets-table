@@ -1,5 +1,5 @@
 import Header from './Header/Header';
-import Table from './Table/Table';
+import Table from './components/TableWithPaste';
 import ComboSelect from './ComboSelect/ComboSelect';
 import Pagination from './Pagination/Pagination';
 import Tree from './Tree/ContainerTree';

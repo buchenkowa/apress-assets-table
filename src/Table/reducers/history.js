@@ -11,7 +11,8 @@ import {
   HISTORY_NEXT,
   HISTORY_PREV,
   TABLE_EDITOR_CELL_SELECT_END,
-  UPDATE_TABLE_EDITOR_ROWS
+  UPDATE_TABLE_EDITOR_ROWS,
+  INSERT_DATA
 } from '../actions';
 
 const initialState = {
@@ -20,7 +21,7 @@ const initialState = {
   current: [],
 };
 
-const addHistory = (state, action) => {
+export const addHistory = (state, action) => {
   const newRows = state.newRows || state.current;
   return {
     ...state,
@@ -50,7 +51,8 @@ export default function history(state = initialState, action) {
 
     case TABLE_EDITOR_SET_TEXT:
     case TABLE_EDITOR_ROW_ADD:
-    case TABLE_EDITOR_SET_IMAGES: {
+    case TABLE_EDITOR_SET_IMAGES:
+    case INSERT_DATA: {
       return addHistory(state, action);
     }
 

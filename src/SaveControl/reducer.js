@@ -16,7 +16,8 @@ import {
   TABLE_EDITOR_ROW_COPY,
   TABLE_EDITOR_ROW_COPY_SUCCESS,
   TABLE_EDITOR_CELL_SELECT_END,
-  UPDATE_TABLE_EDITOR_ROWS
+  UPDATE_TABLE_EDITOR_ROWS,
+  INSERT_DATA
 } from '../Table/actions';
 import rows from '../Table/rowReducer';
 
@@ -45,6 +46,7 @@ export default function (state = initialState, action) {
     case TABLE_EDITOR_CELL_SELECT_END:
     case 'HISTORY_PREV':
     case 'HISTORY_NEXT':
+    case INSERT_DATA:
       return {
         ...state,
         withUnsavedChanges: true

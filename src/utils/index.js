@@ -89,3 +89,7 @@ export const transformFromServer = (record, templateRecord) => {
 
   return newRecord;
 };
+
+export function getDisplayName(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+}

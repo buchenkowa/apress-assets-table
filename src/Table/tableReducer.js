@@ -34,7 +34,8 @@ import {
   TABLE_EDITOR_ROW_ADD_DEFAULT_ID,
   HISTORY_PREV,
   HISTORY_NEXT,
-  UPDATE_TABLE_EDITOR_ROWS
+  UPDATE_TABLE_EDITOR_ROWS,
+  INSERT_DATA
 } from './actions';
 
 const initialState = {
@@ -181,6 +182,41 @@ export default (state = initialState, action) => {
     case HISTORY_NEXT:
     case UPDATE_TABLE_EDITOR_ROWS:
       return {...state, history: history(state.history, action)};
+
+    case INSERT_DATA: {
+      const {focus: {activeCell, activeRow}, selected: {cellFrom, cellTo}, history: historyState} = state;
+      const newRows = cloneDeep(historyState.current);
+      let columnName;
+      let rowNumber;
+
+      if (activeCell && activeRow) {
+        columnName = activeCell;
+        rowNumber = newRows.findIndex(row => row.check.common.id === activeRow);
+      } else if (Object.keys(cellFrom).length && Object.keys(cellTo).length) {
+        rowNumber = Math.min(cellFrom.row, cellTo.row);
+        columnName = Object.keys(newRows[rowNumber])[cellFrom.column];
+      } else {
+        return state;
+      }
+
+      const cellConfig = action.payload.cellsConfig[columnName];
+
+      if (!cellConfig || cellConfig.type !== 'text') {
+        return state;
+      }
+
+      action.payload.data.every((payloadDataRow, index) => {
+        const row = newRows[rowNumber + index];
+
+        if (row) {
+          row[columnName].common.text = payloadDataRow[0].substring(0, cellConfig.maxLen);
+        }
+
+        return !!row;
+      });
+
+      return {...state, history: history({...historyState, newRows}, action)};
+    }
 
     default:
       return {
