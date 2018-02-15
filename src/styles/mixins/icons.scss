@@ -141,6 +141,11 @@
   background: url("data:image/svg+xml;base64,#{$svg-string}") 50%/contain no-repeat;
 }
 
+@mixin edit-icon($color: #000) {
+  $svg-string: encode-base64('<svg viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path transform="translate(0 -.553)" fill="#{$color}" d="M3.832 12h-.836v-1h-1v-.836l.71-.71 1.837 1.835-.71.71zm4.086-7.25c0 .047-.016.094-.055.133L3.63 9.117c-.04.04-.087.055-.134.055-.1 0-.172-.07-.172-.172 0-.047.016-.094.055-.133l4.233-4.234c.04-.04.086-.055.133-.055.102 0 .172.07.172.172zm-.422-1.5l-6.5 6.5V13h3.25l6.5-6.5-3.25-3.25zm5.336.75c0-.266-.11-.523-.29-.71l-1.835-1.83c-.188-.187-.445-.296-.71-.296-.267 0-.524.11-.704.297L7.996 2.75 11.246 6l1.297-1.297c.18-.18.29-.437.29-.703z"/></svg>');
+  background: url("data:image/svg+xml;base64,#{$svg-string}") 50% / contain no-repeat;
+}
+
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

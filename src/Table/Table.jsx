@@ -37,7 +37,12 @@ class Table extends Component {
     table: PropTypes.shape({
       columns: PropTypes.arrayOf(PropTypes.object),
       isLoaded: PropTypes.bool
-    })
+    }),
+    isTouchDevice: PropTypes.bool
+  };
+
+  static defaultProps = {
+    isTouchDevice: false
   };
 
   state = {
@@ -121,6 +126,7 @@ class Table extends Component {
               $rootNode={this.$node}
               scrollLeft={this.state.scrollLeft}
               readonly={readonly}
+              isTouchDevice={this.props.isTouchDevice}
             />
           </div> :
           <div className='e-spinner' />
