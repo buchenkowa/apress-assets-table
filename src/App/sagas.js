@@ -9,7 +9,7 @@ import * as removeAction from '../remove/actions';
 import * as switchCategoryAction from '../SwitchCategory/actions';
 import * as switchCategorySaga from '../SwitchCategory/sagas';
 import * as onlineStoreImportActionTypes from '../actionTypes/onlineStoreImport';
-import pollingOnlineStoreImportStatus from '../sagas/onlineStoreImport';
+import {pollingOnlineStoreImportStatus} from '../sagas/onlineStoreImport';
 
 export default function* subscribeForLoadTableData() {
   yield takeLatest('TABLE_EDITOR_LOAD_START', loadTableData);

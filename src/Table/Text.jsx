@@ -96,11 +96,12 @@ class TextCell extends Component {
   handleKeyPress = (e) => {
     const {cell: {isFocus}} = this.props;
 
-    if (isFocus && !this.state.edit && e.key.length === 1) {
+    if (isFocus && !this.state.edit && e.key.length === 1 && !e.ctrlKey) {
       this.handlerEdit(true);
       this.setState({
         text: e.key
       });
+      e.preventDefault();
     }
 
     if (e.keyCode === 13) {

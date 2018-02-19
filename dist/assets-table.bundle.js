@@ -10,7 +10,7 @@
 		exports["Assets-table"] = factory(require("react"), require("react-redux"), require("react-dom"), require("redux"), require("react-router"));
 	else
 		root["Assets-table"] = factory(root["React"], root["ReactRedux"], root["ReactDom"], root["Redux"], root["ReactRouter"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_21__, __WEBPACK_EXTERNAL_MODULE_62__, __WEBPACK_EXTERNAL_MODULE_915__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_21__, __WEBPACK_EXTERNAL_MODULE_62__, __WEBPACK_EXTERNAL_MODULE_921__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 916);
+/******/ 	return __webpack_require__(__webpack_require__.s = 922);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -299,6 +299,7 @@ exports.handleBlur = handleBlur;
 exports.checkStatus = checkStatus;
 exports.inRange = inRange;
 exports.swap = swap;
+exports.getDisplayName = getDisplayName;
 
 var _bemCn = __webpack_require__(246);
 
@@ -389,6 +390,10 @@ var transformFromServer = exports.transformFromServer = function transformFromSe
 
   return newRecord;
 };
+
+function getDisplayName(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+}
 
 /***/ }),
 /* 9 */
@@ -826,6 +831,7 @@ var TABLE_EDITOR_SET_IMAGES = exports.TABLE_EDITOR_SET_IMAGES = 'TABLE_EDITOR_SE
 var TABLE_EDITOR_IMAGES_ASSIGN_ID = exports.TABLE_EDITOR_IMAGES_ASSIGN_ID = 'TABLE_EDITOR_IMAGES_ASSIGN_ID';
 
 var UPDATE_TABLE_EDITOR_ROWS = exports.UPDATE_TABLE_EDITOR_ROWS = 'UPDATE_TABLE_EDITOR_ROWS';
+var INSERT_DATA = exports.INSERT_DATA = 'INSERT_DATA';
 
 var load = exports.load = function load() {
   var payload = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -1018,6 +1024,13 @@ var updateTableEditorRows = exports.updateTableEditorRows = function updateTable
   return {
     type: UPDATE_TABLE_EDITOR_ROWS,
     payload: payload
+  };
+};
+
+var insertData = exports.insertData = function insertData(data, cellsConfig) {
+  return {
+    type: INSERT_DATA,
+    payload: { data: data, cellsConfig: cellsConfig }
   };
 };
 
@@ -34725,6 +34738,7 @@ exports.default = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.addHistory = undefined;
 
 var _toConsumableArray2 = __webpack_require__(39);
 
@@ -34750,7 +34764,7 @@ var initialState = {
   current: []
 };
 
-var addHistory = function addHistory(state, action) {
+var addHistory = exports.addHistory = function addHistory(state, action) {
   var newRows = state.newRows || state.current;
   return (0, _extends3.default)({}, state, {
     newRows: null,
@@ -34781,6 +34795,7 @@ function history() {
     case _actions.TABLE_EDITOR_SET_TEXT:
     case _actions.TABLE_EDITOR_ROW_ADD:
     case _actions.TABLE_EDITOR_SET_IMAGES:
+    case _actions.INSERT_DATA:
       {
         return addHistory(state, action);
       }
@@ -36274,13 +36289,13 @@ exports._toInteger = exports.put = exports.actionsCable = exports.actionsFilter 
 
 var _react = __webpack_require__(0);
 
-var _reactRouter = __webpack_require__(915);
+var _reactRouter = __webpack_require__(921);
 
 var _reactRedux = __webpack_require__(12);
 
 var _effects = __webpack_require__(35);
 
-var _toInteger2 = __webpack_require__(913);
+var _toInteger2 = __webpack_require__(919);
 
 var _toInteger3 = _interopRequireDefault(_toInteger2);
 
@@ -38148,6 +38163,7 @@ exports.default = function () {
     case _actions2.TABLE_EDITOR_CELL_SELECT_END:
     case 'HISTORY_PREV':
     case 'HISTORY_NEXT':
+    case _actions2.INSERT_DATA:
       return (0, _extends3.default)({}, state, {
         withUnsavedChanges: true
       });
@@ -41033,7 +41049,7 @@ var Table = function (_Component) {
             dispatch((0, _actions.historyNext)());
           }
         }
-        event.preventDefault();
+
         if (event.keyCode === 38) {
           dispatch((0, _actions.focusUp)({ rows: history.current }));
         } else {
@@ -41057,6 +41073,18 @@ var Table = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.$node.addEventListener('scroll', this.handleTableScroll, false);
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var pastedData = nextProps.pastedData,
+          config = nextProps.config,
+          edit = nextProps.edit;
+
+
+      if (pastedData.length && !edit) {
+        this.props.dispatch((0, _actions.insertData)(pastedData, config));
+      }
     }
   }, {
     key: 'shouldComponentUpdate',
@@ -41140,7 +41168,11 @@ Table.propTypes = {
   table: _propTypes2.default.shape({
     columns: _propTypes2.default.arrayOf(_propTypes2.default.object),
     isLoaded: _propTypes2.default.bool
-  })
+  }),
+  pastedData: _propTypes2.default.string
+};
+Table.defaultProps = {
+  pastedData: ''
 };
 
 
@@ -41151,7 +41183,7 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps)(Table);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, null, null, { withRef: true })(Table);
 
 /***/ }),
 /* 446 */
@@ -41259,11 +41291,12 @@ var TextCell = function (_Component) {
       var isFocus = _this.props.cell.isFocus;
 
 
-      if (isFocus && !_this.state.edit && e.key.length === 1) {
+      if (isFocus && !_this.state.edit && e.key.length === 1 && !e.ctrlKey) {
         _this.handlerEdit(true);
         _this.setState({
           text: e.key
         });
+        e.preventDefault();
       }
 
       if (e.keyCode === 13) {
@@ -41832,6 +41865,51 @@ exports.default = function () {
     case _actions2.HISTORY_NEXT:
     case _actions2.UPDATE_TABLE_EDITOR_ROWS:
       return (0, _extends3.default)({}, state, { history: (0, _history2.default)(state.history, action) });
+
+    case _actions2.INSERT_DATA:
+      {
+        var _state$focus = state.focus,
+            activeCell = _state$focus.activeCell,
+            activeRow = _state$focus.activeRow,
+            _state$selected2 = state.selected,
+            _cellFrom = _state$selected2.cellFrom,
+            _cellTo = _state$selected2.cellTo,
+            historyState = state.history;
+
+        var _newRows = (0, _utils.cloneDeep)(historyState.current);
+        var _columnName = void 0;
+        var rowNumber = void 0;
+
+        if (activeCell && activeRow) {
+          _columnName = activeCell;
+          rowNumber = _newRows.findIndex(function (row) {
+            return row.check.common.id === activeRow;
+          });
+        } else if ((0, _keys2.default)(_cellFrom).length && (0, _keys2.default)(_cellTo).length) {
+          rowNumber = Math.min(_cellFrom.row, _cellTo.row);
+          _columnName = (0, _keys2.default)(_newRows[rowNumber])[_cellFrom.column];
+        } else {
+          return state;
+        }
+
+        var cellConfig = action.payload.cellsConfig[_columnName];
+
+        if (!cellConfig || cellConfig.type !== 'text') {
+          return state;
+        }
+
+        action.payload.data.every(function (payloadDataRow, index) {
+          var row = _newRows[rowNumber + index];
+
+          if (row) {
+            row[_columnName].common.text = payloadDataRow[0].substring(0, cellConfig.maxLen);
+          }
+
+          return !!row;
+        });
+
+        return (0, _extends3.default)({}, state, { history: (0, _history2.default)((0, _extends3.default)({}, historyState, { newRows: _newRows }), action) });
+      }
 
     default:
       return (0, _extends3.default)({}, state, {
@@ -59894,7 +59972,7 @@ function symbolObservablePonyfill(root) {
 /* 669 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(730), __esModule: true };
+module.exports = { "default": __webpack_require__(736), __esModule: true };
 
 /***/ }),
 /* 670 */,
@@ -59940,9 +60018,9 @@ var _Header = __webpack_require__(417);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _Table = __webpack_require__(445);
+var _TableWithPaste = __webpack_require__(729);
 
-var _Table2 = _interopRequireDefault(_Table);
+var _TableWithPaste2 = _interopRequireDefault(_TableWithPaste);
 
 var _ComboSelect = __webpack_require__(235);
 
@@ -60196,7 +60274,7 @@ var actionTypes = exports.actionTypes = {
 };
 
 var components = exports.components = {
-  Table: _Table2.default,
+  Table: _TableWithPaste2.default,
   Header: _Header2.default,
   Pagination: _Pagination2.default,
   ComboSelect: _ComboSelect2.default,
@@ -60855,10 +60933,223 @@ function loadConfig(action) {
 /* 724 */,
 /* 725 */,
 /* 726 */,
-/* 727 */,
-/* 728 */,
-/* 729 */,
+/* 727 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _decorators = __webpack_require__(730);
+
+var _Table = __webpack_require__(445);
+
+var _Table2 = _interopRequireDefault(_Table);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = (0, _decorators.withPaste)(_Table2.default);
+
+/***/ }),
+/* 728 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TableWithPasteContainer = undefined;
+
+var _TableWithPasteContainer = __webpack_require__(727);
+
+var _TableWithPasteContainer2 = _interopRequireDefault(_TableWithPasteContainer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.TableWithPasteContainer = _TableWithPasteContainer2.default;
+
+/***/ }),
+/* 729 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _containers = __webpack_require__(728);
+
+exports.default = _containers.TableWithPasteContainer;
+
+/***/ }),
 /* 730 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.withPaste = undefined;
+
+var _withPaste = __webpack_require__(731);
+
+var _withPaste2 = _interopRequireDefault(_withPaste);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.withPaste = _withPaste2.default;
+
+/***/ }),
+/* 731 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _withPaste = __webpack_require__(732);
+
+var _withPaste2 = _interopRequireDefault(_withPaste);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _withPaste2.default;
+
+/***/ }),
+/* 732 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(9);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _getPrototypeOf = __webpack_require__(7);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(2);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(6);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(4);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(3);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+exports.default = withPaste;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utils = __webpack_require__(8);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function withPaste(WrappedComponent) {
+  var ComponentWithPaste = function (_Component) {
+    (0, _inherits3.default)(ComponentWithPaste, _Component);
+
+    function ComponentWithPaste() {
+      var _ref;
+
+      var _temp, _this, _ret;
+
+      (0, _classCallCheck3.default)(this, ComponentWithPaste);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = ComponentWithPaste.__proto__ || (0, _getPrototypeOf2.default)(ComponentWithPaste)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+        pastedData: ''
+      }, _this.getPastedData = function (clipboardData) {
+        return window.clipboardData ? window.clipboardData.getData('Text') : clipboardData.getData('text/plain');
+      }, _this.getParsedData = function (pastedData) {
+        return pastedData.split('\n').map(function (row) {
+          return row.split('\t');
+        });
+      }, _this.setNode = function (rootNode) {
+        if (!rootNode) {
+          return;
+        }
+
+        _this.$node = rootNode.$node || rootNode.getWrappedInstance && rootNode.getWrappedInstance().$node;
+      }, _this.clearPastedData = function () {
+        if (_this.state.pastedData.length) {
+          _this.setState({ pastedData: '' });
+        }
+      }, _this.handlePaste = function (event) {
+        if (_this.$node && _this.$node.contains(document.activeElement)) {
+          var pastedData = _this.getPastedData(event.clipboardData);
+
+          _this.setState({ pastedData: _this.getParsedData(pastedData) });
+        }
+      }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+    }
+
+    (0, _createClass3.default)(ComponentWithPaste, [{
+      key: 'componentDidMount',
+      value: function componentDidMount() {
+        document.addEventListener('paste', this.handlePaste);
+      }
+    }, {
+      key: 'componentDidUpdate',
+      value: function componentDidUpdate() {
+        this.clearPastedData();
+      }
+    }, {
+      key: 'componentWillUnmount',
+      value: function componentWillUnmount() {
+        document.removeEventListener('paste', this.handlePaste);
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        return _react2.default.createElement(WrappedComponent, (0, _extends3.default)({
+          ref: this.setNode,
+          pastedData: this.state.pastedData
+        }, this.props));
+      }
+    }]);
+    return ComponentWithPaste;
+  }(_react.Component);
+
+  ComponentWithPaste.displayName = 'withPaste(' + (0, _utils.getDisplayName)(WrappedComponent) + ')';
+  return ComponentWithPaste;
+}
+
+/***/ }),
+/* 733 */,
+/* 734 */,
+/* 735 */,
+/* 736 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var core  = __webpack_require__(10)
@@ -60868,12 +61159,6 @@ module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
 };
 
 /***/ }),
-/* 731 */,
-/* 732 */,
-/* 733 */,
-/* 734 */,
-/* 735 */,
-/* 736 */,
 /* 737 */,
 /* 738 */,
 /* 739 */,
@@ -61049,7 +61334,13 @@ module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
 /* 909 */,
 /* 910 */,
 /* 911 */,
-/* 912 */
+/* 912 */,
+/* 913 */,
+/* 914 */,
+/* 915 */,
+/* 916 */,
+/* 917 */,
+/* 918 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toNumber = __webpack_require__(214);
@@ -61097,10 +61388,10 @@ module.exports = toFinite;
 
 
 /***/ }),
-/* 913 */
+/* 919 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toFinite = __webpack_require__(912);
+var toFinite = __webpack_require__(918);
 
 /**
  * Converts `value` to an integer.
@@ -61139,14 +61430,14 @@ module.exports = toInteger;
 
 
 /***/ }),
-/* 914 */,
-/* 915 */
+/* 920 */,
+/* 921 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_915__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_921__;
 
 /***/ }),
-/* 916 */
+/* 922 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(698);
