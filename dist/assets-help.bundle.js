@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 917);
+/******/ 	return __webpack_require__(__webpack_require__.s = 923);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -299,6 +299,7 @@ exports.handleBlur = handleBlur;
 exports.checkStatus = checkStatus;
 exports.inRange = inRange;
 exports.swap = swap;
+exports.getDisplayName = getDisplayName;
 
 var _bemCn = __webpack_require__(246);
 
@@ -389,6 +390,10 @@ var transformFromServer = exports.transformFromServer = function transformFromSe
 
   return newRecord;
 };
+
+function getDisplayName(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+}
 
 /***/ }),
 /* 9 */
@@ -27937,7 +27942,13 @@ var sagas = exports.sagas = {
 /* 914 */,
 /* 915 */,
 /* 916 */,
-/* 917 */
+/* 917 */,
+/* 918 */,
+/* 919 */,
+/* 920 */,
+/* 921 */,
+/* 922 */,
+/* 923 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(699);
