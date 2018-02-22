@@ -8,7 +8,8 @@ import {
   TABLE_EDITOR_ROW_REMOVE,
   TABLE_EDITOR_SET_IMAGES,
   TABLE_EDITOR_ROW_COPY_SUCCESS,
-  UPDATE_TABLE_EDITOR_ROWS
+  UPDATE_TABLE_EDITOR_ROWS,
+  SET_TRAIT_FILTERS_DISPLAYING
 } from './actions';
 
 let newId = -1;
@@ -182,6 +183,25 @@ export default function rows(state = [], action) {
         }
 
         return stateRow;
+      });
+
+    case SET_TRAIT_FILTERS_DISPLAYING:
+      return state.map((row) => {
+        if (row.check.common.id === action.payload.groupId) {
+          const cell = row.trait_filters_displaying;
+
+          return {
+            ...row,
+            trait_filters_displaying: {
+              ...cell,
+              common: {
+                ...cell.common,
+                enabled: action.payload.enabled
+              }
+            }
+          };
+        }
+        return row;
       });
 
     default:

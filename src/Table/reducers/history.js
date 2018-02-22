@@ -12,7 +12,8 @@ import {
   HISTORY_PREV,
   TABLE_EDITOR_CELL_SELECT_END,
   UPDATE_TABLE_EDITOR_ROWS,
-  INSERT_DATA
+  INSERT_DATA,
+  SET_TRAIT_FILTERS_DISPLAYING
 } from '../actions';
 
 const initialState = {
@@ -52,7 +53,8 @@ export default function history(state = initialState, action) {
     case TABLE_EDITOR_SET_TEXT:
     case TABLE_EDITOR_ROW_ADD:
     case TABLE_EDITOR_SET_IMAGES:
-    case INSERT_DATA: {
+    case INSERT_DATA:
+    case SET_TRAIT_FILTERS_DISPLAYING: {
       return addHistory(state, action);
     }
 
