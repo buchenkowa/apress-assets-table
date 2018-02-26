@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
+import SheetClip from 'sheetclip/sheetclip';
 
 import {getDisplayName} from '../../utils';
 
+
+const sheetClip = new SheetClip();
 
 export default function withPaste(WrappedComponent) {
   class ComponentWithPaste extends Component {
@@ -25,10 +28,6 @@ export default function withPaste(WrappedComponent) {
       window.clipboardData ? window.clipboardData.getData('Text') : clipboardData.getData('text/plain')
     )
 
-    getParsedData = pastedData => (
-      pastedData.split('\n').map(row => row.split('\t'))
-    )
-
     setNode = (rootNode) => {
       if (!rootNode) {
         return;
@@ -47,7 +46,7 @@ export default function withPaste(WrappedComponent) {
       if (this.$node && this.$node.contains(document.activeElement)) {
         const pastedData = this.getPastedData(event.clipboardData);
 
-        this.setState({pastedData: this.getParsedData(pastedData)});
+        this.setState({pastedData: sheetClip.parse(pastedData)});
       }
     }
 
