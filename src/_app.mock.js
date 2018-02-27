@@ -42,6 +42,13 @@ const app = {
       messageDuringImport: '',
       timeOut: 1,
       statusbar: ''
+    },
+    traitFiltersDisplaying: {
+      options: [
+        {value: null, text: 'По умолчанию'},
+        {value: false, text: 'Выключен'},
+        {value: true, text: 'Включен'},
+      ]
     }
   }
 };

@@ -7,6 +7,7 @@ import 'rc-trigger/assets/index.css';
 import Price from './Price';
 import Exists from './Exists';
 import CheckRelatedProducts from './CheckRelatedProducts';
+import {SelectCellContainer} from '../components/Table/containers';
 import {
   block,
   inRange,
@@ -105,6 +106,7 @@ class Body extends Component {
     };
     const tableWidth = Object.keys(row).length;
     const key = (rowIndex * tableWidth) + columnIndex;
+    const {options: traitFiltersDisplayingOptions} = app.config.traitFiltersDisplaying;
     const componentsCell = {
       text: <TextWithDragging
         key={key}
@@ -137,6 +139,15 @@ class Body extends Component {
         key={key}
         cell={dataRow}
         actions={actions.relatedProducts}
+      />,
+      select: <SelectCellContainer
+        key={key}
+        cell={dataRow}
+        options={traitFiltersDisplayingOptions}
+        activeOption={traitFiltersDisplayingOptions.find(option =>
+          option.value === dataRow.data.common.enabled
+        )}
+        handleSelect={actions.setTraitFiltersDisplaying}
       />
     };
 

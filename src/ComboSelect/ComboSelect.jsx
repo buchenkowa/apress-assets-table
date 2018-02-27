@@ -6,16 +6,21 @@ import './e-select.scss';
 
 const b = block('e-select');
 
-const Select = props =>
-  <RcSelect
-    notFoundContent='Ничего не найдено'
-    disabled={React.Children.count(props.children) <= 1}
-    dropdownMatchSelectWidth={false}
-    className={b.mix(props.mix)()}
-    dropdownClassName='e-select-drop-down'
-    {...props}
-  >
-    {props.children}
-  </RcSelect>;
+
+function Select(props) {
+  const {autoOpen, children, mix} = props;
+
+  return (
+    <RcSelect
+      ref={select => select && autoOpen && select.setOpenState(true)}
+      notFoundContent='Ничего не найдено'
+      disabled={React.Children.count(children) <= 1}
+      dropdownMatchSelectWidth={false}
+      className={b.mix(mix)()}
+      dropdownClassName='e-select-drop-down'
+      {...props}
+    />
+  );
+}
 
 export default Select;

@@ -241,6 +241,15 @@
         "priority": null
       },
       "binder": {}
+    },
+    {
+      "name": "trait_filters_displaying",
+      "common": {
+        "title": "Показ фильтров",
+        "content": null,
+        "blank": false
+      },
+      "binder": {}
     }
   ],
   "new_row": {
@@ -316,6 +325,11 @@
       "filter": {},
       "sorter": {},
       "binder": {}
+    },
+    "trait_filters_displaying": {
+      "common": {
+        "enabled": null
+      }
     }
   },
   "rows": [
@@ -397,6 +411,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": true
+        }
       }
     },
     {
@@ -472,6 +491,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": false
+        }
       }
     },
     {
@@ -547,6 +571,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": null
+        }
       }
     },
     {
@@ -622,6 +651,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": null
+        }
       }
     },
     {
@@ -697,6 +731,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": null
+        }
       }
     },
     {
@@ -772,6 +811,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": null
+        }
       }
     },
     {
@@ -847,6 +891,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": null
+        }
       }
     },
     {
@@ -922,6 +971,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": null
+        }
       }
     },
     {
@@ -997,6 +1051,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": null
+        }
       }
     },
     {
@@ -1072,6 +1131,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": null
+        }
       }
     },
     {
@@ -1147,6 +1211,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": null
+        }
       }
     },
     {
@@ -1228,6 +1297,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": null
+        }
       }
     },
     {
@@ -1309,6 +1383,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": null
+        }
       }
     },
     {
@@ -1395,6 +1474,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": null
+        }
       }
     },
     {
@@ -1481,6 +1565,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": null
+        }
       }
     },
     {
@@ -1561,6 +1650,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": null
+        }
       }
     },
     {
@@ -1636,6 +1730,11 @@
         "filter": {},
         "sorter": {},
         "binder": {}
+      },
+      "trait_filters_displaying": {
+        "common": {
+          "enabled": null
+        }
       }
     }
   ],

@@ -121,6 +121,19 @@ export const getPhotoDifference = (currentState, previousState) => {
   return null;
 };
 
+const getTraitFiltersDisplayingDifference = (currentState, previousState) => {
+  const currentEnabled = currentState.trait_filters_displaying.common.enabled;
+  const previousEnabled = previousState.trait_filters_displaying.common.enabled;
+
+  return (currentEnabled !== previousEnabled) ? {
+    trait_filters_displaying: {
+      common: {
+        enabled: currentEnabled
+      }
+    }
+  } : null;
+};
+
 export const getRowDifference = (currentState, previousState) => {
   let differenceRow = {};
 
@@ -157,6 +170,12 @@ export const getRowDifference = (currentState, previousState) => {
         differenceRow = {
           ...differenceRow,
           ...getTextCellDifference(currentState, previousState, currentCellKey)
+        };
+        break;
+      case 'trait_filters_displaying':
+        differenceRow = {
+          ...differenceRow,
+          ...getTraitFiltersDisplayingDifference(currentState, previousState)
         };
         break;
 
