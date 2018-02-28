@@ -92,38 +92,6 @@ describe('withPaste', () => {
       expect(window.clipboardData.getData).toHaveBeenCalledWith('Text');
       expect(window.clipboardData.getData()).toBe(pastedData);
     });
-
-  });
-
-  describe('getParsedData(pastedData)', () => {
-    beforeAll(initComponent);
-
-    it('should return a single cell', () => {
-      const cell = 'cell';
-
-      expect(instance.getParsedData(cell)).toEqual([[cell]]);
-    });
-
-    it('should return multiple cells in a column', () => {
-      const cell = 'cell';
-      const pastedData = `${cell}\n${cell}`;
-
-      expect(instance.getParsedData(pastedData)).toEqual([[cell], [cell]]);
-    });
-
-    it('should return multiple cells in a row', () => {
-      const cell = 'cell';
-      const pastedData = `${cell}\t${cell}`;
-
-      expect(instance.getParsedData(pastedData)).toEqual([[cell, cell]]);
-    });
-
-    it('should return multiple cells in a columns and rows', () => {
-      const cell = 'cell';
-      const pastedData = `${cell}\t${cell}\n${cell}\t${cell}`;
-
-      expect(instance.getParsedData(pastedData)).toEqual([[cell, cell], [cell, cell]]);
-    });
   });
 
   describe('setNode(rootNode)', () => {
@@ -196,7 +164,7 @@ describe('withPaste', () => {
       };
       instance.handlePaste(event);
 
-      expect(wrapper.state('pastedData')).toEqual(instance.getParsedData(pastedData));
+      expect(wrapper.state('pastedData')).toEqual([[pastedData]]);
     });
 
     it('should not change state.pastedData if the focus is not on the component', () => {
