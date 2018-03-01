@@ -301,7 +301,7 @@ var _extends2 = __webpack_require__(9);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _keys = __webpack_require__(36);
+var _keys = __webpack_require__(30);
 
 var _keys2 = _interopRequireDefault(_keys);
 
@@ -1657,7 +1657,7 @@ var anObject       = __webpack_require__(41)
   , toPrimitive    = __webpack_require__(100)
   , dP             = Object.defineProperty;
 
-exports.f = __webpack_require__(31) ? Object.defineProperty : function defineProperty(O, P, Attributes){
+exports.f = __webpack_require__(32) ? Object.defineProperty : function defineProperty(O, P, Attributes){
   anObject(O);
   P = toPrimitive(P, true);
   anObject(Attributes);
@@ -1714,6 +1714,12 @@ module.exports = factory(
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = { "default": __webpack_require__(256), __esModule: true };
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var store      = __webpack_require__(406)('wks')
   , uid        = __webpack_require__(185)
   , Symbol     = __webpack_require__(16).Symbol
@@ -1727,7 +1733,7 @@ var $exports = module.exports = function(name){
 $exports.store = store;
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Thank's IE8 for his funny defineProperty
@@ -1736,7 +1742,7 @@ module.exports = !__webpack_require__(45)(function(){
 });
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports) {
 
 var hasOwnProperty = {}.hasOwnProperty;
@@ -1745,7 +1751,7 @@ module.exports = function(it, key){
 };
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports) {
 
 /**
@@ -1777,7 +1783,7 @@ module.exports = isArray;
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 /**
@@ -1814,7 +1820,7 @@ module.exports = isObject;
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1842,12 +1848,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "takeLatest", function() { return __WEBPACK_IMPORTED_MODULE_0__internal_io__["t"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "throttle", function() { return __WEBPACK_IMPORTED_MODULE_0__internal_io__["u"]; });
 
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(256), __esModule: true };
 
 /***/ }),
 /* 37 */
@@ -2077,7 +2077,7 @@ module.exports = function(exec){
 
 var dP         = __webpack_require__(27)
   , createDesc = __webpack_require__(57);
-module.exports = __webpack_require__(31) ? function(object, key, value){
+module.exports = __webpack_require__(32) ? function(object, key, value){
   return dP.f(object, key, createDesc(1, value));
 } : function(object, key, value){
   object[key] = value;
@@ -2914,7 +2914,7 @@ var _reactRedux = __webpack_require__(12);
 
 var _reactDom = __webpack_require__(22);
 
-var _effects = __webpack_require__(35);
+var _effects = __webpack_require__(36);
 
 var _reactDnd = __webpack_require__(669);
 
@@ -4166,7 +4166,7 @@ exports.f = Object.getOwnPropertySymbols;
 /***/ (function(module, exports, __webpack_require__) {
 
 var def = __webpack_require__(27).f
-  , has = __webpack_require__(32)
+  , has = __webpack_require__(33)
   , TAG = __webpack_require__(20)('toStringTag');
 
 module.exports = function(it, tag, stat){
@@ -4977,7 +4977,7 @@ module.exports = isArrayLike;
 /***/ (function(module, exports, __webpack_require__) {
 
 var debounce = __webpack_require__(199),
-    isObject = __webpack_require__(34);
+    isObject = __webpack_require__(35);
 
 /** Error message constants. */
 var FUNC_ERROR_TEXT = 'Expected a function';
@@ -5839,11 +5839,11 @@ var pIE            = __webpack_require__(64)
   , createDesc     = __webpack_require__(57)
   , toIObject      = __webpack_require__(28)
   , toPrimitive    = __webpack_require__(100)
-  , has            = __webpack_require__(32)
+  , has            = __webpack_require__(33)
   , IE8_DOM_DEFINE = __webpack_require__(150)
   , gOPD           = Object.getOwnPropertyDescriptor;
 
-exports.f = __webpack_require__(31) ? gOPD : function getOwnPropertyDescriptor(O, P){
+exports.f = __webpack_require__(32) ? gOPD : function getOwnPropertyDescriptor(O, P){
   O = toIObject(O);
   P = toPrimitive(P, true);
   if(IE8_DOM_DEFINE)try {
@@ -5995,7 +5995,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CANCEL", function() { return __WEBPACK_IMPORTED_MODULE_5__internal_utils__["q"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__internal_io__ = __webpack_require__(48);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "detach", function() { return __WEBPACK_IMPORTED_MODULE_6__internal_io__["v"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__effects__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__effects__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils__ = __webpack_require__(675);
 /* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "effects", function() { return __WEBPACK_IMPORTED_MODULE_7__effects__; });
 /* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "utils", function() { return __WEBPACK_IMPORTED_MODULE_8__utils__; });
@@ -6174,7 +6174,7 @@ if(__webpack_require__(42)){
     , gOPN                = __webpack_require__(180).f
     , getIterFn           = __webpack_require__(528)
     , uid                 = __webpack_require__(185)
-    , wks                 = __webpack_require__(30)
+    , wks                 = __webpack_require__(31)
     , createArrayMethod   = __webpack_require__(120)
     , createArrayIncludes = __webpack_require__(397)
     , speciesConstructor  = __webpack_require__(520)
@@ -6650,11 +6650,11 @@ var _invariant = __webpack_require__(23);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _isArray = __webpack_require__(33);
+var _isArray = __webpack_require__(34);
 
 var _isArray2 = _interopRequireDefault(_isArray);
 
-var _isObject = __webpack_require__(34);
+var _isObject = __webpack_require__(35);
 
 var _isObject2 = _interopRequireDefault(_isObject);
 
@@ -7641,7 +7641,7 @@ module.exports = function(it){
 /* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = !__webpack_require__(31) && !__webpack_require__(45)(function(){
+module.exports = !__webpack_require__(32) && !__webpack_require__(45)(function(){
   return Object.defineProperty(__webpack_require__(149)('div'), 'a', {get: function(){ return 7; }}).a != 7;
 });
 
@@ -7665,7 +7665,7 @@ var LIBRARY        = __webpack_require__(93)
   , $export        = __webpack_require__(26)
   , redefine       = __webpack_require__(156)
   , hide           = __webpack_require__(46)
-  , has            = __webpack_require__(32)
+  , has            = __webpack_require__(33)
   , Iterators      = __webpack_require__(53)
   , $iterCreate    = __webpack_require__(267)
   , setToStringTag = __webpack_require__(96)
@@ -7748,7 +7748,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-var has         = __webpack_require__(32)
+var has         = __webpack_require__(33)
   , toObject    = __webpack_require__(58)
   , IE_PROTO    = __webpack_require__(97)('IE_PROTO')
   , ObjectProto = Object.prototype;
@@ -7765,7 +7765,7 @@ module.exports = Object.getPrototypeOf || function(O){
 /* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var has          = __webpack_require__(32)
+var has          = __webpack_require__(33)
   , toIObject    = __webpack_require__(28)
   , arrayIndexOf = __webpack_require__(262)(false)
   , IE_PROTO     = __webpack_require__(97)('IE_PROTO');
@@ -8053,7 +8053,7 @@ module.exports = isBuffer;
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(50),
-    isObject = __webpack_require__(34);
+    isObject = __webpack_require__(35);
 
 /** `Object#toString` result references. */
 var asyncTag = '[object AsyncFunction]',
@@ -8420,7 +8420,7 @@ exports.default = statusTextStatuses;
 
 var META     = __webpack_require__(66)('meta')
   , isObject = __webpack_require__(49)
-  , has      = __webpack_require__(32)
+  , has      = __webpack_require__(33)
   , setDesc  = __webpack_require__(27).f
   , id       = 0;
 var isExtensible = Object.isExtensible || function(){
@@ -8614,7 +8614,7 @@ module.exports = function(target, src, safe){
 var global      = __webpack_require__(16)
   , dP          = __webpack_require__(43)
   , DESCRIPTORS = __webpack_require__(42)
-  , SPECIES     = __webpack_require__(30)('species');
+  , SPECIES     = __webpack_require__(31)('species');
 
 module.exports = function(KEY){
   var C = global[KEY];
@@ -8881,7 +8881,7 @@ module.exports = arrayIncludesWith;
 
 var baseTimes = __webpack_require__(317),
     isArguments = __webpack_require__(200),
-    isArray = __webpack_require__(33),
+    isArray = __webpack_require__(34),
     isBuffer = __webpack_require__(163),
     isIndex = __webpack_require__(196),
     isTypedArray = __webpack_require__(166);
@@ -9060,7 +9060,7 @@ module.exports = overArg;
 /* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(34),
+var isObject = __webpack_require__(35),
     now = __webpack_require__(361),
     toNumber = __webpack_require__(216);
 
@@ -9984,7 +9984,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _keys = __webpack_require__(36);
+var _keys = __webpack_require__(30);
 
 var _keys2 = _interopRequireDefault(_keys);
 
@@ -10196,7 +10196,7 @@ function rows() {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 22.1.3.31 Array.prototype[@@unscopables]
-var UNSCOPABLES = __webpack_require__(30)('unscopables')
+var UNSCOPABLES = __webpack_require__(31)('unscopables')
   , ArrayProto  = Array.prototype;
 if(ArrayProto[UNSCOPABLES] == undefined)__webpack_require__(76)(ArrayProto, UNSCOPABLES, {});
 module.exports = function(key){
@@ -10245,7 +10245,7 @@ module.exports = {};
 
 var def = __webpack_require__(43).f
   , has = __webpack_require__(67)
-  , TAG = __webpack_require__(30)('toStringTag');
+  , TAG = __webpack_require__(31)('toStringTag');
 
 module.exports = function(it, tag, stat){
   if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
@@ -10290,7 +10290,7 @@ module.exports = exporter;
 /* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(34),
+var isObject = __webpack_require__(35),
     isSymbol = __webpack_require__(357);
 
 /** Used as references for various `Number` constants. */
@@ -13439,7 +13439,7 @@ var dP       = __webpack_require__(27)
   , anObject = __webpack_require__(41)
   , getKeys  = __webpack_require__(47);
 
-module.exports = __webpack_require__(31) ? Object.defineProperties : function defineProperties(O, Properties){
+module.exports = __webpack_require__(32) ? Object.defineProperties : function defineProperties(O, Properties){
   anObject(O);
   var keys   = getKeys(Properties)
     , length = keys.length
@@ -13589,7 +13589,7 @@ $export($export.S, 'Object', {create: __webpack_require__(94)});
 
 var $export = __webpack_require__(26);
 // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-$export($export.S + $export.F * !__webpack_require__(31), 'Object', {defineProperty: __webpack_require__(27).f});
+$export($export.S + $export.F * !__webpack_require__(32), 'Object', {defineProperty: __webpack_require__(27).f});
 
 /***/ }),
 /* 280 */
@@ -13641,8 +13641,8 @@ $export($export.S, 'Object', {setPrototypeOf: __webpack_require__(272).set});
 
 // ECMAScript 6 symbols shim
 var global         = __webpack_require__(24)
-  , has            = __webpack_require__(32)
-  , DESCRIPTORS    = __webpack_require__(31)
+  , has            = __webpack_require__(33)
+  , DESCRIPTORS    = __webpack_require__(32)
   , $export        = __webpack_require__(26)
   , redefine       = __webpack_require__(156)
   , META           = __webpack_require__(174).KEY
@@ -13892,7 +13892,7 @@ __webpack_require__(101)('observable');
 
 // getting tag from 19.1.3.6 Object.prototype.toString()
 var cof = __webpack_require__(104)
-  , TAG = __webpack_require__(30)('toStringTag')
+  , TAG = __webpack_require__(31)('toStringTag')
   // ES3 wrong here
   , ARG = cof(function(){ return arguments; }()) == 'Arguments';
 
@@ -14126,7 +14126,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = matchesType;
 
-var _isArray = __webpack_require__(33);
+var _isArray = __webpack_require__(34);
 
 var _isArray2 = _interopRequireDefault(_isArray);
 
@@ -14630,7 +14630,7 @@ module.exports = baseFlatten;
 /***/ (function(module, exports, __webpack_require__) {
 
 var arrayPush = __webpack_require__(195),
-    isArray = __webpack_require__(33);
+    isArray = __webpack_require__(34);
 
 /**
  * The base implementation of `getAllKeys` and `getAllKeysIn` which uses
@@ -14718,7 +14718,7 @@ var Stack = __webpack_require__(302),
     equalByTag = __webpack_require__(321),
     equalObjects = __webpack_require__(322),
     getTag = __webpack_require__(326),
-    isArray = __webpack_require__(33),
+    isArray = __webpack_require__(34),
     isBuffer = __webpack_require__(163),
     isTypedArray = __webpack_require__(166);
 
@@ -14804,7 +14804,7 @@ module.exports = baseIsEqualDeep;
 
 var isFunction = __webpack_require__(164),
     isMasked = __webpack_require__(334),
-    isObject = __webpack_require__(34),
+    isObject = __webpack_require__(35),
     toSource = __webpack_require__(162);
 
 /**
@@ -34965,7 +34965,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 exports.default = isValidType;
 
-var _isArray = __webpack_require__(33);
+var _isArray = __webpack_require__(34);
 
 var _isArray2 = _interopRequireDefault(_isArray);
 
@@ -36298,7 +36298,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _keys = __webpack_require__(36);
+var _keys = __webpack_require__(30);
 
 var _keys2 = _interopRequireDefault(_keys);
 
@@ -36995,7 +36995,7 @@ var hide     = __webpack_require__(76)
   , redefine = __webpack_require__(77)
   , fails    = __webpack_require__(21)
   , defined  = __webpack_require__(105)
-  , wks      = __webpack_require__(30);
+  , wks      = __webpack_require__(31);
 
 module.exports = function(KEY, length, exec){
   var SYMBOL   = wks(KEY)
@@ -37066,7 +37066,7 @@ module.exports = function(fn, args, that){
 // 7.2.8 IsRegExp(argument)
 var isObject = __webpack_require__(25)
   , cof      = __webpack_require__(104)
-  , MATCH    = __webpack_require__(30)('match');
+  , MATCH    = __webpack_require__(31)('match');
 module.exports = function(it){
   var isRegExp;
   return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : cof(it) == 'RegExp');
@@ -37076,7 +37076,7 @@ module.exports = function(it){
 /* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ITERATOR     = __webpack_require__(30)('iterator')
+var ITERATOR     = __webpack_require__(31)('iterator')
   , SAFE_CLOSING = false;
 
 try {
@@ -38717,13 +38717,13 @@ var _regenerator = __webpack_require__(40);
 
 var _regenerator2 = _interopRequireDefault(_regenerator);
 
-var _keys = __webpack_require__(36);
+var _keys = __webpack_require__(30);
 
 var _keys2 = _interopRequireDefault(_keys);
 
 exports.default = loadHelp;
 
-var _effects = __webpack_require__(35);
+var _effects = __webpack_require__(36);
 
 var _actions = __webpack_require__(147);
 
@@ -39194,7 +39194,7 @@ var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
 exports.updateImages = updateImages;
 
-var _effects = __webpack_require__(35);
+var _effects = __webpack_require__(36);
 
 var _utils = __webpack_require__(8);
 
@@ -40395,7 +40395,7 @@ var _typeof2 = __webpack_require__(63);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
-var _keys = __webpack_require__(36);
+var _keys = __webpack_require__(30);
 
 var _keys2 = _interopRequireDefault(_keys);
 
@@ -40643,7 +40643,7 @@ var _extends2 = __webpack_require__(9);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _keys = __webpack_require__(36);
+var _keys = __webpack_require__(30);
 
 var _keys2 = _interopRequireDefault(_keys);
 
@@ -40659,7 +40659,7 @@ exports.updateRows = updateRows;
 exports.saveCreateDiff = saveCreateDiff;
 exports.save = save;
 
-var _effects = __webpack_require__(35);
+var _effects = __webpack_require__(36);
 
 var _reduxSaga = __webpack_require__(124);
 
@@ -41659,7 +41659,7 @@ var _regenerator2 = _interopRequireDefault(_regenerator);
 exports.init = init;
 exports.changeCategoryView = changeCategoryView;
 
-var _effects = __webpack_require__(35);
+var _effects = __webpack_require__(36);
 
 var _reduxSaga = __webpack_require__(124);
 
@@ -41781,7 +41781,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _keys = __webpack_require__(36);
+var _keys = __webpack_require__(30);
 
 var _keys2 = _interopRequireDefault(_keys);
 
@@ -43864,7 +43864,7 @@ var _regenerator2 = _interopRequireDefault(_regenerator);
 
 exports.default = loadTableData;
 
-var _effects = __webpack_require__(35);
+var _effects = __webpack_require__(36);
 
 var _utils = __webpack_require__(8);
 
@@ -43970,7 +43970,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _keys = __webpack_require__(36);
+var _keys = __webpack_require__(30);
 
 var _keys2 = _interopRequireDefault(_keys);
 
@@ -46440,6 +46440,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _keys = __webpack_require__(30);
+
+var _keys2 = _interopRequireDefault(_keys);
+
 var _regenerator = __webpack_require__(40);
 
 var _regenerator2 = _interopRequireDefault(_regenerator);
@@ -46449,7 +46453,7 @@ exports.removeGroups = removeGroups;
 exports.deleteGroup = deleteGroup;
 exports.deleteEmptyGroups = deleteEmptyGroups;
 
-var _effects = __webpack_require__(35);
+var _effects = __webpack_require__(36);
 
 var _reduxSaga = __webpack_require__(124);
 
@@ -46475,7 +46479,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _marked = [removeGroup, removeGroups, deleteGroup, deleteEmptyGroups].map(_regenerator2.default.mark);
+var _marked = [deleteUnsavedGroups, hideRemoveConfirmationDialog, removeGroup, removeGroups, deleteGroup, deleteEmptyGroups].map(_regenerator2.default.mark);
 
 var SAVE_URL = app.config.urlSaveTiger;
 var JOB_URL = app.config.urlJob;
@@ -46483,120 +46487,53 @@ var GROUP_INFO = app.config.productGroupSpecificationsUrl;
 var REMOVE_EMPTY_URL = app.config.deleteEmptyProductGroupsUrl;
 var ERROR_MESSAGE = 'Не удалось удалить группы, повторите попытку.';
 
-function removeGroup(action) {
-  var _action$payload, id, name, save, res;
-
-  return _regenerator2.default.wrap(function removeGroup$(_context) {
+function deleteUnsavedGroups(groupIds) {
+  var i;
+  return _regenerator2.default.wrap(function deleteUnsavedGroups$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _action$payload = action.payload, id = _action$payload.id, name = _action$payload.name;
-          // не идем на апи групп, если это еще не сущетвующая группа
+          i = 0;
 
-          if (!(id < 0)) {
-            _context.next = 5;
+        case 1:
+          if (!(i < groupIds.length)) {
+            _context.next = 9;
             break;
           }
 
           _context.next = 4;
-          return (0, _effects.put)(tableActions.removeRow({ id: id }));
+          return (0, _effects.put)(tableActions.removeRow({ id: groupIds[i] }));
 
         case 4:
-          return _context.abrupt('return');
+          _context.next = 6;
+          return (0, _effects.put)(tableActions.setCheck({ id: groupIds[i], checked: false }));
 
-        case 5:
-          _context.next = 7;
-          return (0, _effects.put)(dialogsActions.showRemoveConfirmation(id));
-
-        case 7:
-          _context.prev = 7;
-
-        case 8:
-          if (false) {
-            _context.next = 25;
-            break;
-          }
-
-          _context.next = 11;
-          return (0, _effects.select)(function (state) {
-            return state.save;
-          });
-
-        case 11:
-          save = _context.sent;
-
-          if (!(!save.waitingState.length && !save.isProgress)) {
-            _context.next = 21;
-            break;
-          }
-
-          _context.next = 15;
-          return (0, _effects.put)(removeAction.requestAboutChildren({ id: id, name: name }));
-
-        case 15:
-          _context.next = 17;
-          return _utils.api.get(GROUP_INFO.replace('_PRODUCT_GROUP_ID_', id));
-
-        case 17:
-          res = _context.sent;
-          _context.next = 20;
-          return (0, _effects.put)(removeAction.requestAboutChildrenDone({
-            childrenProducts: res.data.products_presence,
-            childrenGroups: res.data.children_presence
-          }));
-
-        case 20:
-          return _context.abrupt('break', 25);
-
-        case 21:
-          _context.next = 23;
-          return (0, _effects.call)(_reduxSaga.delay, 300);
-
-        case 23:
-          _context.next = 8;
+        case 6:
+          i++;
+          _context.next = 1;
           break;
 
-        case 25:
-          _context.next = 31;
-          break;
-
-        case 27:
-          _context.prev = 27;
-          _context.t0 = _context['catch'](7);
-          _context.next = 31;
-          return (0, _effects.put)(removeAction.groupRemoveFail({ error: ERROR_MESSAGE }));
-
-        case 31:
+        case 9:
         case 'end':
           return _context.stop();
       }
     }
-  }, _marked[0], this, [[7, 27]]);
+  }, _marked[0], this);
 }
 
-function removeGroups() {
-  var selectedRows;
-  return _regenerator2.default.wrap(function removeGroups$(_context2) {
+function hideRemoveConfirmationDialog() {
+  return _regenerator2.default.wrap(function hideRemoveConfirmationDialog$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
           _context2.next = 2;
-          return (0, _effects.select)(function (state) {
-            return state.table.checked;
-          });
+          return (0, _effects.put)(removeAction.progressUpdate({ percent: 99 }));
 
         case 2:
-          selectedRows = _context2.sent;
+          _context2.next = 4;
+          return (0, _effects.put)(dialogsActions.hideRemoveConfirmation());
 
-          if (!selectedRows.length) {
-            _context2.next = 6;
-            break;
-          }
-
-          _context2.next = 6;
-          return (0, _effects.put)(dialogsActions.showMassRemoveConfirmation());
-
-        case 6:
+        case 4:
         case 'end':
           return _context2.stop();
       }
@@ -46604,43 +46541,164 @@ function removeGroups() {
   }, _marked[1], this);
 }
 
+function removeGroup(action) {
+  var _action$payload, id, name, save, res;
+
+  return _regenerator2.default.wrap(function removeGroup$(_context3) {
+    while (1) {
+      switch (_context3.prev = _context3.next) {
+        case 0:
+          _action$payload = action.payload, id = _action$payload.id, name = _action$payload.name;
+          // не идем на апи групп, если это еще не сущетвующая группа
+
+          if (!(id < 0)) {
+            _context3.next = 5;
+            break;
+          }
+
+          _context3.next = 4;
+          return (0, _effects.call)(deleteUnsavedGroups, [id]);
+
+        case 4:
+          return _context3.abrupt('return');
+
+        case 5:
+          _context3.next = 7;
+          return (0, _effects.put)(dialogsActions.showRemoveConfirmation(id));
+
+        case 7:
+          _context3.prev = 7;
+
+        case 8:
+          if (false) {
+            _context3.next = 25;
+            break;
+          }
+
+          _context3.next = 11;
+          return (0, _effects.select)(function (state) {
+            return state.save;
+          });
+
+        case 11:
+          save = _context3.sent;
+
+          if (!(!save.waitingState.length && !save.isProgress)) {
+            _context3.next = 21;
+            break;
+          }
+
+          _context3.next = 15;
+          return (0, _effects.put)(removeAction.requestAboutChildren({ id: id, name: name }));
+
+        case 15:
+          _context3.next = 17;
+          return _utils.api.get(GROUP_INFO.replace('_PRODUCT_GROUP_ID_', id));
+
+        case 17:
+          res = _context3.sent;
+          _context3.next = 20;
+          return (0, _effects.put)(removeAction.requestAboutChildrenDone({
+            childrenProducts: res.data.products_presence,
+            childrenGroups: res.data.children_presence
+          }));
+
+        case 20:
+          return _context3.abrupt('break', 25);
+
+        case 21:
+          _context3.next = 23;
+          return (0, _effects.call)(_reduxSaga.delay, 300);
+
+        case 23:
+          _context3.next = 8;
+          break;
+
+        case 25:
+          _context3.next = 31;
+          break;
+
+        case 27:
+          _context3.prev = 27;
+          _context3.t0 = _context3['catch'](7);
+          _context3.next = 31;
+          return (0, _effects.put)(removeAction.groupRemoveFail({ error: ERROR_MESSAGE }));
+
+        case 31:
+        case 'end':
+          return _context3.stop();
+      }
+    }
+  }, _marked[2], this, [[7, 27]]);
+}
+
+function removeGroups() {
+  var selectedRows;
+  return _regenerator2.default.wrap(function removeGroups$(_context4) {
+    while (1) {
+      switch (_context4.prev = _context4.next) {
+        case 0:
+          _context4.next = 2;
+          return (0, _effects.select)(function (state) {
+            return state.table.checked;
+          });
+
+        case 2:
+          selectedRows = _context4.sent;
+
+          if (!selectedRows.length) {
+            _context4.next = 6;
+            break;
+          }
+
+          _context4.next = 6;
+          return (0, _effects.put)(dialogsActions.showMassRemoveConfirmation());
+
+        case 6:
+        case 'end':
+          return _context4.stop();
+      }
+    }
+  }, _marked[3], this);
+}
+
 function deleteGroup(action) {
   var _this = this;
 
   var _action$payload2, id, destroy, massRemove, save, selectedRows, createDeleteJob, reqData, jobResponse;
 
-  return _regenerator2.default.wrap(function deleteGroup$(_context4) {
+  return _regenerator2.default.wrap(function deleteGroup$(_context6) {
     while (1) {
-      switch (_context4.prev = _context4.next) {
+      switch (_context6.prev = _context6.next) {
         case 0:
           _action$payload2 = action.payload, id = _action$payload2.id, destroy = _action$payload2.destroy, massRemove = _action$payload2.massRemove;
-          _context4.next = 3;
+          _context6.next = 3;
           return (0, _effects.select)(function (state) {
             return state.save;
           });
 
         case 3:
-          save = _context4.sent;
+          save = _context6.sent;
           selectedRows = void 0;
           createDeleteJob = void 0;
-          _context4.next = 8;
+          _context6.next = 8;
           return (0, _effects.put)(removeAction.deleteGroupStart());
 
         case 8:
-          _context4.prev = 8;
+          _context6.prev = 8;
 
         case 9:
           if (false) {
-            _context4.next = 49;
+            _context6.next = 53;
             break;
           }
 
-          _context4.next = 12;
+          _context6.next = 12;
           return (0, _effects.call)(_reduxSaga.delay, 1000);
 
         case 12:
           if (!(!save.waitingState.length && !save.isProgress)) {
-            _context4.next = 47;
+            _context6.next = 51;
             break;
           }
 
@@ -46648,20 +46706,20 @@ function deleteGroup(action) {
           reqData = void 0;
 
           if (createDeleteJob) {
-            _context4.next = 34;
+            _context6.next = 38;
             break;
           }
 
-          _context4.next = 17;
+          _context6.next = 17;
           return (0, _effects.select)(function (state) {
             return state.table.checked;
           });
 
         case 17:
-          selectedRows = _context4.sent;
+          selectedRows = _context6.sent;
 
           if (!massRemove) {
-            _context4.next = 22;
+            _context6.next = 28;
             break;
           }
 
@@ -46675,30 +46733,43 @@ function deleteGroup(action) {
             }).filter(function (row) {
               return row.id > 0;
             }) };
-          _context4.next = 31;
-          break;
 
-        case 22:
-          if (!(id < 0)) {
-            _context4.next = 30;
+          if ((0, _keys2.default)(reqData.rows).length) {
+            _context6.next = 26;
             break;
           }
 
-          _context4.next = 25;
-          return (0, _effects.put)(tableActions.removeRow({ id: id }));
+          _context6.next = 23;
+          return (0, _effects.call)(deleteUnsavedGroups, selectedRows);
+
+        case 23:
+          _context6.next = 25;
+          return (0, _effects.call)(hideRemoveConfirmationDialog);
 
         case 25:
-          _context4.next = 27;
-          return (0, _effects.put)(removeAction.progressUpdate({ percent: 99 }));
+          return _context6.abrupt('break', 53);
 
-        case 27:
-          _context4.next = 29;
-          return (0, _effects.put)(dialogsActions.hideRemoveConfirmation());
+        case 26:
+          _context6.next = 35;
+          break;
 
-        case 29:
-          return _context4.abrupt('break', 49);
+        case 28:
+          if (!(id < 0)) {
+            _context6.next = 34;
+            break;
+          }
 
-        case 30:
+          _context6.next = 31;
+          return (0, _effects.call)(deleteUnsavedGroups, [id]);
+
+        case 31:
+          _context6.next = 33;
+          return (0, _effects.call)(hideRemoveConfirmationDialog);
+
+        case 33:
+          return _context6.abrupt('break', 53);
+
+        case 34:
           reqData = {
             rows: [{
               id: id,
@@ -46707,64 +46778,64 @@ function deleteGroup(action) {
             }]
           };
 
-        case 31:
-          _context4.next = 33;
+        case 35:
+          _context6.next = 37;
           return _utils.api.put(SAVE_URL, reqData);
 
-        case 33:
-          createDeleteJob = _context4.sent;
+        case 37:
+          createDeleteJob = _context6.sent;
 
-        case 34:
-          _context4.next = 36;
+        case 38:
+          _context6.next = 40;
           return _utils.api.get(JOB_URL + '/' + createDeleteJob.data.job_id);
 
-        case 36:
-          jobResponse = _context4.sent;
+        case 40:
+          jobResponse = _context6.sent;
 
           if (!jobResponse.data.progress) {
-            _context4.next = 40;
+            _context6.next = 44;
             break;
           }
 
-          _context4.next = 40;
+          _context6.next = 44;
           return (0, _effects.put)(removeAction.progressUpdate({
             percent: Math.round(jobResponse.data.progress.percent)
           }));
 
-        case 40:
+        case 44:
           if (!jobResponse.data.succeeded) {
-            _context4.next = 42;
+            _context6.next = 46;
             break;
           }
 
-          return _context4.delegateYield(_regenerator2.default.mark(function _callee() {
+          return _context6.delegateYield(_regenerator2.default.mark(function _callee() {
             var selectedRowsInTree, shouldRedirect;
-            return _regenerator2.default.wrap(function _callee$(_context3) {
+            return _regenerator2.default.wrap(function _callee$(_context5) {
               while (1) {
-                switch (_context3.prev = _context3.next) {
+                switch (_context5.prev = _context5.next) {
                   case 0:
-                    _context3.next = 2;
+                    _context5.next = 2;
                     return (0, _effects.put)(dialogsActions.hideRemoveConfirmation());
 
                   case 2:
-                    _context3.next = 4;
+                    _context5.next = 4;
                     return (0, _effects.put)(dialogsActions.hideMassRemoveConfirmation());
 
                   case 4:
-                    _context3.next = 6;
+                    _context5.next = 6;
                     return (0, _effects.select)(function (state) {
                       return state.tree.selected;
                     });
 
                   case 6:
-                    selectedRowsInTree = _context3.sent;
-                    _context3.next = 9;
+                    selectedRowsInTree = _context5.sent;
+                    _context5.next = 9;
                     return (0, _effects.select)(function (state) {
                       return state.table.checked;
                     });
 
                   case 9:
-                    selectedRows = _context3.sent;
+                    selectedRows = _context5.sent;
                     shouldRedirect = false;
 
 
@@ -46781,179 +46852,187 @@ function deleteGroup(action) {
                     if (!(selectedRowsInTree.find(function (row) {
                       return row.id === id;
                     }) || shouldRedirect)) {
-                      _context3.next = 15;
+                      _context5.next = 15;
                       break;
                     }
 
-                    _context3.next = 15;
+                    _context5.next = 15;
                     return (0, _effects.put)(treeActions.setNode());
 
                   case 15:
-                    _context3.next = 17;
+                    _context5.next = 17;
                     return (0, _effects.put)(tableActions.load());
 
                   case 17:
-                    _context3.next = 19;
+                    _context5.next = 19;
                     return (0, _effects.put)(treeActions.load());
 
                   case 19:
                     if (!massRemove) {
-                      _context3.next = 22;
+                      _context5.next = 24;
                       break;
                     }
 
-                    _context3.next = 22;
+                    _context5.next = 22;
                     return (0, _effects.put)(tableActions.setCheckAllReset());
 
                   case 22:
+                    _context5.next = 26;
+                    break;
+
+                  case 24:
+                    _context5.next = 26;
+                    return (0, _effects.put)(tableActions.setCheck({ id: id, checked: false }));
+
+                  case 26:
                   case 'end':
-                    return _context3.stop();
+                    return _context5.stop();
                 }
               }
             }, _callee, _this);
-          })(), 't0', 42);
+          })(), 't0', 46);
 
-        case 42:
+        case 46:
           if (!jobResponse.data.failed) {
-            _context4.next = 45;
+            _context6.next = 49;
             break;
           }
 
-          _context4.next = 45;
+          _context6.next = 49;
           return (0, _effects.put)(removeAction.groupRemoveFail({ error: ERROR_MESSAGE }));
-
-        case 45:
-          if (!(jobResponse.data.succeeded || jobResponse.data.failed)) {
-            _context4.next = 47;
-            break;
-          }
-
-          return _context4.abrupt('break', 49);
-
-        case 47:
-          _context4.next = 9;
-          break;
 
         case 49:
-          _context4.next = 55;
-          break;
+          if (!(jobResponse.data.succeeded || jobResponse.data.failed)) {
+            _context6.next = 51;
+            break;
+          }
+
+          return _context6.abrupt('break', 53);
 
         case 51:
-          _context4.prev = 51;
-          _context4.t1 = _context4['catch'](8);
-          _context4.next = 55;
-          return (0, _effects.put)(removeAction.groupRemoveFail({ error: ERROR_MESSAGE }));
+          _context6.next = 9;
+          break;
+
+        case 53:
+          _context6.next = 59;
+          break;
 
         case 55:
+          _context6.prev = 55;
+          _context6.t1 = _context6['catch'](8);
+          _context6.next = 59;
+          return (0, _effects.put)(removeAction.groupRemoveFail({ error: ERROR_MESSAGE }));
+
+        case 59:
         case 'end':
-          return _context4.stop();
+          return _context6.stop();
       }
     }
-  }, _marked[2], this, [[8, 51]]);
+  }, _marked[4], this, [[8, 55]]);
 }
 
 function deleteEmptyGroups() {
   var save, apiResponse, jobResponse;
-  return _regenerator2.default.wrap(function deleteEmptyGroups$(_context5) {
+  return _regenerator2.default.wrap(function deleteEmptyGroups$(_context7) {
     while (1) {
-      switch (_context5.prev = _context5.next) {
+      switch (_context7.prev = _context7.next) {
         case 0:
-          _context5.next = 2;
+          _context7.next = 2;
           return (0, _effects.put)(removeAction.removeEmptyGroupsStart());
 
         case 2:
-          _context5.next = 4;
+          _context7.next = 4;
           return (0, _effects.select)(function (state) {
             return state.save;
           });
 
         case 4:
-          save = _context5.sent;
-          _context5.next = 7;
+          save = _context7.sent;
+          _context7.next = 7;
           return _utils.api.delete(REMOVE_EMPTY_URL);
 
         case 7:
-          apiResponse = _context5.sent;
-          _context5.prev = 8;
+          apiResponse = _context7.sent;
+          _context7.prev = 8;
 
         case 9:
           if (false) {
-            _context5.next = 32;
+            _context7.next = 32;
             break;
           }
 
           if (!(!save.waitingState.length && !save.isProgress)) {
-            _context5.next = 28;
+            _context7.next = 28;
             break;
           }
 
-          _context5.next = 13;
+          _context7.next = 13;
           return _utils.api.get(JOB_URL + '/' + apiResponse.data.meta_id);
 
         case 13:
-          jobResponse = _context5.sent;
+          jobResponse = _context7.sent;
 
           if (!jobResponse.data.succeeded) {
-            _context5.next = 23;
+            _context7.next = 23;
             break;
           }
 
-          _context5.next = 17;
+          _context7.next = 17;
           return (0, _effects.put)(tableActions.load());
 
         case 17:
-          _context5.next = 19;
+          _context7.next = 19;
           return (0, _effects.put)(treeActions.load());
 
         case 19:
-          _context5.next = 21;
+          _context7.next = 21;
           return (0, _effects.put)(removeAction.removeEmptyGroupsDone());
 
         case 21:
-          _context5.next = 23;
+          _context7.next = 23;
           return (0, _effects.put)(dialogsActions.hideRemoveEmptyRowsConfirmation());
 
         case 23:
           if (!jobResponse.data.failed) {
-            _context5.next = 26;
+            _context7.next = 26;
             break;
           }
 
-          _context5.next = 26;
+          _context7.next = 26;
           return (0, _effects.put)(removeAction.groupRemoveFail({ error: ERROR_MESSAGE }));
 
         case 26:
           if (!(jobResponse.data.failed || jobResponse.data.succeeded)) {
-            _context5.next = 28;
+            _context7.next = 28;
             break;
           }
 
-          return _context5.abrupt('break', 32);
+          return _context7.abrupt('break', 32);
 
         case 28:
-          _context5.next = 30;
+          _context7.next = 30;
           return (0, _effects.call)(_reduxSaga.delay, 1000);
 
         case 30:
-          _context5.next = 9;
+          _context7.next = 9;
           break;
 
         case 32:
-          _context5.next = 38;
+          _context7.next = 38;
           break;
 
         case 34:
-          _context5.prev = 34;
-          _context5.t0 = _context5['catch'](8);
-          _context5.next = 38;
+          _context7.prev = 34;
+          _context7.t0 = _context7['catch'](8);
+          _context7.next = 38;
           return (0, _effects.put)(removeAction.groupRemoveFail({ error: ERROR_MESSAGE }));
 
         case 38:
         case 'end':
-          return _context5.stop();
+          return _context7.stop();
       }
     }
-  }, _marked[3], this, [[8, 34]]);
+  }, _marked[5], this, [[8, 34]]);
 }
 
 /***/ }),
@@ -46974,7 +47053,7 @@ var _regenerator2 = _interopRequireDefault(_regenerator);
 
 exports.pollingOnlineStoreImportStatus = pollingOnlineStoreImportStatus;
 
-var _effects = __webpack_require__(35);
+var _effects = __webpack_require__(36);
 
 var _reduxSaga = __webpack_require__(124);
 
@@ -47459,7 +47538,7 @@ module.exports = (
 /* 508 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var MATCH = __webpack_require__(30)('match');
+var MATCH = __webpack_require__(31)('match');
 module.exports = function(KEY){
   var re = /./;
   try {
@@ -47497,7 +47576,7 @@ module.exports = function(that, target, C){
 
 // check on default Array iterator
 var Iterators  = __webpack_require__(213)
-  , ITERATOR   = __webpack_require__(30)('iterator')
+  , ITERATOR   = __webpack_require__(31)('iterator')
   , ArrayProto = Array.prototype;
 
 module.exports = function(it){
@@ -47526,7 +47605,7 @@ var create         = __webpack_require__(179)
   , IteratorPrototype = {};
 
 // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-__webpack_require__(76)(IteratorPrototype, __webpack_require__(30)('iterator'), function(){ return this; });
+__webpack_require__(76)(IteratorPrototype, __webpack_require__(31)('iterator'), function(){ return this; });
 
 module.exports = function(Constructor, NAME, next){
   Constructor.prototype = create(IteratorPrototype, {next: descriptor(1, next)});
@@ -47548,7 +47627,7 @@ var LIBRARY        = __webpack_require__(178)
   , $iterCreate    = __webpack_require__(513)
   , setToStringTag = __webpack_require__(214)
   , getPrototypeOf = __webpack_require__(88)
-  , ITERATOR       = __webpack_require__(30)('iterator')
+  , ITERATOR       = __webpack_require__(31)('iterator')
   , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
   , FF_ITERATOR    = '@@iterator'
   , KEYS           = 'keys'
@@ -47753,7 +47832,7 @@ module.exports = function(key){
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
 var anObject  = __webpack_require__(15)
   , aFunction = __webpack_require__(75)
-  , SPECIES   = __webpack_require__(30)('species');
+  , SPECIES   = __webpack_require__(31)('species');
 module.exports = function(O, D){
   var C = anObject(O).constructor, S;
   return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? D : aFunction(S);
@@ -48197,7 +48276,7 @@ module.exports = function(name){
 /***/ (function(module, exports, __webpack_require__) {
 
 var classof   = __webpack_require__(287)
-  , ITERATOR  = __webpack_require__(30)('iterator')
+  , ITERATOR  = __webpack_require__(31)('iterator')
   , Iterators = __webpack_require__(213);
 module.exports = __webpack_require__(127).getIteratorMethod = function(it){
   if(it != undefined)return it[ITERATOR]
@@ -49675,7 +49754,7 @@ var _invariant = __webpack_require__(23);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _isArray = __webpack_require__(33);
+var _isArray = __webpack_require__(34);
 
 var _isArray2 = _interopRequireDefault(_isArray);
 
@@ -49992,7 +50071,7 @@ var _invariant = __webpack_require__(23);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _isArray = __webpack_require__(33);
+var _isArray = __webpack_require__(34);
 
 var _isArray2 = _interopRequireDefault(_isArray);
 
@@ -52038,7 +52117,7 @@ module.exports = baseIsNaN;
 /* 588 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(34),
+var isObject = __webpack_require__(35),
     isPrototype = __webpack_require__(197),
     nativeKeysIn = __webpack_require__(599);
 
@@ -52330,7 +52409,7 @@ module.exports = getPrototype;
 
 var Symbol = __webpack_require__(80),
     isArguments = __webpack_require__(200),
-    isArray = __webpack_require__(33);
+    isArray = __webpack_require__(34);
 
 /** Built-in value references. */
 var spreadableSymbol = Symbol ? Symbol.isConcatSpreadable : undefined;
@@ -52357,7 +52436,7 @@ module.exports = isFlattenable;
 var eq = __webpack_require__(72),
     isArrayLike = __webpack_require__(111),
     isIndex = __webpack_require__(196),
-    isObject = __webpack_require__(34);
+    isObject = __webpack_require__(35);
 
 /**
  * Checks if the given arguments are from an iteratee call.
@@ -63741,7 +63820,7 @@ module.exports = function(that, maxLength, fillString, left){
 /* 704 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports.f = __webpack_require__(30);
+exports.f = __webpack_require__(31);
 
 /***/ }),
 /* 705 */
@@ -64495,7 +64574,7 @@ var _regenerator2 = _interopRequireDefault(_regenerator);
 
 exports.default = subscribeForLoadTableData;
 
-var _effects = __webpack_require__(35);
+var _effects = __webpack_require__(36);
 
 var _sagas = __webpack_require__(427);
 
@@ -66539,7 +66618,7 @@ module.exports = __webpack_require__(127).RegExp.escape;
 
 var isObject = __webpack_require__(25)
   , isArray  = __webpack_require__(512)
-  , SPECIES  = __webpack_require__(30)('species');
+  , SPECIES  = __webpack_require__(31)('species');
 
 module.exports = function(original){
   var C;
@@ -67130,7 +67209,7 @@ $export($export.P + $export.F * __webpack_require__(21)(function(){
 /* 780 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var TO_PRIMITIVE = __webpack_require__(30)('toPrimitive')
+var TO_PRIMITIVE = __webpack_require__(31)('toPrimitive')
   , proto        = Date.prototype;
 
 if(!(TO_PRIMITIVE in proto))__webpack_require__(76)(proto, TO_PRIMITIVE, __webpack_require__(750));
@@ -67168,7 +67247,7 @@ $export($export.P, 'Function', {bind: __webpack_require__(685)});
 
 var isObject       = __webpack_require__(25)
   , getPrototypeOf = __webpack_require__(88)
-  , HAS_INSTANCE   = __webpack_require__(30)('hasInstance')
+  , HAS_INSTANCE   = __webpack_require__(31)('hasInstance')
   , FunctionProto  = Function.prototype;
 // 19.2.3.6 Function.prototype[@@hasInstance](V)
 if(!(HAS_INSTANCE in FunctionProto))__webpack_require__(43).f(FunctionProto, HAS_INSTANCE, {value: function(O){
@@ -67994,7 +68073,7 @@ $export($export.S, 'Object', {setPrototypeOf: __webpack_require__(518).set});
 // 19.1.3.6 Object.prototype.toString()
 var classof = __webpack_require__(287)
   , test    = {};
-test[__webpack_require__(30)('toStringTag')] = 'z';
+test[__webpack_require__(31)('toStringTag')] = 'z';
 if(test + '' != '[object z]'){
   __webpack_require__(77)(Object.prototype, 'toString', function toString(){
     return '[object ' + classof(this) + ']';
@@ -68050,7 +68129,7 @@ var USE_NATIVE = !!function(){
   try {
     // correct subclassing with @@species support
     var promise     = $Promise.resolve(1)
-      , FakePromise = (promise.constructor = {})[__webpack_require__(30)('species')] = function(exec){ exec(empty, empty); };
+      , FakePromise = (promise.constructor = {})[__webpack_require__(31)('species')] = function(exec){ exec(empty, empty); };
     // unhandled rejections tracking support, NodeJS Promise without it fails @@species test
     return (isNode || typeof PromiseRejectionEvent == 'function') && promise.then(empty) instanceof FakePromise;
   } catch(e){ /* empty */ }
@@ -68662,7 +68741,7 @@ var global            = __webpack_require__(16)
   , CORRECT_NEW       = new $RegExp(re1) !== re1;
 
 if(__webpack_require__(42) && (!CORRECT_NEW || __webpack_require__(21)(function(){
-  re2[__webpack_require__(30)('match')] = false;
+  re2[__webpack_require__(31)('match')] = false;
   // RegExp constructor can alter flags and IsRegExp works correct with @@match
   return $RegExp(re1) != re1 || $RegExp(re2) == re2 || $RegExp(re1, 'i') != '/a/i';
 }))){
@@ -69211,7 +69290,7 @@ var global         = __webpack_require__(16)
   , shared         = __webpack_require__(406)
   , setToStringTag = __webpack_require__(214)
   , uid            = __webpack_require__(185)
-  , wks            = __webpack_require__(30)
+  , wks            = __webpack_require__(31)
   , wksExt         = __webpack_require__(704)
   , wksDefine      = __webpack_require__(527)
   , keyOf          = __webpack_require__(752)
@@ -69883,7 +69962,7 @@ var $export     = __webpack_require__(1)
   , global      = __webpack_require__(16)
   , core        = __webpack_require__(127)
   , microtask   = __webpack_require__(517)()
-  , OBSERVABLE  = __webpack_require__(30)('observable')
+  , OBSERVABLE  = __webpack_require__(31)('observable')
   , aFunction   = __webpack_require__(75)
   , anObject    = __webpack_require__(15)
   , anInstance  = __webpack_require__(177)
@@ -70387,7 +70466,7 @@ var $iterators    = __webpack_require__(529)
   , global        = __webpack_require__(16)
   , hide          = __webpack_require__(76)
   , Iterators     = __webpack_require__(213)
-  , wks           = __webpack_require__(30)
+  , wks           = __webpack_require__(31)
   , ITERATOR      = wks('iterator')
   , TO_STRING_TAG = wks('toStringTag')
   , ArrayValues   = Iterators.Array;
