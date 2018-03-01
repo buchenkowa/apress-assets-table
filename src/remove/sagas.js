@@ -12,11 +12,23 @@ const GROUP_INFO = app.config.productGroupSpecificationsUrl;
 const REMOVE_EMPTY_URL = app.config.deleteEmptyProductGroupsUrl;
 const ERROR_MESSAGE = 'Не удалось удалить группы, повторите попытку.';
 
+function* deleteUnsavedGroups(groupIds) {
+  for (let i = 0; i < groupIds.length; i++) {
+    yield put(tableActions.removeRow({id: groupIds[i]}));
+    yield put(tableActions.setCheck({id: groupIds[i], checked: false}));
+  }
+}
+
+function* hideRemoveConfirmationDialog() {
+  yield put(removeAction.progressUpdate({percent: 99}));
+  yield put(dialogsActions.hideRemoveConfirmation());
+}
+
 export function* removeGroup(action) {
   const {id, name} = action.payload;
   // не идем на апи групп, если это еще не сущетвующая группа
   if (id < 0) {
-    yield put(tableActions.removeRow({id}));
+    yield call(deleteUnsavedGroups, [id]);
     return;
   }
 
@@ -74,12 +86,17 @@ export function* deleteGroup(action) {
               destroy_options: destroy,
             }))
               .filter(row => (row.id > 0))};
+
+            if (!Object.keys(reqData.rows).length) {
+              yield call(deleteUnsavedGroups, selectedRows);
+              yield call(hideRemoveConfirmationDialog);
+              break;
+            }
           } else {
             // для не существующих ячеек дальнейшие операции бессмыслены
             if (id < 0) {
-              yield put(tableActions.removeRow({id}));
-              yield put(removeAction.progressUpdate({percent: 99}));
-              yield put(dialogsActions.hideRemoveConfirmation());
+              yield call(deleteUnsavedGroups, [id]);
+              yield call(hideRemoveConfirmationDialog);
               break;
             }
             reqData = {
@@ -126,6 +143,8 @@ export function* deleteGroup(action) {
 
           if (massRemove) {
             yield put(tableActions.setCheckAllReset());
+          } else {
+            yield put(tableActions.setCheck({id, checked: false}));
           }
         }
 
