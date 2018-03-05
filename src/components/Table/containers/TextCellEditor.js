@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 
 import {textCellEditorPropType} from '../../../propTypes';
-import {block} from '../../../utils';
+import {block, getCallback} from '../../../utils';
+import EditControlPanel from '../views/EditControlPanel';
 
 
 const b = block('e-table');
@@ -28,14 +29,12 @@ class TextCellEditor extends Component {
   );
 
   getEventHandlers = () => {
-    if (!this.props.isEdit) {
-      return {};
-    }
+    const {isEdit, isTouchDevice} = this.props;
 
     return {
-      onBlur: () => this.save(),
-      onKeyDown: e => this.handleKeyDown(e),
-      onInput: e => this.handleInput(e)
+      onKeyDown: getCallback(this.handleKeyDown, isEdit),
+      onInput: getCallback(this.handleInput, isEdit),
+      onBlur: getCallback(this.save, isEdit && !isTouchDevice)
     };
   };
 
@@ -61,7 +60,7 @@ class TextCellEditor extends Component {
   };
 
   render() {
-    const {isEdit, maxLen} = this.props;
+    const {isEdit, maxLen, handlerEdit, isTouchDevice} = this.props;
 
     return (
       <div
@@ -75,6 +74,12 @@ class TextCellEditor extends Component {
           value={this.state.value}
           {...this.getEventHandlers()}
         />
+        {isEdit && isTouchDevice &&
+          <EditControlPanel
+            onSave={this.save}
+            onClose={() => { handlerEdit(false); }}
+          />
+        }
       </div>
     );
   }

@@ -39,11 +39,13 @@ class Table extends Component {
       columns: PropTypes.arrayOf(PropTypes.object),
       isLoaded: PropTypes.bool
     }),
-    pastedData: PropTypes.string
+    pastedData: PropTypes.string,
+    isTouchDevice: PropTypes.bool
   };
 
   static defaultProps = {
-    pastedData: ''
+    pastedData: '',
+    isTouchDevice: false
   };
 
   state = {
@@ -135,6 +137,7 @@ class Table extends Component {
               $rootNode={this.$node}
               scrollLeft={this.state.scrollLeft}
               readonly={readonly}
+              isTouchDevice={this.props.isTouchDevice}
             />
           </div> :
           <div className='e-spinner' />
