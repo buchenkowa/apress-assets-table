@@ -93,3 +93,7 @@ export const transformFromServer = (record, templateRecord) => {
 export function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
+
+export const getCallback = (callback, withCallback) => (
+  withCallback ? callback : null
+);

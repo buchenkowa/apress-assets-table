@@ -123,7 +123,7 @@
     overflow: hidden; text-overflow: ellipsis; max-height: 50px; user-select: text;
     + .cke,
     &.is-edit {
-      font-size: 14px; background: #fff; box-sizing: border-box; max-height: 150px; height: 150px; width: 380px; outline: none; z-index: 9; position: absolute; left: 0; top: 0; border: solid 1px #028dd8;
+      font-size: 14px; background: #fff; box-sizing: border-box; max-height: 150px; height: 150px; width: 380px; outline: none; z-index: 9; position: absolute; left: 0; top: 0; border: solid 1px #028dd8; overflow: unset;
       textarea { height: 100%; padding: 20px; }
     }
     + .cke:after,
@@ -135,7 +135,18 @@
       &:after { bottom: 4px; }
       .cke_top.cke_reset_all { padding-right: 2px; }
     }
-    textarea { width: 100%; border: none; resize: unset; overflow: hidden; font: inherit; cursor: inherit; background-color: transparent; }
+    textarea { width: 100%; border: none; resize: unset; overflow: hidden; font: inherit; cursor: inherit; background-color: transparent; box-sizing: border-box; }
+    &-controllers-box { z-index: 100; position: absolute; top: 5px; right: -35px; }
+    &-save,
+    &-close {
+      border: 1px solid #c1c1c1; height: 25px; width: 25px; border-radius: 3px; display: flex; align-items: center; justify-content: center; background: #fff;
+      &:after { content: ''; display: inline-block; width: 15px; height: 15px; }
+    }
+    &-save:after { @include check-icon(); }
+    &-close {
+      margin-top: 5px;
+      &:after { @include close-icon(); }
+    }
   }
   &-price {
     &-old { text-decoration: line-through; color: #999; }
@@ -155,6 +166,10 @@
     &.is-sorted-down { transform: scale(1, -1); }
   }
   &-drag-tool { width: 7px; height: 7px; cursor: crosshair; background: #028dd8; position: absolute; bottom: -1px; right: 0; }
+  &-edit-tool {
+    position: absolute; bottom: 5px; right: 5px; border: 1px solid #c1c1c1; height: 25px; width: 25px; border-radius: 3px; display: flex; align-items: center; justify-content: center;
+    &:after { @include edit-icon(#c1c1c1); content: ''; display: inline-block; width: 15px; height: 15px; }
+  }
 
   &-cell-preview-icon { cursor: pointer; @include eye-icon(); position: absolute; width: 16px; height: 16px; right: 8px; top: 8px; }
   &-preview {
