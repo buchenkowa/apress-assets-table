@@ -9,7 +9,7 @@ import * as remove from '../remove/actions';
 class RemoveMassConfirmDialog extends React.Component {
 
   cancel = () => {
-    if (this.props.removeInProgrees) {
+    if (this.props.removeInProgress) {
       return;
     }
     this.props.dispatch(hideMassRemoveConfirmation());
@@ -72,13 +72,13 @@ class RemoveMassConfirmDialog extends React.Component {
     return (
       <Dialog
         className='is-remove-confirmation'
-        closable={!props.removeInProgrees}
+        closable={!props.removeInProgress}
         visible={props.open}
         onClose={this.cancel}
-        title={!props.removeInProgrees ?
+        title={!props.removeInProgress ?
           'Удалить выбранные группы ?' : 'Удаляем группы, пожалуйста ожидайте ...'}
       >
-        {props.removeInProgrees ? this.renderRemoveInProgress() : this.renderConfirmation() }
+        {props.removeInProgress ? this.renderRemoveInProgress() : this.renderConfirmation() }
       </Dialog>);
   }
 }
@@ -87,7 +87,7 @@ const mapStateToProps = state => ({
   open: state.dialogs.removeRowsConfirmOpen,
   selectedRowsId: state.table.checked,
   isFetching: state.remove.isFetching,
-  removeInProgrees: state.remove.removeInProgrees,
+  removeInProgress: state.remove.removeInProgress,
   processStatus: state.remove.processStatus,
   error: state.remove.error,
 });

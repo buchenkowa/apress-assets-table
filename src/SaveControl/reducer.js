@@ -4,7 +4,8 @@ import {
   SAVE_CREATE_DIFF,
   SAVE_START,
   SAVE_DIFF,
-  CONTINUE_SAVE
+  CONTINUE_SAVE,
+  SUCCESS_REMOVE_MESSAGE
 } from './actions';
 import {
   TABLE_EDITOR_LOAD_SUCCESS,
@@ -27,6 +28,7 @@ const initialState = {
   isError: false,
   prevState: [],
   isProgress: false,
+  isSuccess: false,
   fetchDiff: false,
   waitingState: [],
   saveState: []
@@ -168,6 +170,7 @@ export default function (state = initialState, action) {
           ...state,
           saveState: [],
           isProgress: false,
+          isSuccess: true
         };
       }
 
@@ -207,6 +210,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         prevState: rows(state.prevState, action)
+      };
+
+    case SUCCESS_REMOVE_MESSAGE:
+      return {
+        ...state,
+        isSuccess: false
       };
 
     default:

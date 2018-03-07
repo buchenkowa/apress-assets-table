@@ -3,6 +3,7 @@ export const SAVE_SUCCESS = 'SAVE_SUCCESS';
 export const SAVE_CREATE_DIFF = 'SAVE_CREATE_DIFF';
 export const SAVE_DIFF = 'SAVE_DIFF';
 export const CONTINUE_SAVE = 'CONTINUE_SAVE';
+export const SUCCESS_REMOVE_MESSAGE = 'SUCCESS_REMOVE_MESSAGE';
 
 
 export const saveStart = () => ({
