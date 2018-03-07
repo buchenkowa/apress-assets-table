@@ -21,6 +21,7 @@ import * as actionsError from './Error/actions';
 import * as actionsDialog from './dialogs/actions';
 import * as actionsCable from './Cable/actions';
 
+import * as imageEditorActionTypes from './actionTypes/imageEditor';
 import * as onlineStoreImportActionTypes from './actionTypes/onlineStoreImport';
 
 import reducerTree from './Tree/reducer';
@@ -37,9 +38,9 @@ import ContainerDialog from './dialogs/ContainerDialog';
 import reducerCable from './Cable/reducer';
 import onlineStoreImportReducer from './reducers/onlineStoreImport';
 
-import imageEditor from './ImageEditor/reducer';
-import * as imageEditorActions from './ImageEditor/actions';
-import * as imageEditorSagas from './ImageEditor/sagas';
+import imageEditor from './reducers/imageEditor';
+import * as imageEditorActions from './actions/imageEditor';
+import * as imageEditorSagas from './sagas/imageEditor';
 
 import * as treeSagas from './Tree/sagas';
 import filterSagas from './Filter/sagas';
@@ -104,6 +105,7 @@ export const actions = {
 };
 
 export const actionTypes = {
+  imageEditorActionTypes,
   onlineStoreImportActionTypes
 };
 
