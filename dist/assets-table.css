@@ -2134,7 +2134,7 @@ li.rc-select-dropdown-menu-item-divider {
     .e-tree-item.is-open .e-tree-arrow {
       transform: rotate(90deg); }
     .e-tree-item.is-open + .e-tree-list {
-      max-height: 2500px; }
+      max-height: unset; }
     .e-tree-item:after {
       content: attr(data-count);
       padding: 0 0 0 2px;
