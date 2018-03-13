@@ -40,7 +40,7 @@
     &.is-move { opacity: .5; }
     &.is-open {
       .e-tree-arrow { transform: rotate(90deg); }
-      + .e-tree-list { max-height: 2500px; }
+      + .e-tree-list { max-height: unset; }
     }
     &:after { content: attr(data-count); padding: 0 0 0 2px; vertical-align: top; position: absolute; }
     &.is-center > .e-tree-drag:before,
