@@ -388,6 +388,8 @@ export function* save() {
     }
 
     yield put(saveControlActions.saveSuccess({error: false}));
+    yield delay(3000);
+    yield put({type: saveControlActions.SUCCESS_REMOVE_MESSAGE});
     yield call(continueSave);
   } catch (err) {
     yield put(saveControlActions.saveSuccess({error: true}));

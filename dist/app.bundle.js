@@ -8328,6 +8328,7 @@ var SAVE_SUCCESS = exports.SAVE_SUCCESS = 'SAVE_SUCCESS';
 var SAVE_CREATE_DIFF = exports.SAVE_CREATE_DIFF = 'SAVE_CREATE_DIFF';
 var SAVE_DIFF = exports.SAVE_DIFF = 'SAVE_DIFF';
 var CONTINUE_SAVE = exports.CONTINUE_SAVE = 'CONTINUE_SAVE';
+var SUCCESS_REMOVE_MESSAGE = exports.SUCCESS_REMOVE_MESSAGE = 'SUCCESS_REMOVE_MESSAGE';
 
 var saveStart = exports.saveStart = function saveStart() {
   return {
@@ -39692,12 +39693,12 @@ var RemoveConfirmationDialog = function (_React$Component) {
         _Dialog2.default,
         {
           className: 'is-remove-confirmation',
-          closable: !props.removeInProgrees,
+          closable: !props.removeInProgress,
           visible: props.removeRowConfirmOpen,
           onClose: this.cancel,
-          title: !props.removeInProgrees ? 'Удалить выбранную группу ?' : 'Удаляем группу, пожалуйста ожидайте ...'
+          title: !props.removeInProgress ? 'Удалить выбранную группу ?' : 'Удаляем группу, пожалуйста ожидайте ...'
         },
-        props.removeInProgrees ? this.renderRemoveInProgress() : this.renderConfirmation()
+        props.removeInProgress ? this.renderRemoveInProgress() : this.renderConfirmation()
       );
     }
   }]);
@@ -39720,7 +39721,7 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.cancel = function () {
-    if (_this3.props.removeInProgrees) {
+    if (_this3.props.removeInProgress) {
       return;
     }
     _this3.props.dispatch((0, _actions.hideRemoveConfirmation)());
@@ -39851,7 +39852,7 @@ var mapStateToProps = function mapStateToProps(state) {
     isLoaded: state.tree.isLoaded,
     config: state.config,
     isFetching: state.remove.isFetching,
-    removeInProgrees: state.remove.removeInProgrees,
+    removeInProgress: state.remove.removeInProgress,
     processStatus: state.remove.processStatus,
     selectedNodeId: state.remove.selectedNodeId,
     save: state.save,
@@ -39935,7 +39936,7 @@ var RemoveEmptyGroupsDialog = function (_React$Component) {
     }
 
     return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = RemoveEmptyGroupsDialog.__proto__ || (0, _getPrototypeOf2.default)(RemoveEmptyGroupsDialog)).call.apply(_ref, [this].concat(args))), _this), _this.cancel = function () {
-      if (_this.props.removeInProgrees) {
+      if (_this.props.removeInProgress) {
         return;
       }
       _this.props.dispatch((0, _actions2.hideRemoveEmptyRowsConfirmation)());
@@ -39971,18 +39972,18 @@ var RemoveEmptyGroupsDialog = function (_React$Component) {
       return _react2.default.createElement(
         _Dialog2.default,
         {
-          closable: !props.removeInProgrees,
+          closable: !props.removeInProgress,
           className: 'is-remove-confirmation',
           visible: props.removeEmptyRowConfirmOpen,
           onClose: this.cancel,
-          title: !props.removeInProgrees ? 'Удалить группы без товаров?' : 'Удаляем пустые группы...'
+          title: !props.removeInProgress ? 'Удалить группы без товаров?' : 'Удаляем пустые группы...'
         },
         props.error && _react2.default.createElement(
           'p',
           { className: 'e-simple-error' },
           props.error
         ),
-        !props.removeInProgrees ? _react2.default.createElement(
+        !props.removeInProgress ? _react2.default.createElement(
           'div',
           { className: 'rc-dialog-full-width' },
           _react2.default.createElement(
@@ -40018,7 +40019,7 @@ var mapStateToProps = function mapStateToProps(state) {
     removeEmptyRowConfirmOpen: state.dialogs.removeEmptyRowConfirmOpen,
     selectedRow: state.dialogs.selectedIds,
     removeRowConfirmOpen: state.dialogs.removeRowConfirmOpen,
-    removeInProgrees: state.remove.removeInProgrees,
+    removeInProgress: state.remove.removeInProgress,
     processStatus: state.remove.processStatus,
     error: state.remove.error
   };
@@ -40100,7 +40101,7 @@ var RemoveMassConfirmDialog = function (_React$Component) {
     }
 
     return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = RemoveMassConfirmDialog.__proto__ || (0, _getPrototypeOf2.default)(RemoveMassConfirmDialog)).call.apply(_ref, [this].concat(args))), _this), _this.cancel = function () {
-      if (_this.props.removeInProgrees) {
+      if (_this.props.removeInProgress) {
         return;
       }
       _this.props.dispatch((0, _actions.hideMassRemoveConfirmation)());
@@ -40185,12 +40186,12 @@ var RemoveMassConfirmDialog = function (_React$Component) {
         _Dialog2.default,
         {
           className: 'is-remove-confirmation',
-          closable: !props.removeInProgrees,
+          closable: !props.removeInProgress,
           visible: props.open,
           onClose: this.cancel,
-          title: !props.removeInProgrees ? 'Удалить выбранные группы ?' : 'Удаляем группы, пожалуйста ожидайте ...'
+          title: !props.removeInProgress ? 'Удалить выбранные группы ?' : 'Удаляем группы, пожалуйста ожидайте ...'
         },
-        props.removeInProgrees ? this.renderRemoveInProgress() : this.renderConfirmation()
+        props.removeInProgress ? this.renderRemoveInProgress() : this.renderConfirmation()
       );
     }
   }]);
@@ -40202,7 +40203,7 @@ var mapStateToProps = function mapStateToProps(state) {
     open: state.dialogs.removeRowsConfirmOpen,
     selectedRowsId: state.table.checked,
     isFetching: state.remove.isFetching,
-    removeInProgrees: state.remove.removeInProgrees,
+    removeInProgress: state.remove.removeInProgress,
     processStatus: state.remove.processStatus,
     error: state.remove.error
   };
@@ -40270,16 +40271,24 @@ var SaveControl = function (_Component) {
   (0, _createClass3.default)(SaveControl, [{
     key: 'getStatus',
     value: function getStatus() {
-      if (!this.props.isError && !this.props.isProgress) {
-        return _StatusText4.default.success;
-      }
+      var _props = this.props,
+          isError = _props.isError,
+          isProgress = _props.isProgress,
+          isSuccess = _props.isSuccess,
+          removeInProgress = _props.removeInProgress;
+      var success = _StatusText4.default.success,
+          error = _StatusText4.default.error,
+          progress = _StatusText4.default.progress;
 
-      if (this.props.isError) {
-        return _StatusText4.default.error;
-      }
 
-      if (this.props.isProgress || this.props.removeInProgrees) {
-        return _StatusText4.default.progress;
+      if (isProgress || removeInProgress) {
+        return progress;
+      }
+      if (isError) {
+        return error;
+      }
+      if (isSuccess) {
+        return success;
       }
 
       return '';
@@ -40289,10 +40298,10 @@ var SaveControl = function (_Component) {
     value: function render() {
       var status = this.getStatus();
 
-      return _react2.default.createElement(_StatusText2.default, {
+      return status ? _react2.default.createElement(_StatusText2.default, {
         status: status,
         text: this.props.message[status]
-      });
+      }) : null;
     }
   }]);
   return SaveControl;
@@ -40300,8 +40309,9 @@ var SaveControl = function (_Component) {
 
 SaveControl.propTypes = {
   isProgress: _propTypes2.default.bool,
+  isSuccess: _propTypes2.default.bool,
   isError: _propTypes2.default.bool,
-  removeInProgrees: _propTypes2.default.bool,
+  removeInProgress: _propTypes2.default.bool,
   message: _propTypes2.default.shape({
     error: _propTypes2.default.string,
     progress: _propTypes2.default.string,
@@ -40368,17 +40378,17 @@ var SaveControlContainer = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = SaveControlContainer.__proto__ || (0, _getPrototypeOf2.default)(SaveControlContainer)).call.apply(_ref, [this].concat(args))), _this), _this.hendlerBeforeunload = function (e) {
-      /* eslint consistent-return: 0 */
-      var _this$props$save = _this.props.save,
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = SaveControlContainer.__proto__ || (0, _getPrototypeOf2.default)(SaveControlContainer)).call.apply(_ref, [this].concat(args))), _this), _this.handleBeforeUnload = function (e) {
+      var _this$props = _this.props,
+          removeInProgress = _this$props.removeInProgress,
+          _this$props$save = _this$props.save,
           fetchDiff = _this$props$save.fetchDiff,
           isProgress = _this$props$save.isProgress,
           waitingState = _this$props$save.waitingState;
-      var removeInProgrees = _this.props.removeInProgrees;
 
 
-      if (isProgress || waitingState.length || fetchDiff || removeInProgrees) {
-        var message = 'Возможно внесенные изменения не сохранятся';
+      if (isProgress || waitingState.length || fetchDiff || removeInProgress) {
+        var message = 'Возможно, внесенные изменения не сохранятся';
 
         if (e) {
           e.returnValue = message;
@@ -40386,13 +40396,15 @@ var SaveControlContainer = function (_Component) {
 
         return message;
       }
+
+      return null;
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
   (0, _createClass3.default)(SaveControlContainer, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      window.addEventListener('beforeunload', this.hendlerBeforeunload);
+      window.addEventListener('beforeunload', this.handleBeforeUnload);
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -40402,31 +40414,44 @@ var SaveControlContainer = function (_Component) {
           fetchDiff = _nextProps$save.fetchDiff,
           isProgress = _nextProps$save.isProgress,
           waitingState = _nextProps$save.waitingState,
-          prevState = _nextProps$save.prevState;
-      var curState = nextProps.rows;
+          prevState = _nextProps$save.prevState,
+          curState = nextProps.rows,
+          _nextProps$actions = nextProps.actions,
+          saveCreateDiff = _nextProps$actions.saveCreateDiff,
+          saveStart = _nextProps$actions.saveStart;
 
 
       if (withUnsavedChanges && !fetchDiff) {
-        nextProps.actions.saveCreateDiff({ curState: curState, prevState: prevState });
+        saveCreateDiff({ curState: curState, prevState: prevState });
       }
 
       if (!isProgress && !fetchDiff && waitingState.length) {
-        nextProps.actions.saveStart();
+        saveStart();
       }
     }
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      window.removeEventListener('beforeunload', this.hendlerBeforeunload);
+      window.removeEventListener('beforeunload', this.handleBeforeUnload);
     }
   }, {
     key: 'render',
     value: function render() {
+      var _props = this.props,
+          message = _props.message,
+          removeInProgress = _props.removeInProgress,
+          _props$save = _props.save,
+          isProgress = _props$save.isProgress,
+          isError = _props$save.isError,
+          isSuccess = _props$save.isSuccess;
+
+
       return _react2.default.createElement(_SaveControl2.default, {
-        message: this.props.message,
-        removeInProgrees: this.props.removeInProgrees,
-        isProgress: this.props.save.isProgress,
-        isError: this.props.save.isError
+        message: message,
+        removeInProgress: removeInProgress,
+        isProgress: isProgress,
+        isError: isError,
+        isSuccess: isSuccess
       });
     }
   }]);
@@ -40435,7 +40460,7 @@ var SaveControlContainer = function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    removeInProgrees: state.remove.removeInProgrees
+    removeInProgress: state.remove.removeInProgress
   };
 };
 
@@ -40607,7 +40632,8 @@ exports.default = function () {
         if (!action.payload.error) {
           return (0, _extends3.default)({}, state, {
             saveState: [],
-            isProgress: false
+            isProgress: false,
+            isSuccess: true
           });
         }
 
@@ -40649,6 +40675,11 @@ exports.default = function () {
         prevState: (0, _rowReducer2.default)(state.prevState, action)
       });
 
+    case _actions.SUCCESS_REMOVE_MESSAGE:
+      return (0, _extends3.default)({}, state, {
+        isSuccess: false
+      });
+
     default:
       return state;
   }
@@ -40671,6 +40702,7 @@ var initialState = {
   isError: false,
   prevState: [],
   isProgress: false,
+  isSuccess: false,
   fetchDiff: false,
   waitingState: [],
   saveState: []
@@ -41311,24 +41343,32 @@ function save() {
 
         case 29:
           _context7.next = 31;
-          return (0, _effects.call)(continueSave);
+          return (0, _reduxSaga.delay)(3000);
 
         case 31:
-          _context7.next = 37;
-          break;
+          _context7.next = 33;
+          return (0, _effects.put)({ type: saveControlActions.SUCCESS_REMOVE_MESSAGE });
 
         case 33:
-          _context7.prev = 33;
-          _context7.t0 = _context7['catch'](0);
-          _context7.next = 37;
-          return (0, _effects.put)(saveControlActions.saveSuccess({ error: true }));
+          _context7.next = 35;
+          return (0, _effects.call)(continueSave);
+
+        case 35:
+          _context7.next = 41;
+          break;
 
         case 37:
+          _context7.prev = 37;
+          _context7.t0 = _context7['catch'](0);
+          _context7.next = 41;
+          return (0, _effects.put)(saveControlActions.saveSuccess({ error: true }));
+
+        case 41:
         case 'end':
           return _context7.stop();
       }
     }
-  }, _marked[6], this, [[0, 33]]);
+  }, _marked[6], this, [[0, 37]]);
 }
 
 /***/ }),
@@ -46504,7 +46544,7 @@ var initialState = {
   childrenGroups: false,
   childrenProducts: false,
   isFetching: false,
-  removeInProgrees: false,
+  removeInProgress: false,
   processStatus: 0,
   groupId: null,
   groupsId: [],
@@ -46531,7 +46571,7 @@ exports.default = function () {
 
     case removeActions.DELETE_GROUP_START:
       return (0, _extends3.default)({}, state, {
-        removeInProgrees: true
+        removeInProgress: true
       });
 
     case removeActions.DELETE_GROUP_UPDATE_PROGRESS:
@@ -46553,13 +46593,13 @@ exports.default = function () {
 
     case removeActions.REMOVE_EMPTY_GROUPS_START:
       return (0, _extends3.default)({}, state, {
-        removeInProgrees: true
+        removeInProgress: true
       });
 
     case removeActions.DELETE_GROUP_ERROR:
       return (0, _extends3.default)({}, state, {
         isFetching: false,
-        removeInProgrees: false,
+        removeInProgress: false,
         error: action.payload
       });
 
