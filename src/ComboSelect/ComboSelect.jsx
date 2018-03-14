@@ -1,6 +1,8 @@
 import React from 'react';
+import classNames from 'classnames';
 import RcSelect from 'rc-select';
 import 'rc-select/assets/index.css';
+
 import {block} from '../utils';
 import './e-select.scss';
 
@@ -8,7 +10,10 @@ const b = block('e-select');
 
 
 function Select(props) {
-  const {autoOpen, children, mix} = props;
+  const {autoOpen, children, mix, dropdownClassNameMix} = props;
+  const dropdownClassName = classNames('e-select-drop-down', {
+    [dropdownClassNameMix]: true
+  });
 
   return (
     <RcSelect
@@ -17,7 +22,7 @@ function Select(props) {
       disabled={React.Children.count(children) <= 1}
       dropdownMatchSelectWidth={false}
       className={b.mix(mix)()}
-      dropdownClassName='e-select-drop-down'
+      dropdownClassName={dropdownClassName}
       {...props}
     />
   );

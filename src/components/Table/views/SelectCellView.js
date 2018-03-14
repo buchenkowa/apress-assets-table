@@ -24,6 +24,7 @@ function SelectCellView(props) {
           onBlur={() => setEditState(false)}
           value={activeOption.text}
           showSearch={false}
+          dropdownClassNameMix='select-cell'
           autoOpen
         >
           {options.map((option, index) =>
