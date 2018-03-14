@@ -8960,7 +8960,7 @@ function rows() {
           });
         }
 
-        var newstate = [].concat((0, _toConsumableArray3.default)(state));
+        var newstate = (0, _utils.cloneDeep)(state);
         var newRow = (0, _extends6.default)({}, action.payload.new_row, {
           check: (0, _extends6.default)({}, action.payload.new_row.check, {
             common: (0, _extends6.default)({}, action.payload.new_row.check.common, {
@@ -62522,7 +62522,7 @@ function withPaste(WrappedComponent) {
         if (_this.$node && _this.$node.contains(document.activeElement)) {
           var pastedData = _this.getPastedData(event.clipboardData);
 
-          _this.setState({ pastedData: sheetClip.parse(pastedData) });
+          _this.setState({ pastedData: sheetClip.parse(pastedData.replace(/\r/g, '')) });
         }
       }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
     }
