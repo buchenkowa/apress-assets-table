@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import _isEqual from 'lodash/isEqual';
 import {bindActionCreators} from 'redux';
-import {showImageEditor} from '../dialogs/actions';
-import {editImages} from '../ImageEditor/actions';
+import {showImageEditor as showImageEditorAction} from '../dialogs/actions';
+import {
+  editProductGroupImages as editProductGroupImagesAction,
+  getRecommendedImages as getRecommendedImagesAction
+} from '../actions/imageEditor';
 import {block} from '../utils';
 import {mapFocusProps} from './utils';
 import TouchEditTool from '../components/Table/views/TouchEditTool';
@@ -30,7 +33,9 @@ class ImageCell extends Component {
       isSelected: PropTypes.bool,
       name: PropTypes.string
     }),
-    editImages: PropTypes.func,
+    row: PropTypes.object,
+    editProductGroupImages: PropTypes.func,
+    getRecommendedImages: PropTypes.func,
     handleCellClick: PropTypes.func,
     handleDrag: PropTypes.func,
     handleEndSelection: PropTypes.func,
@@ -54,14 +59,29 @@ class ImageCell extends Component {
   };
 
   editImages = () => {
-    const {data: {common: {copy_images_from: copyImagesFrom}}, name, id} = this.props.cell;
+    const {
+      cell: {id, name, data: {common: {copy_images_from: copyImagesFrom, images}}},
+      row: {name: {common: {text}}},
+      showImageEditor,
+      editProductGroupImages,
+      getRecommendedImages
+    } = this.props;
 
     if (copyImagesFrom) {
       return;
     }
 
-    this.props.showImageEditor();
-    this.props.editImages({name, id});
+    showImageEditor();
+    editProductGroupImages({
+      productGroupId: id,
+      productGroupName: text,
+      productGroupImages: images,
+      columnName: name
+    });
+
+    if (!images.length) {
+      getRecommendedImages({productGroupId: id});
+    }
   };
 
   render() {
@@ -119,8 +139,9 @@ class ImageCell extends Component {
 const mapStateToProps = (state, ownProps) => ({...mapFocusProps(state.table.focus, ownProps)});
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  editImages,
-  showImageEditor,
+  editProductGroupImages: editProductGroupImagesAction,
+  showImageEditor: showImageEditorAction,
+  getRecommendedImages: getRecommendedImagesAction
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ImageCell);

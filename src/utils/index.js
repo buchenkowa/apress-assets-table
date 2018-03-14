@@ -6,7 +6,10 @@ export {
   isEqual,
   get,
   has,
-  unset
+  unset,
+  merge,
+  pick,
+  noop
 } from 'lodash';
 
 export const api = axios.create({baseURL: ''});

@@ -124,6 +124,7 @@ class Body extends Component {
       img: <ImageWithDragging
         key={key}
         cell={dataRow}
+        row={row}
       />,
       path: <PathWithDragging
         key={key}

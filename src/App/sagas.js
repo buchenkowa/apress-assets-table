@@ -1,5 +1,6 @@
 import {takeLatest, takeEvery} from 'redux-saga/effects';
-import * as imageEditorSagas from '../ImageEditor/sagas';
+import * as imageEditorActionTypes from '../actionTypes/imageEditor';
+import * as imageEditorSagas from '../sagas/imageEditor';
 import loadTableData from '../Table/sagas';
 import loadHelp from '../Help/sagas';
 import {loadRubricatorData, setRubricatorPosition} from '../Tree/sagas';
@@ -18,7 +19,8 @@ export default function* subscribeForLoadTableData() {
   yield takeLatest('HELP_LOAD_START', loadHelp);
   yield takeLatest('SAVE_CREATE_DIFF', saveCreateDiff);
   yield takeLatest('SAVE_START', save);
-  yield takeLatest('IMAGE_EDITOR_UPDATE_IMAGES', imageEditorSagas.updateImages);
+  yield takeLatest(imageEditorActionTypes.GET_RECOMMENDED_IMAGES, imageEditorSagas.getRecommendedImages);
+  yield takeLatest(imageEditorActionTypes.SAVE_PRODUCT_GROUP_IMAGES, imageEditorSagas.saveProductGroupImages);
   yield takeLatest(removeAction.REMOVE_GROUP, remove.removeGroup);
   yield takeLatest(removeAction.DELETE_GROUP, remove.deleteGroup);
   yield takeLatest(removeAction.REMOVE_EMPTY_GROUPS, remove.deleteEmptyGroups);

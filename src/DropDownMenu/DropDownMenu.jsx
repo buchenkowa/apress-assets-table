@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import RcDropdown from 'rc-dropdown';
 import _isEqual from 'lodash/isEqual';
 import './e-dropdown-menu.scss';
-import {block} from '../utils';
+import {block, noop} from '../utils';
 
 const b = block('e-dropdown-menu');
 
@@ -16,6 +16,8 @@ export default class DropDownMenu extends React.Component {
     items: PropTypes.array,
     trigger: PropTypes.array,
     onSelect: PropTypes.func,
+    onVisibleChange: PropTypes.func,
+    disableItemClick: PropTypes.bool
   }
 
   static defaultProps = {
@@ -23,7 +25,9 @@ export default class DropDownMenu extends React.Component {
     mix: '',
     items: [],
     trigger: ['click'],
-    onSelect: () => {},
+    onSelect: noop,
+    onVisibleChange: noop,
+    disableItemClick: false
   }
 
   state = {
@@ -41,6 +45,11 @@ export default class DropDownMenu extends React.Component {
     this.close();
   }
 
+  handleVisibleChange = (visible) => {
+    this.props.onVisibleChange(visible);
+    this.setState({visible});
+  }
+
   render() {
     const props = this.props;
     const menu = (
@@ -51,7 +60,7 @@ export default class DropDownMenu extends React.Component {
             {props.items.map((item, index) =>
               <div
                 key={index}
-                onClick={(e) => { this.handleSelect(e, item.id); }}
+                onClick={(e) => { !props.disableItemClick && this.handleSelect(e, item.id); }}
                 className={b('menu-item').is({selected: item.active})}
               >
                 {item.title}
@@ -66,7 +75,7 @@ export default class DropDownMenu extends React.Component {
         visible={this.state.visible}
         trigger={this.props.trigger}
         overlay={menu}
-        onVisibleChange={(visible) => { this.setState({visible}); }}
+        onVisibleChange={visible => this.handleVisibleChange(visible)}
         closeOnSelect={false}
         animation='slide-up'
       >
