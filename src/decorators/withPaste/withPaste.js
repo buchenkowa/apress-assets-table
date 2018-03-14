@@ -46,7 +46,7 @@ export default function withPaste(WrappedComponent) {
       if (this.$node && this.$node.contains(document.activeElement)) {
         const pastedData = this.getPastedData(event.clipboardData);
 
-        this.setState({pastedData: sheetClip.parse(pastedData)});
+        this.setState({pastedData: sheetClip.parse(pastedData.replace(/\r/g, ''))});
       }
     }
 

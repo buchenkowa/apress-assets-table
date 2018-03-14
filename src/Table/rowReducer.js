@@ -1,4 +1,4 @@
-import {transformFromServer} from '../utils';
+import {transformFromServer, cloneDeep} from '../utils';
 import {
   TABLE_EDITOR_LOAD_SUCCESS,
   TABLE_EDITOR_SET_TEXT,
@@ -81,7 +81,7 @@ export default function rows(state = [], action) {
         };
       }
 
-      const newstate = [...state];
+      const newstate = cloneDeep(state);
       const newRow = {
         ...action.payload.new_row,
         check: {

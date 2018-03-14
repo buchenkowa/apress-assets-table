@@ -10141,7 +10141,7 @@ function rows() {
           });
         }
 
-        var newstate = [].concat((0, _toConsumableArray3.default)(state));
+        var newstate = (0, _utils.cloneDeep)(state);
         var newRow = (0, _extends6.default)({}, action.payload.new_row, {
           check: (0, _extends6.default)({}, action.payload.new_row.check, {
             common: (0, _extends6.default)({}, action.payload.new_row.check.common, {
