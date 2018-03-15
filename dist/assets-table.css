@@ -1233,9 +1233,9 @@ li.rc-select-dropdown-menu-item-divider {
 .pseudo-link {
   border-bottom: 1px dashed; }
 .e-table-header-cell.is-trait-filters-displaying, .e-table-cell.is-trait-filters-displaying {
-  max-width: 136px;
-  min-width: 136px;
-  width: 136px; }
+  max-width: 140px;
+  min-width: 140px;
+  width: 140px; }
 
 .e-table-cell.is-trait-filters-displaying.is-edit {
   padding-left: 2px;
