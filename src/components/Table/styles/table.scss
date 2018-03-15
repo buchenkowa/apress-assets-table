@@ -3,7 +3,7 @@
 .e-table {
   &-header-cell,
   &-cell {
-    &.is-trait-filters-displaying { @include cell-width(136px); }
+    &.is-trait-filters-displaying { @include cell-width(140px); }
   }
   &-cell.is-trait-filters-displaying {
     &.is-edit { padding-left: 2px; padding-right: 2px; }
