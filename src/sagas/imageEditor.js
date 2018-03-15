@@ -2,7 +2,6 @@ import {put, select, call} from 'redux-saga/effects';
 
 import {api} from '../utils';
 import * as tableActions from '../Table/actions';
-import * as dialogsActions from '../dialogs/actions';
 import * as imageEditorActions from '../actions/imageEditor';
 
 
@@ -47,7 +46,6 @@ export function* saveProductGroupImages({payload: {existedImages, unsavedImages}
     }
 
     yield put(tableActions.editImages({images, activeRow: productGroupId, activeCell: columnName}));
-    yield put(dialogsActions.hideImageEditor());
   } catch (error) {
     yield put(imageEditorActions.errorSavingProductGroupImages());
   }

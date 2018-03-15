@@ -4,7 +4,6 @@ import qs from 'qs';
 import * as imageEditorSagas from '../imageEditor';
 import * as imageEditorActions from '../../actions/imageEditor';
 import * as tableActions from '../../Table/actions';
-import * as dialogsActions from '../../dialogs/actions';
 
 
 describe('imageEditor sagas', () => {
@@ -38,7 +37,6 @@ describe('imageEditor sagas', () => {
       expect(saveProductGroupImagesGenerator.next(response).value).toEqual(put(imageEditorActions.successSavingProductGroupImages()));
       expect(saveProductGroupImagesGenerator.next().value)
         .toEqual(put(tableActions.editImages({images: uploadedImages, activeRow: productGroupId, activeCell: columnName})));
-      expect(saveProductGroupImagesGenerator.next().value).toEqual(put(dialogsActions.hideImageEditor()));
       expect(saveProductGroupImagesGenerator.next().done).toBeTruthy();
     });
 
@@ -67,7 +65,6 @@ describe('imageEditor sagas', () => {
       expect(saveProductGroupImagesGenerator.next(response).value).toEqual(put(imageEditorActions.successSavingProductGroupImages()));
       expect(saveProductGroupImagesGenerator.next().value)
         .toEqual(put(tableActions.editImages({images: uploadedImages, activeRow: productGroupId, activeCell: columnName})));
-      expect(saveProductGroupImagesGenerator.next().value).toEqual(put(dialogsActions.hideImageEditor()));
       expect(saveProductGroupImagesGenerator.next().done).toBeTruthy();
     });
 
@@ -81,7 +78,6 @@ describe('imageEditor sagas', () => {
       expect(saveProductGroupImagesGenerator.next().value).toEqual(select(imageEditorSagas.getImageEditorState));
       expect(saveProductGroupImagesGenerator.next({productGroupId, columnName}).value)
         .toEqual(put(tableActions.editImages({images: existedImages, activeRow: productGroupId, activeCell: columnName})));
-      expect(saveProductGroupImagesGenerator.next().value).toEqual(put(dialogsActions.hideImageEditor()));
       expect(saveProductGroupImagesGenerator.next().done).toBeTruthy();
     });
 

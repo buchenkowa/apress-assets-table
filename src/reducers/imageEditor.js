@@ -9,7 +9,8 @@ const initialState = {
   columnName: '',
   duringSavingProductGroupImages: false,
   duringLoadingRecommendedImages: false,
-  errorSavingProductGroupImages: false
+  errorSavingProductGroupImages: false,
+  recommendedImagesWasLoaded: false
 };
 
 export default (state = initialState, action) => {
@@ -37,10 +38,15 @@ export default (state = initialState, action) => {
       return {
         ...state,
         duringLoadingRecommendedImages: false,
+        recommendedImagesWasLoaded: true,
         recommendedImages: action.payload.recommendedImages
       };
     case actionTypes.ERROR_LOADING_RECOMMENDED_IMAGES:
-      return {...state, duringLoadingRecommendedImages: false};
+      return {
+        ...state,
+        duringLoadingRecommendedImages: false,
+        recommendedImagesWasLoaded: true
+      };
 
     case actionTypes.CLEAR_IMAGE_EDITOR:
       return initialState;
