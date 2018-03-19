@@ -19,7 +19,7 @@ import DropDownMenu from '../DropDownMenu/DropDownMenu';
 import UrlField from '../components/UrlField';
 import Preloader from '../components/Preloader';
 import {PreviewImageView, PreviewImagesBoxView} from '../components/ImageEditor/views';
-import previewImageActionTypes from '../constants/imageEditor';
+import {imageTypes, previewImageActionTypes} from '../constants/imageEditor';
 import './e-image-editor.scss';
 
 
@@ -28,10 +28,12 @@ const b = block('e-image-editor');
 const initialState = Object.freeze({
   existedImages: [],
   unsavedImages: [],
+  unsavedImagesByUrl: [],
   errors: [],
   rejectedFiles: [],
   isOpenedTextZone: false,
-  urlFieldValue: ''
+  urlFieldValue: '',
+  showPopupLoader: false
 });
 
 class ImageEditor extends React.Component {
@@ -50,10 +52,20 @@ class ImageEditor extends React.Component {
   state = initialState
 
   componentWillReceiveProps(nextProps) {
-    if (!isEqual(this.props.productGroupImages, nextProps.productGroupImages)) {
+    const {productGroupImages, duringSavingProductGroupImages, errorSavingProductGroupImages} = nextProps;
+
+    if (!isEqual(this.props.productGroupImages, productGroupImages)) {
       this.setState({
-        existedImages: nextProps.productGroupImages,
+        existedImages: productGroupImages
       });
+    }
+
+    if (this.state.showPopupLoader && !duringSavingProductGroupImages && !errorSavingProductGroupImages) {
+      this.closeImageEditor();
+    }
+
+    if (errorSavingProductGroupImages) {
+      this.setState({showPopupLoader: false});
     }
   }
 
@@ -61,19 +73,24 @@ class ImageEditor extends React.Component {
     return !isEqual(this.props, nextProps) || !isEqual(this.state, nextState);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     const {
       productGroupId,
-      recommendedImages,
       duringLoadingRecommendedImages,
       maxLength,
-      getRecommendedImages
+      getRecommendedImages,
+      recommendedImagesWasLoaded,
+      open
     } = this.props;
     const totalImagesCount = this.getTotalCount();
     const haveMaximumImagesCount = totalImagesCount >= maxLength;
 
-    if (!haveMaximumImagesCount && !recommendedImages.length && !duringLoadingRecommendedImages && productGroupId) {
+    if (!haveMaximumImagesCount && !duringLoadingRecommendedImages && !recommendedImagesWasLoaded && open) {
       getRecommendedImages({productGroupId});
+    }
+
+    if (prevProps.open && !open) {
+      this.clearImageEditor();
     }
   }
 
@@ -83,21 +100,17 @@ class ImageEditor extends React.Component {
     return existedImages.length + unsavedImages.length;
   }
 
-  addImage = (image) => {
+  addImage = (image, imageType) => {
     this.setState({
-      unsavedImages: [...this.state.unsavedImages, image]
+      [imageType]: [...this.state[imageType], image]
     });
   }
 
-  removeExistedImage = (existedImage) => {
+  removeImage = (index, imageType) => {
     this.setState({
-      existedImages: this.state.existedImages.filter(image => image.id !== existedImage.id)
-    });
-  }
-
-  removeUnsavedImage = (index) => {
-    this.setState({
-      unsavedImages: this.state.unsavedImages.filter((image, i) => index !== i)
+      [imageType]: this.state[imageType].filter((imageInState, i) => (
+        imageInState.id ? imageInState.id !== index : i !== index
+      ))
     });
   }
 
@@ -128,27 +141,25 @@ class ImageEditor extends React.Component {
   }
 
   closeImageEditor = () => {
-    const {duringSavingProductGroupImages, hideImageEditor, clearImageEditor} = this.props;
+    const {duringSavingProductGroupImages, hideImageEditor} = this.props;
 
     if (duringSavingProductGroupImages) {
       return;
     }
 
     hideImageEditor();
-    clearImageEditor();
+  }
+
+  clearImageEditor = () => {
+    this.props.clearImageEditor();
     this.setState(initialState);
   }
 
   saveImages = () => {
     const {existedImages, unsavedImages} = this.state;
-    const {saveProductGroupImages, errorSavingProductGroupImages, clearImageEditor} = this.props;
 
-    saveProductGroupImages({unsavedImages, existedImages});
-
-    if (!errorSavingProductGroupImages) {
-      clearImageEditor();
-      this.setState(initialState);
-    }
+    this.setState({showPopupLoader: true});
+    this.props.saveProductGroupImages({unsavedImages, existedImages});
   }
 
   renderErrors = () => {
@@ -178,6 +189,17 @@ class ImageEditor extends React.Component {
     );
   }
 
+  renderImagesByUrl = () =>
+    <PreviewImagesBoxView
+      previews={this.state.unsavedImagesByUrl}
+      className='hidden'
+      onLoadError={(preview, index) => this.removeImage(index, imageTypes.unsavedImagesByUrl)}
+      onLoadSuccess={(preview, index) => {
+        this.removeImage(index, imageTypes.unsavedImagesByUrl);
+        this.addImage(preview, imageTypes.unsavedImages);
+      }}
+    />
+
   renderImages = () => {
     const {existedImages, unsavedImages} = this.state;
 
@@ -187,7 +209,7 @@ class ImageEditor extends React.Component {
           <PreviewImageView
             key={image.id}
             preview={image.src}
-            onClick={() => this.removeExistedImage(image)}
+            onClick={() => this.removeImage(image.id, imageTypes.existedImages)}
             actionType={previewImageActionTypes.remove}
           />
         )}
@@ -195,7 +217,7 @@ class ImageEditor extends React.Component {
           <PreviewImageView
             key={index}
             preview={image.preview || image}
-            onClick={() => this.removeUnsavedImage(index)}
+            onClick={() => this.removeImage(index, imageTypes.unsavedImages)}
             actionType={previewImageActionTypes.remove}
           />
         )}
@@ -205,7 +227,6 @@ class ImageEditor extends React.Component {
 
   render() {
     const {
-      duringSavingProductGroupImages,
       duringLoadingRecommendedImages,
       maxLength,
       maxSize,
@@ -214,9 +235,10 @@ class ImageEditor extends React.Component {
       open,
       productGroupName
     } = this.props;
+    const {showPopupLoader, isOpenedTextZone} = this.state;
     const totalImagesCount = this.getTotalCount();
     const haveMaximumImagesCount = totalImagesCount >= maxLength;
-    const questionIconClassNames = classNames('question-icon', {'is-active': this.state.isOpenedTextZone});
+    const questionIconClassNames = classNames('question-icon', {'is-active': isOpenedTextZone});
     const {imageEditor: imageEditorLocales} = app.config.tigerLocales;
 
     return (
@@ -224,7 +246,7 @@ class ImageEditor extends React.Component {
         className='is-image-editor e-image-editor'
         visible={open}
         onClose={this.closeImageEditor}
-        closable={!duringSavingProductGroupImages}
+        closable={!showPopupLoader}
         title={
           <div>
             <h3 className={b('title')}>{imageEditorLocales.uploadPhoto}</h3>
@@ -234,7 +256,7 @@ class ImageEditor extends React.Component {
                   {pluralize(totalImagesCount, 'ни одной', 'фотографию', 'фотографии', 'фотографии')} из {' '}
                   {maxLength}
                 </div>
-                {!duringSavingProductGroupImages && this.renderImages()}
+                {!showPopupLoader && this.renderImages()}
               </div>
             ) : (
               <div className={b('subtitle')}>{`${imageEditorLocales.setPhotoForGroup} '${productGroupName}'`}</div>
@@ -242,7 +264,7 @@ class ImageEditor extends React.Component {
           </div>
         }
         footer={
-          !duringSavingProductGroupImages &&
+          !showPopupLoader &&
             <div>
               <Button onClick={this.saveImages} mix='rc-dialog-button is-good is-big-size'>
                 Сохранить и продолжить
@@ -253,7 +275,7 @@ class ImageEditor extends React.Component {
             </div>
         }
       >
-        {!duringSavingProductGroupImages ?
+        {!showPopupLoader ?
           <section>
             {this.renderErrors()}
             <div>
@@ -281,8 +303,11 @@ class ImageEditor extends React.Component {
                   <PreviewImagesBoxView
                     previews={recommendedImages.map(imageStyles =>
                       imageStyles.find(imageStyle => imageStyle.name === 'original').url)}
-                    onPreviewClick={preview => this.addImage(preview.includes('http') ? preview : location.origin + preview)}
-                    actionType={!haveMaximumImagesCount ? previewImageActionTypes.add : undefined}
+                    onPreviewClick={preview =>
+                      this.addImage(preview.includes('http') ? preview : location.origin + preview, imageTypes.unsavedImages)
+                    }
+                    actionType={previewImageActionTypes.add}
+                    disabled={haveMaximumImagesCount}
                   />
                   <div className={b('upload-title')}>{imageEditorLocales.uploadNewImage}</div>
                 </div>
@@ -311,8 +336,9 @@ class ImageEditor extends React.Component {
               placeholder={imageEditorLocales.urlFieldPlaceholder}
               disabled={haveMaximumImagesCount}
               onChange={this.handleUrlFieldChange}
-              onButtonClick={this.addImage}
+              onButtonClick={url => this.addImage(url, imageTypes.unsavedImagesByUrl)}
             />
+            {this.renderImagesByUrl()}
           </section> :
           <div className={b('preloader').mix('e-preloader')} />
         }
@@ -331,7 +357,8 @@ const mapStateToProps = ({imageEditor, dialogs: {imageEditor: open}}) =>
       'duringSavingProductGroupImages',
       'duringLoadingRecommendedImages',
       'errorSavingProductGroupImages',
-      'recommendedImages'
+      'recommendedImages',
+      'recommendedImagesWasLoaded'
     ])
   );
 

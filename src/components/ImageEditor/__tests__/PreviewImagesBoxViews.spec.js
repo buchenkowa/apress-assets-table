@@ -1,6 +1,6 @@
 import PreviewImagesBoxView from '../views/PreviewImagesBoxView';
 import PreviewImageView from '../views/PreviewImageView';
-import previewImageActionTypes from '../../../constants/imageEditor';
+import {previewImageActionTypes} from '../../../constants/imageEditor';
 import {getShallowWrapper} from '../../../../test/testUtils';
 
 

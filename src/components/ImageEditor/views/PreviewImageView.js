@@ -5,7 +5,7 @@ import {previewImageViewPropType} from '../propTypes';
 import '../styles/image-editor.scss';
 
 
-function PrewiewImageView({preview, onClick, actionType}) {
+function PrewiewImageView({preview, actionType, disabled, onClick, onLoadError, onLoadSuccess}) {
   const actionClassNames = classNames('action', {[actionType]: true});
 
   return (
@@ -13,12 +13,17 @@ function PrewiewImageView({preview, onClick, actionType}) {
       <img
         alt=''
         src={preview}
+        onError={onLoadError}
+        onLoad={onLoadSuccess}
       />
-      {onClick && actionType &&
+      {onClick && actionType && !disabled &&
         <div
           onClick={onClick}
           className={actionClassNames}
         />
+      }
+      {disabled &&
+        <div className='disabled' />
       }
     </div>
   );

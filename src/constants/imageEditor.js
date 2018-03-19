@@ -1,6 +1,10 @@
-const previewImageActionTypes = {
+export const previewImageActionTypes = {
   remove: 'remove',
   add: 'add'
 };
 
-export default previewImageActionTypes;
+export const imageTypes = {
+  existedImages: 'existedImages',
+  unsavedImages: 'unsavedImages',
+  unsavedImagesByUrl: 'unsavedImagesByUrl'
+};

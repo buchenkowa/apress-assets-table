@@ -1,6 +1,6 @@
 import PreviewImageView from '../views/PreviewImageView';
 import {getShallowWrapper} from '../../../../test/testUtils';
-import previewImageActionTypes from '../../../constants/imageEditor';
+import {previewImageActionTypes} from '../../../constants/imageEditor';
 
 
 describe('PreviewImageView', () => {
@@ -8,20 +8,32 @@ describe('PreviewImageView', () => {
 
   describe('preview', () => {
     const props = {
-      preview: 'preview'
+      preview: 'preview',
+      onLoadError: jest.fn(),
+      onLoadSuccess: jest.fn()
     };
-    let input;
+    let image;
 
-    beforeAll(() => {
+    beforeEach(() => {
       const wrapper = getShallowWrapper(PreviewImageView, props);
       const rootElement = wrapper.find(className);
 
-      input = rootElement.find('img');
+      image = rootElement.find('img');
     });
 
     it('should render preview', () => {
-      expect(input).toHaveLength(1);
-      expect(input.prop('src')).toBe(props.preview);
+      expect(image).toHaveLength(1);
+      expect(image.prop('src')).toBe(props.preview);
+    });
+
+    it('should call props.onLoadError', () => {
+      image.simulate('error');
+      expect(props.onLoadError).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call props.onLoadSuccess', () => {
+      image.simulate('load');
+      expect(props.onLoadSuccess).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -99,7 +111,47 @@ describe('PreviewImageView', () => {
         element = rootElement.find('.action');
       });
 
-      it('should not render action area(props.onClick is undefined)', () => {
+      it('should not render action area', () => {
+        expect(element).toHaveLength(0);
+      });
+    });
+  });
+
+  describe('disabled area', () => {
+    describe('props.disabled is true', () => {
+      const props = {
+        preview: 'preview',
+        disabled: true
+      };
+      let element;
+
+      beforeAll(() => {
+        const wrapper = getShallowWrapper(PreviewImageView, props);
+        const rootElement = wrapper.find(className);
+
+        element = rootElement.find('.disabled');
+      });
+
+      it('should disabled preview', () => {
+        expect(element).toHaveLength(1);
+      });
+    });
+
+    describe('props.disabled is false', () => {
+      const props = {
+        preview: 'preview',
+        disabled: false
+      };
+      let element;
+
+      beforeAll(() => {
+        const wrapper = getShallowWrapper(PreviewImageView, props);
+        const rootElement = wrapper.find(className);
+
+        element = rootElement.find('.disabled');
+      });
+
+      it('should not disabled preview', () => {
         expect(element).toHaveLength(0);
       });
     });

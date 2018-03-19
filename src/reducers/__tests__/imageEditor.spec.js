@@ -11,7 +11,8 @@ describe('imageEditor reducer', () => {
     columnName: '',
     duringSavingProductGroupImages: false,
     duringLoadingRecommendedImages: false,
-    errorSavingProductGroupImages: false
+    errorSavingProductGroupImages: false,
+    recommendedImagesWasLoaded: false
   };
   const setState = getStateSetter(initialState);
   const freezedInitialState = setState();
@@ -83,7 +84,8 @@ describe('imageEditor reducer', () => {
       )).toEqual({
         ...initialState,
         recommendedImages,
-        duringLoadingRecommendedImages: false
+        duringLoadingRecommendedImages: false,
+        recommendedImagesWasLoaded: true
       });
     });
   });
@@ -93,7 +95,11 @@ describe('imageEditor reducer', () => {
       expect(imageEditorReducer(
         freezedInitialState,
         imageEditorActions.errorLoadingRecommendedImages()
-      )).toEqual({...initialState, duringLoadingRecommendedImages: false});
+      )).toEqual({
+        ...initialState,
+        duringLoadingRecommendedImages: false,
+        recommendedImagesWasLoaded: true
+      });
     });
   });
 
