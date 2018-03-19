@@ -62,9 +62,8 @@ export default class DropDownMenu extends React.Component {
                 key={index}
                 onClick={(e) => { !props.disableItemClick && this.handleSelect(e, item.id); }}
                 className={b('menu-item').is({selected: item.active})}
-              >
-                {item.title}
-              </div>
+                dangerouslySetInnerHTML={{__html: item.title}}
+              />
             )}
           </div>
         </div>
