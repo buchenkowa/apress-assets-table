@@ -54,7 +54,7 @@ const app = {
       imageUploadUrl: '/upload-images',
       imageModelName: 'imageModelName',
       recommendedImagesUrl: `/api/v1/companies/${companyID}/product_groups/_PRODUCT_GROUP_ID_/recommended_images?count=3`,
-      imageSelectTextZone: 'Предложенные фото выбраны автоматически на основе фотографий, загруженных в товары. Если они вам не подходят, загрузите другое фото.'
+      imageSelectTextZone: '<p>Предложенные фото выбраны автоматически на основе фотографий, загруженных в товары. Если они вам не подходят, загрузите другое фото.</p>'
     },
     tigerLocales: {
       imageEditor: {
