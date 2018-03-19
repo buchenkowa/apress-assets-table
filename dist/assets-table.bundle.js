@@ -6708,17 +6708,14 @@ var DropDownMenu = function (_React$Component) {
             'div',
             { className: b('menu') },
             props.items.map(function (item, index) {
-              return _react2.default.createElement(
-                'div',
-                {
-                  key: index,
-                  onClick: function onClick(e) {
-                    !props.disableItemClick && _this2.handleSelect(e, item.id);
-                  },
-                  className: b('menu-item').is({ selected: item.active })
+              return _react2.default.createElement('div', {
+                key: index,
+                onClick: function onClick(e) {
+                  !props.disableItemClick && _this2.handleSelect(e, item.id);
                 },
-                item.title
-              );
+                className: b('menu-item').is({ selected: item.active }),
+                dangerouslySetInnerHTML: { __html: item.title }
+              });
             })
           )
         )
