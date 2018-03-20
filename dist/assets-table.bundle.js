@@ -43074,15 +43074,40 @@ var TreeItem = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = TreeItem.__proto__ || (0, _getPrototypeOf2.default)(TreeItem)).call.apply(_ref, [this].concat(args))), _this), _this.renderSettingsMenu = function () {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = TreeItem.__proto__ || (0, _getPrototypeOf2.default)(TreeItem)).call.apply(_ref, [this].concat(args))), _this), _this.replaceUrlName = function (url) {
+      return url.replace('_url_name_', _this.props.urlName);
+    }, _this.handleSelect = function (action) {
       var _this$props = _this.props,
           id = _this$props.id,
           orderUrl = _this$props.orderUrl,
           actionShowRemoveConfirmation = _this$props.actionShowRemoveConfirmation,
           actionConfigSetId = _this$props.actionConfigSetId,
           name = _this$props.name;
+      var _app$config = app.config,
+          productsEditorGroupUrl = _app$config.productsEditorGroupUrl,
+          catalogRubricOrGroupUrl = _app$config.catalogRubricOrGroupUrl;
 
 
+      switch (action) {
+        case 'edit':
+          actionConfigSetId(id);
+          break;
+        case 'remove':
+          actionShowRemoveConfirmation({ id: id, name: name });
+          break;
+        case 'reorderGoods':
+          window.open(orderUrl);
+          break;
+        case 'openInGoodsEditor':
+          window.open(_this.replaceUrlName(productsEditorGroupUrl));
+          break;
+        case 'openInCatalog':
+          window.open(_this.replaceUrlName(catalogRubricOrGroupUrl));
+          break;
+        default:
+          break;
+      }
+    }, _this.renderSettingsMenu = function () {
       return _import.React.createElement(
         _import.DropDownMenu,
         {
@@ -43091,6 +43116,12 @@ var TreeItem = function (_Component) {
           items: [{
             title: 'Редактировать',
             id: 'edit'
+          }, {
+            title: 'Перейти в товары группы',
+            id: 'openInGoodsEditor'
+          }, {
+            title: 'Перейти в группу',
+            id: 'openInCatalog'
           }, {
             title: 'Изменить порядок товаров',
             id: 'reorderGoods'
@@ -43102,17 +43133,7 @@ var TreeItem = function (_Component) {
             ),
             id: 'remove'
           }],
-          onSelect: function onSelect(action) {
-            if (action === 'edit') {
-              actionConfigSetId(id);
-            }
-            if (action === 'remove') {
-              actionShowRemoveConfirmation({ id: id, name: name });
-            }
-            if (action === 'reorderGoods') {
-              window.open(orderUrl);
-            }
-          }
+          onSelect: _this.handleSelect
         },
         _import.React.createElement('span', { className: (0, _import.b)('settings') })
       );
