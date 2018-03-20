@@ -5,7 +5,7 @@ const initialState = {
   childrenGroups: false,
   childrenProducts: false,
   isFetching: false,
-  removeInProgrees: false,
+  removeInProgress: false,
   processStatus: 0,
   groupId: null,
   groupsId: [],
@@ -32,7 +32,7 @@ export default (state = initialState, action) => {
     case removeActions.DELETE_GROUP_START:
       return {
         ...state,
-        removeInProgrees: true,
+        removeInProgress: true,
       };
 
     case removeActions.DELETE_GROUP_UPDATE_PROGRESS:
@@ -58,14 +58,14 @@ export default (state = initialState, action) => {
     case removeActions.REMOVE_EMPTY_GROUPS_START:
       return {
         ...state,
-        removeInProgrees: true,
+        removeInProgress: true,
       };
 
     case removeActions.DELETE_GROUP_ERROR:
       return {
         ...state,
         isFetching: false,
-        removeInProgrees: false,
+        removeInProgress: false,
         error: action.payload,
       };
 

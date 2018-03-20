@@ -7,6 +7,7 @@ import 'rc-trigger/assets/index.css';
 import Price from './Price';
 import Exists from './Exists';
 import CheckRelatedProducts from './CheckRelatedProducts';
+import {SelectCellContainer} from '../components/Table/containers';
 import {
   block,
   inRange,
@@ -31,6 +32,7 @@ class Body extends Component {
     dispatch: PropTypes.func,
     placeholder: PropTypes.object,
     readonly: PropTypes.bool,
+    isTouchDevice: PropTypes.bool,
     scrollLeft: PropTypes.number,
     table: PropTypes.shape({
       checked: PropTypes.arrayOf(PropTypes.number),
@@ -85,7 +87,7 @@ class Body extends Component {
   isRowChecked = rowId => this.props.table.checked.includes(rowId);
 
   renderCell = (row, rowId, cell, columnIndex, rowIndex) => {
-    const {placeholder, config, actions, table, readonly} = this.props;
+    const {placeholder, config, actions, table, readonly, isTouchDevice} = this.props;
     const {focus, selected} = table;
     const dataRow = {
       id: rowId,
@@ -101,10 +103,12 @@ class Body extends Component {
       isDragged: !readonly && this.isCurrentCellDragged(rowIndex, columnIndex),
       column: columnIndex,
       row: rowIndex,
-      readonly
+      readonly,
+      isTouchDevice
     };
     const tableWidth = Object.keys(row).length;
     const key = (rowIndex * tableWidth) + columnIndex;
+    const {options: traitFiltersDisplayingOptions} = app.config.traitFiltersDisplaying;
     const componentsCell = {
       text: <TextWithDragging
         key={key}
@@ -120,6 +124,7 @@ class Body extends Component {
       img: <ImageWithDragging
         key={key}
         cell={dataRow}
+        row={row}
       />,
       path: <PathWithDragging
         key={key}
@@ -137,6 +142,15 @@ class Body extends Component {
         key={key}
         cell={dataRow}
         actions={actions.relatedProducts}
+      />,
+      select: <SelectCellContainer
+        key={key}
+        cell={dataRow}
+        options={traitFiltersDisplayingOptions}
+        activeOption={traitFiltersDisplayingOptions.find(option =>
+          option.value === dataRow.data.common.enabled
+        )}
+        handleSelect={actions.setTraitFiltersDisplaying}
       />
     };
 

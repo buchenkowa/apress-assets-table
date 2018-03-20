@@ -1,8 +1,11 @@
 import {getStateSetter, mockGroupsRequest} from '../../../test/testUtils';
+import {cloneDeep} from '../../utils';
 import tableData from '../../../_mock/table/data.json';
 import tableReducer from '../tableReducer';
 import rowReducer from '../rowReducer';
+import historyReducer from '../reducers/history';
 import * as tableActions from '../actions';
+
 
 describe('tableReducer', () => {
   const initialState = {
@@ -13,6 +16,19 @@ describe('tableReducer', () => {
       prev: [],
       next: [],
       current: []
+    },
+    focus: {
+      activeRow: null,
+      activeCell: null,
+      edit: false,
+      rows: []
+    },
+    selected: {
+      isSelecting: false,
+      isDragging: false,
+      cellFrom: {},
+      cellTo: {},
+      cellDragged: {}
     }
   };
   const setState = getStateSetter(initialState);
@@ -88,5 +104,147 @@ describe('tableReducer', () => {
           current: rowReducer(tableData.rows, action)
         }
       });
+  });
+
+  describe('INSERT_DATA', () => {
+    it('should not do anything if no cell is selected', () => {
+      const action = tableActions.insertData();
+
+      expect(tableReducer(freezedInitialState, action)).toEqual(initialState);
+    });
+
+    it('should not do anything if incorrect cells config', () => {
+      const pastedData = [];
+      const cellsConfig = {};
+      const action = tableActions.insertData(pastedData, cellsConfig);
+      const focus = {
+        ...initialState.focus,
+        activeRow: 45496,
+        activeCell: 'name'
+      };
+
+      expect(tableReducer(
+        setState({focus}),
+        action
+      )).toEqual({
+        ...initialState,
+        focus
+      });
+    });
+
+    it('should not do anything if the type of the active cell is not text', () => {
+      const pastedData = [];
+      const cellsConfig = {photo: {type: 'image'}};
+      const action = tableActions.insertData(pastedData, cellsConfig);
+      const focus = {
+        ...initialState.focus,
+        activeRow: 45496,
+        activeCell: 'photo'
+      };
+
+      expect(tableReducer(
+        setState({focus}),
+        action
+      )).toEqual({
+        ...initialState,
+        focus
+      });
+    });
+
+    it('should insert data if one cell is selected', () => {
+      const pastedData = [['pastedData']];
+      const cellsConfig = {name: {type: 'text'}};
+      const action = tableActions.insertData(pastedData, cellsConfig);
+      const focus = {
+        ...initialState.focus,
+        activeRow: 45496,
+        activeCell: 'name'
+      };
+      const history = {
+        ...initialState.history,
+        current: tableData.rows
+      };
+      const newRows = cloneDeep(history.current);
+
+      pastedData.forEach((data, index) => {
+        newRows[index].name.common.text = data[0];
+      });
+
+      expect(tableReducer(
+        setState({
+          history,
+          focus
+        }),
+        action
+      )).toEqual({
+        ...initialState,
+        focus,
+        history: historyReducer({...history, newRows}, action)
+      });
+    });
+
+    it('should insert data if several cells are selected', () => {
+      const pastedData = [['pastedData'], ['pastedData']];
+      const cellsConfig = {name: {type: 'text'}};
+      const action = tableActions.insertData(pastedData, cellsConfig);
+      const selected = {
+        ...initialState.selected,
+        cellFrom: {row: 0, column: 2},
+        cellTo: {row: 3, column: 2}
+      };
+      const history = {
+        ...initialState.history,
+        current: tableData.rows
+      };
+      const newRows = cloneDeep(history.current);
+
+      pastedData.forEach((data, index) => {
+        newRows[selected.cellFrom.row + index].name.common.text = data[0];
+      });
+
+      expect(tableReducer(
+        setState({
+          history,
+          selected
+        }),
+        action
+      )).toEqual({
+        ...initialState,
+        selected,
+        history: historyReducer({...history, newRows}, action)
+      });
+    });
+
+    it('should trim the extra characters when inserting data', () => {
+      const pastedData = [['pastedData'], ['pastedData']];
+      const cellsConfig = {name: {type: 'text', maxLen: 5}};
+      const action = tableActions.insertData(pastedData, cellsConfig);
+      const selected = {
+        ...initialState.selected,
+        cellFrom: {row: 0, column: 2},
+        cellTo: {row: 3, column: 2}
+      };
+      const history = {
+        ...initialState.history,
+        current: tableData.rows
+      };
+      const newRows = cloneDeep(history.current);
+
+      pastedData.forEach((data, index) => {
+        newRows[selected.cellFrom.row + index].name.common.text = data[0].substring(0, cellsConfig.name.maxLen);
+      });
+
+      expect(tableReducer(
+        setState({
+          history,
+          selected
+        }),
+        action
+      )).toEqual({
+        ...initialState,
+        selected,
+        history: historyReducer({...history, newRows}, action)
+      });
+    });
   });
 });

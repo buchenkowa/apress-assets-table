@@ -19,7 +19,7 @@ class ContainerDialog extends React.Component {
         {this.props.removeRowConfirmOpen && <RemoveConfirmationDialog /> }
         {this.props.removeRowsConfirmOpen && <RemoveMassConfirmDialog />}
         {this.props.removeEmptyRowConfirmOpen && <RemoveEmptyGroupsDialog />}
-        <ImageEditor maxLenght={1} maxSize={2e+6} />
+        <ImageEditor maxLength={1} maxSize={2e+6} />
       </div>
     );
   }

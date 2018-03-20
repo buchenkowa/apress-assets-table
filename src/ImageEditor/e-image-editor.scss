@@ -20,24 +20,30 @@
     &-link { color: #028dd8; text-decoration: underline; }
     &:before { @include cloud-upload-icon(#61656f); content: ''; display: block; width: 42px; height: 36px; margin: 20px auto; }
   }
-  &-remove {
-    position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(31,37,50, .73); display: flex; justify-content: center; align-items: center; visibility: hidden; cursor: pointer;
-    &:after {
-      @include trash-o-icon(#fff); width: 36px; height: 36px; background-size: 16px; background-color: #1f2532; border-radius: 100px; content: '';
-    }
-  }
   &-preview-box { display: flex; }
-  &-preview {
-    width: 115px; height: 80px; display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden; margin-right: 9px;
-    &:hover #{$root}-remove { visibility: visible; }
-  }
   &-error { color: #dc6263; margin-bottom: 20px; }
   &-preloader.e-preloader { height: 140px; }
+  &-subtitle { margin-bottom: 20px; }
+  .url-field-wrapper { margin-top: 35px; }
+  .rc-dialog-footer { padding-top: 20px; }
+  .question-icon {
+    @include question-icon(); display: inline-block; width: 13px; height: 13px; margin-left: 5px; vertical-align: middle;
+    &:hover { cursor: pointer; }
+    &.is-active { @include question-icon(#028dd8); }
+  }
   @media (max-height: 768px) {
     &-drop-zone { height: 100px; }
     &-message {
       margin-top: 0;
       &:before { margin: 3px auto; }
     }
+  }
+}
+
+.e-dropdown-menu.textzone {
+  left: -30px;
+  .e-dropdown-menu-menu-item {
+    height: auto; background: none; cursor: auto; text-transform: none; line-height: initial;
+    p { margin: 0; min-height: 1em; }
   }
 }
