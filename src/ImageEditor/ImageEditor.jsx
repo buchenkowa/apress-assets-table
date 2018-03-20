@@ -292,7 +292,9 @@ class ImageEditor extends React.Component {
                   <div className={b('upload-title')}>
                     {imageEditorLocales.recommendImagesTitle}
                     <DropDownMenu
-                      items={[{title: app.config.imageEditor.imageSelectTextZone}]}
+                      items={[{
+                        title: <div dangerouslySetInnerHTML={{__html: app.config.imageEditor.imageSelectTextZone}} />
+                      }]}
                       onVisibleChange={this.handleChangeVisibilityTextZone}
                       mix='textzone'
                       disableItemClick

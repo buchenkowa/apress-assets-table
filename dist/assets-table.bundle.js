@@ -10,7 +10,7 @@
 		exports["Assets-table"] = factory(require("react"), require("react-redux"), require("react-dom"), require("redux"), require("react-router"));
 	else
 		root["Assets-table"] = factory(root["React"], root["ReactRedux"], root["ReactDom"], root["Redux"], root["ReactRouter"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_22__, __WEBPACK_EXTERNAL_MODULE_64__, __WEBPACK_EXTERNAL_MODULE_952__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_22__, __WEBPACK_EXTERNAL_MODULE_63__, __WEBPACK_EXTERNAL_MODULE_952__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -154,7 +154,7 @@ var _create = __webpack_require__(250);
 
 var _create2 = _interopRequireDefault(_create);
 
-var _typeof2 = __webpack_require__(58);
+var _typeof2 = __webpack_require__(64);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -185,7 +185,7 @@ exports.default = function (subClass, superClass) {
 
 exports.__esModule = true;
 
-var _typeof2 = __webpack_require__(58);
+var _typeof2 = __webpack_require__(64);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -1950,7 +1950,7 @@ module.exports = function(exec){
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP         = __webpack_require__(27)
-  , createDesc = __webpack_require__(59);
+  , createDesc = __webpack_require__(58);
 module.exports = __webpack_require__(32) ? function(object, key, value){
   return dP.f(object, key, createDesc(1, value));
 } : function(object, key, value){
@@ -2801,33 +2801,6 @@ var add = exports.add = function add(payload) {
 
 /***/ }),
 /* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _iterator = __webpack_require__(253);
-
-var _iterator2 = _interopRequireDefault(_iterator);
-
-var _symbol = __webpack_require__(252);
-
-var _symbol2 = _interopRequireDefault(_symbol);
-
-var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.default) === "symbol" ? function (obj) {
-  return typeof obj === "undefined" ? "undefined" : _typeof(obj);
-} : function (obj) {
-  return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
-};
-
-/***/ }),
-/* 59 */
 /***/ (function(module, exports) {
 
 module.exports = function(bitmap, value){
@@ -2840,7 +2813,7 @@ module.exports = function(bitmap, value){
 };
 
 /***/ }),
-/* 60 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
@@ -2850,8 +2823,8 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 61 */,
-/* 62 */
+/* 60 */,
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2959,7 +2932,7 @@ exports.select = _effects.select;
 exports.Search = _Search2.default;
 
 /***/ }),
-/* 63 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(51),
@@ -3027,10 +3000,37 @@ module.exports = isPlainObject;
 
 
 /***/ }),
-/* 64 */
+/* 63 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_64__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_63__;
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _iterator = __webpack_require__(253);
+
+var _iterator2 = _interopRequireDefault(_iterator);
+
+var _symbol = __webpack_require__(252);
+
+var _symbol2 = _interopRequireDefault(_symbol);
+
+var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.default) === "symbol" ? function (obj) {
+  return typeof obj === "undefined" ? "undefined" : _typeof(obj);
+} : function (obj) {
+  return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
+};
 
 /***/ }),
 /* 65 */
@@ -5483,7 +5483,7 @@ module.exports = function(fn, that, length){
 /***/ (function(module, exports, __webpack_require__) {
 
 var pIE            = __webpack_require__(65)
-  , createDesc     = __webpack_require__(59)
+  , createDesc     = __webpack_require__(58)
   , toIObject      = __webpack_require__(28)
   , toPrimitive    = __webpack_require__(100)
   , has            = __webpack_require__(33)
@@ -6610,10 +6610,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _typeof2 = __webpack_require__(58);
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
 var _getPrototypeOf = __webpack_require__(7);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -6721,7 +6717,7 @@ var DropDownMenu = function (_React$Component) {
                   },
                   className: b('menu-item').is({ selected: item.active })
                 },
-                (0, _typeof3.default)(item.title) === 'object' ? item.title : _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: item.title } })
+                item.title
               );
             })
           )
@@ -6987,7 +6983,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 var has         = __webpack_require__(33)
-  , toObject    = __webpack_require__(60)
+  , toObject    = __webpack_require__(59)
   , IE_PROTO    = __webpack_require__(97)('IE_PROTO')
   , ObjectProto = Object.prototype;
 
@@ -10799,7 +10795,7 @@ var _TreeLayer = __webpack_require__(460);
 
 var _TreeLayer2 = _interopRequireDefault(_TreeLayer);
 
-var _import = __webpack_require__(62);
+var _import = __webpack_require__(61);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11028,7 +11024,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(11);
 
-var _redux = __webpack_require__(64);
+var _redux = __webpack_require__(63);
 
 var _propTypes = __webpack_require__(248);
 
@@ -12352,7 +12348,7 @@ module.exports = Array.isArray || function isArray(arg){
 "use strict";
 
 var create         = __webpack_require__(94)
-  , descriptor     = __webpack_require__(59)
+  , descriptor     = __webpack_require__(58)
   , setToStringTag = __webpack_require__(96)
   , IteratorPrototype = {};
 
@@ -12397,7 +12393,7 @@ module.exports = function(object, el){
 var getKeys  = __webpack_require__(47)
   , gOPS     = __webpack_require__(95)
   , pIE      = __webpack_require__(65)
-  , toObject = __webpack_require__(60)
+  , toObject = __webpack_require__(59)
   , IObject  = __webpack_require__(152)
   , $assign  = Object.assign;
 
@@ -12591,7 +12587,7 @@ $export($export.S + $export.F * !__webpack_require__(32), 'Object', {definePrope
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 Object.getPrototypeOf(O)
-var toObject        = __webpack_require__(60)
+var toObject        = __webpack_require__(59)
   , $getPrototypeOf = __webpack_require__(155);
 
 __webpack_require__(66)('getPrototypeOf', function(){
@@ -12605,7 +12601,7 @@ __webpack_require__(66)('getPrototypeOf', function(){
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 Object.keys(O)
-var toObject = __webpack_require__(60)
+var toObject = __webpack_require__(59)
   , $keys    = __webpack_require__(47);
 
 __webpack_require__(66)('keys', function(){
@@ -12654,7 +12650,7 @@ var global         = __webpack_require__(24)
   , anObject       = __webpack_require__(41)
   , toIObject      = __webpack_require__(28)
   , toPrimitive    = __webpack_require__(100)
-  , createDesc     = __webpack_require__(59)
+  , createDesc     = __webpack_require__(58)
   , _create        = __webpack_require__(94)
   , gOPNExt        = __webpack_require__(177)
   , $GOPD          = __webpack_require__(118)
@@ -33713,7 +33709,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _disposables = __webpack_require__(552);
 
-var _isPlainObject = __webpack_require__(63);
+var _isPlainObject = __webpack_require__(62);
 
 var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
@@ -35684,7 +35680,7 @@ var _TreeDndContext = __webpack_require__(237);
 
 var _TreeDndContext2 = _interopRequireDefault(_TreeDndContext);
 
-var _import = __webpack_require__(62);
+var _import = __webpack_require__(61);
 
 var _actions = __webpack_require__(53);
 
@@ -37581,7 +37577,9 @@ var ImageEditor = function (_React$Component) {
                 _react2.default.createElement(
                   _DropDownMenu2.default,
                   {
-                    items: [{ title: app.config.imageEditor.imageSelectTextZone }],
+                    items: [{
+                      title: _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: app.config.imageEditor.imageSelectTextZone } })
+                    }],
                     onVisibleChange: this.handleChangeVisibilityTextZone,
                     mix: 'textzone',
                     disableItemClick: true
@@ -38786,7 +38784,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _typeof2 = __webpack_require__(58);
+var _typeof2 = __webpack_require__(64);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -39033,7 +39031,7 @@ var _regenerator = __webpack_require__(39);
 
 var _regenerator2 = _interopRequireDefault(_regenerator);
 
-var _typeof2 = __webpack_require__(58);
+var _typeof2 = __webpack_require__(64);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -41151,7 +41149,7 @@ var _isEqual2 = __webpack_require__(12);
 
 var _isEqual3 = _interopRequireDefault(_isEqual2);
 
-var _redux = __webpack_require__(64);
+var _redux = __webpack_require__(63);
 
 var _actions = __webpack_require__(49);
 
@@ -41985,7 +41983,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactRedux = __webpack_require__(11);
 
-var _redux = __webpack_require__(64);
+var _redux = __webpack_require__(63);
 
 var _rcDropdown = __webpack_require__(137);
 
@@ -42283,7 +42281,7 @@ var _extends3 = _interopRequireDefault(_extends2);
 
 var _reactRedux = __webpack_require__(11);
 
-var _redux = __webpack_require__(64);
+var _redux = __webpack_require__(63);
 
 var _withDragging = __webpack_require__(457);
 
@@ -42834,7 +42832,7 @@ var _TreeItem = __webpack_require__(459);
 
 var _TreeItem2 = _interopRequireDefault(_TreeItem);
 
-var _import = __webpack_require__(62);
+var _import = __webpack_require__(61);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43043,7 +43041,7 @@ var _inherits2 = __webpack_require__(4);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _import = __webpack_require__(62);
+var _import = __webpack_require__(61);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43074,15 +43072,40 @@ var TreeItem = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = TreeItem.__proto__ || (0, _getPrototypeOf2.default)(TreeItem)).call.apply(_ref, [this].concat(args))), _this), _this.renderSettingsMenu = function () {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = TreeItem.__proto__ || (0, _getPrototypeOf2.default)(TreeItem)).call.apply(_ref, [this].concat(args))), _this), _this.replaceUrlName = function (url) {
+      return url.replace('_url_name_', _this.props.urlName);
+    }, _this.handleSelect = function (action) {
       var _this$props = _this.props,
           id = _this$props.id,
           orderUrl = _this$props.orderUrl,
           actionShowRemoveConfirmation = _this$props.actionShowRemoveConfirmation,
           actionConfigSetId = _this$props.actionConfigSetId,
           name = _this$props.name;
+      var _app$config = app.config,
+          productsEditorGroupUrl = _app$config.productsEditorGroupUrl,
+          catalogRubricOrGroupUrl = _app$config.catalogRubricOrGroupUrl;
 
 
+      switch (action) {
+        case 'edit':
+          actionConfigSetId(id);
+          break;
+        case 'remove':
+          actionShowRemoveConfirmation({ id: id, name: name });
+          break;
+        case 'reorderGoods':
+          window.open(orderUrl);
+          break;
+        case 'openInGoodsEditor':
+          window.open(_this.replaceUrlName(productsEditorGroupUrl));
+          break;
+        case 'openInCatalog':
+          window.open(_this.replaceUrlName(catalogRubricOrGroupUrl));
+          break;
+        default:
+          break;
+      }
+    }, _this.renderSettingsMenu = function () {
       return _import.React.createElement(
         _import.DropDownMenu,
         {
@@ -43091,6 +43114,12 @@ var TreeItem = function (_Component) {
           items: [{
             title: 'Редактировать',
             id: 'edit'
+          }, {
+            title: 'Перейти в товары группы',
+            id: 'openInGoodsEditor'
+          }, {
+            title: 'Перейти в группу',
+            id: 'openInCatalog'
           }, {
             title: 'Изменить порядок товаров',
             id: 'reorderGoods'
@@ -43102,17 +43131,7 @@ var TreeItem = function (_Component) {
             ),
             id: 'remove'
           }],
-          onSelect: function onSelect(action) {
-            if (action === 'edit') {
-              actionConfigSetId(id);
-            }
-            if (action === 'remove') {
-              actionShowRemoveConfirmation({ id: id, name: name });
-            }
-            if (action === 'reorderGoods') {
-              window.open(orderUrl);
-            }
-          }
+          onSelect: _this.handleSelect
         },
         _import.React.createElement('span', { className: (0, _import.b)('settings') })
       );
@@ -43339,7 +43358,7 @@ var _inherits2 = __webpack_require__(4);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _import = __webpack_require__(62);
+var _import = __webpack_require__(61);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43511,7 +43530,7 @@ var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
 exports.default = tree;
 
-var _import = __webpack_require__(62);
+var _import = __webpack_require__(61);
 
 var _actions = __webpack_require__(85);
 
@@ -43824,7 +43843,7 @@ exports.loadRubricatorData = loadRubricatorData;
 exports.updateRubricatorData = updateRubricatorData;
 exports.setRubricatorPosition = setRubricatorPosition;
 
-var _import = __webpack_require__(62);
+var _import = __webpack_require__(61);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46372,7 +46391,7 @@ module.exports = function getOwnPropertyNames(it){
 "use strict";
 
 var $defineProperty = __webpack_require__(27)
-  , createDesc      = __webpack_require__(59);
+  , createDesc      = __webpack_require__(58);
 
 module.exports = function(object, index, value){
   if(index in object)$defineProperty.f(object, index, createDesc(0, value));
@@ -46469,7 +46488,7 @@ module.exports = __webpack_require__(10).isIterable = function(it){
 
 var ctx            = __webpack_require__(117)
   , $export        = __webpack_require__(26)
-  , toObject       = __webpack_require__(60)
+  , toObject       = __webpack_require__(59)
   , call           = __webpack_require__(512)
   , isArrayIter    = __webpack_require__(511)
   , toLength       = __webpack_require__(178)
@@ -54151,7 +54170,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _typeof2 = __webpack_require__(58);
+var _typeof2 = __webpack_require__(64);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -59075,7 +59094,7 @@ var _hoistNonReactStatics = __webpack_require__(190);
 
 var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 
-var _isPlainObject = __webpack_require__(63);
+var _isPlainObject = __webpack_require__(62);
 
 var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
@@ -59224,7 +59243,7 @@ var _invariant = __webpack_require__(23);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _isPlainObject = __webpack_require__(63);
+var _isPlainObject = __webpack_require__(62);
 
 var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
@@ -59308,7 +59327,7 @@ var _invariant = __webpack_require__(23);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _isPlainObject = __webpack_require__(63);
+var _isPlainObject = __webpack_require__(62);
 
 var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
@@ -59490,7 +59509,7 @@ var _invariant = __webpack_require__(23);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _isPlainObject = __webpack_require__(63);
+var _isPlainObject = __webpack_require__(62);
 
 var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
@@ -59778,7 +59797,7 @@ var _invariant = __webpack_require__(23);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _isPlainObject = __webpack_require__(63);
+var _isPlainObject = __webpack_require__(62);
 
 var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
@@ -61124,7 +61143,7 @@ exports.__esModule = true;
 exports.ActionTypes = undefined;
 exports['default'] = createStore;
 
-var _isPlainObject = __webpack_require__(63);
+var _isPlainObject = __webpack_require__(62);
 
 var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 

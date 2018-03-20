@@ -105,49 +105,66 @@ class TreeItem extends Component {
     setExpanded(this.props, expanded);
   }
 
-  renderSettingsMenu = () => {
-    const {
-      id,
-      orderUrl,
-      actionShowRemoveConfirmation,
-      actionConfigSetId,
-      name,
-    } = this.props;
+  replaceUrlName = url => (
+    url.replace('_url_name_', this.props.urlName)
+  );
 
-    return (
-      <DropDownMenu
-        mix='is-settings'
-        trigger={['hover']}
-        items={[
-          {
-            title: 'Редактировать',
-            id: 'edit',
-          },
-          {
-            title: 'Изменить порядок товаров',
-            id: 'reorderGoods',
-          },
-          {
-            title: <span className={b('remove')}>Удалить</span>,
-            id: 'remove',
-          },
-        ]}
-        onSelect={(action) => {
-          if (action === 'edit') {
-            actionConfigSetId(id);
-          }
-          if (action === 'remove') {
-            actionShowRemoveConfirmation({id, name});
-          }
-          if (action === 'reorderGoods') {
-            window.open(orderUrl);
-          }
-        }}
-      >
-        <span className={b('settings')} />
-      </DropDownMenu>
-    );
-  }
+  handleSelect = (action) => {
+    const {id, orderUrl, actionShowRemoveConfirmation, actionConfigSetId, name} = this.props;
+    const {productsEditorGroupUrl, catalogRubricOrGroupUrl} = app.config;
+
+    switch (action) {
+      case 'edit':
+        actionConfigSetId(id);
+        break;
+      case 'remove':
+        actionShowRemoveConfirmation({id, name});
+        break;
+      case 'reorderGoods':
+        window.open(orderUrl);
+        break;
+      case 'openInGoodsEditor':
+        window.open(this.replaceUrlName(productsEditorGroupUrl));
+        break;
+      case 'openInCatalog':
+        window.open(this.replaceUrlName(catalogRubricOrGroupUrl));
+        break;
+      default:
+        break;
+    }
+  };
+
+  renderSettingsMenu = () => (
+    <DropDownMenu
+      mix='is-settings'
+      trigger={['hover']}
+      items={[
+        {
+          title: 'Редактировать',
+          id: 'edit',
+        },
+        {
+          title: 'Перейти в товары группы',
+          id: 'openInGoodsEditor',
+        },
+        {
+          title: 'Перейти в группу',
+          id: 'openInCatalog',
+        },
+        {
+          title: 'Изменить порядок товаров',
+          id: 'reorderGoods',
+        },
+        {
+          title: <span className={b('remove')}>Удалить</span>,
+          id: 'remove',
+        },
+      ]}
+      onSelect={this.handleSelect}
+    >
+      <span className={b('settings')} />
+    </DropDownMenu>
+  );
 
   render() {
     const {
