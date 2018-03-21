@@ -3,10 +3,15 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import _isEqual from 'lodash/isEqual';
 import {bindActionCreators} from 'redux';
-import {showImageEditor} from '../dialogs/actions';
-import {editImages} from '../ImageEditor/actions';
+import {showImageEditor as showImageEditorAction} from '../dialogs/actions';
+import {
+  editProductGroupImages as editProductGroupImagesAction,
+  getRecommendedImages as getRecommendedImagesAction
+} from '../actions/imageEditor';
 import {block} from '../utils';
 import {mapFocusProps} from './utils';
+import TouchEditTool from '../components/Table/views/TouchEditTool';
+import DragTool from '../components/Table/views/DragTool';
 
 
 const b = block('e-table');
@@ -28,7 +33,9 @@ class ImageCell extends Component {
       isSelected: PropTypes.bool,
       name: PropTypes.string
     }),
-    editImages: PropTypes.func,
+    row: PropTypes.object,
+    editProductGroupImages: PropTypes.func,
+    getRecommendedImages: PropTypes.func,
     handleCellClick: PropTypes.func,
     handleDrag: PropTypes.func,
     handleEndSelection: PropTypes.func,
@@ -47,25 +54,42 @@ class ImageCell extends Component {
     }
   };
 
-  handeDoubleClick = () => {
+  handleDoubleClick = () => {
     this.editImages();
   };
 
   editImages = () => {
-    if (this.props.cell.data.common.copy_images_from) {
+    const {
+      cell: {id, name, data: {common: {copy_images_from: copyImagesFrom, images}}},
+      row: {name: {common: {text}}},
+      showImageEditor,
+      editProductGroupImages,
+      getRecommendedImages
+    } = this.props;
+
+    if (copyImagesFrom) {
       return;
     }
-    this.props.showImageEditor();
-    this.props.editImages({name: this.props.cell.name, id: this.props.cell.id});
+
+    showImageEditor();
+    editProductGroupImages({
+      productGroupId: id,
+      productGroupName: text,
+      productGroupImages: images,
+      columnName: name
+    });
+
+    if (!images.length) {
+      getRecommendedImages({productGroupId: id});
+    }
   };
 
   render() {
     const {cell, handleCellClick, handleStartSelection, handleSelection, handleEndSelection, handleDrag} = this.props;
-    const {isLast, isFocus, isDragged, isSelected, classMix, data} = cell;
+    const {isLast, isFocus, isDragged, isSelected, classMix, data, isTouchDevice} = cell;
+    const {binder, common: {images, copy_images_from: copyImagesFrom}} = data;
 
-    const src = data.common.images &&
-      data.common.images.length &&
-      data.common.images[0].src;
+    const src = images && images.length && images[0].src;
     const img = src ?
       <img src={src} alt='' className={b('img')} /> :
       <div className={b('img-empty')} />;
@@ -80,9 +104,9 @@ class ImageCell extends Component {
             'selected-to': isDragged
           })
         }
-        onKeyDown={data.binder && this.handleKeyPress}
-        onClick={data.binder && handleCellClick}
-        onDoubleClick={data.binder && this.handeDoubleClick}
+        onKeyDown={binder && this.handleKeyPress}
+        onClick={binder && handleCellClick}
+        onDoubleClick={binder && this.handleDoubleClick}
         ref={($td) => { $td && isFocus && $td.focus(); }}
         onMouseDown={handleStartSelection}
         onMouseEnter={handleSelection}
@@ -91,11 +115,22 @@ class ImageCell extends Component {
         onSelect={e => e.preventDefault}
       >
         {img}
-        {isLast &&
-          <div onMouseDown={handleDrag} className={b('drag-tool')} />
+        {isLast && !isTouchDevice &&
+          <DragTool
+            onMouseDown={handleDrag}
+          />
         }
-        {data.common.copy_images_from &&
-          <div title='Выполняется копирование изображений' className={b('loader')} />}
+        {isLast && isTouchDevice &&
+          <TouchEditTool
+            onClick={binder && this.handleDoubleClick}
+          />
+        }
+        {copyImagesFrom &&
+          <div
+            title='Выполняется копирование изображений'
+            className={b('loader')}
+          />
+        }
       </div>
     );
   }
@@ -104,8 +139,9 @@ class ImageCell extends Component {
 const mapStateToProps = (state, ownProps) => ({...mapFocusProps(state.table.focus, ownProps)});
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  editImages,
-  showImageEditor,
+  editProductGroupImages: editProductGroupImagesAction,
+  showImageEditor: showImageEditorAction,
+  getRecommendedImages: getRecommendedImagesAction
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ImageCell);

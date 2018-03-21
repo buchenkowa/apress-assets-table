@@ -35,6 +35,8 @@ export const TABLE_EDITOR_SET_IMAGES = 'TABLE_EDITOR_SET_IMAGES';
 export const TABLE_EDITOR_IMAGES_ASSIGN_ID = 'TABLE_EDITOR_IMAGES_ASSIGN_ID';
 
 export const UPDATE_TABLE_EDITOR_ROWS = 'UPDATE_TABLE_EDITOR_ROWS';
+export const INSERT_DATA = 'INSERT_DATA';
+export const SET_TRAIT_FILTERS_DISPLAYING = 'SET_TRAIT_FILTERS_DISPLAYING';
 
 export const load = (payload = {}) => ({
   type: TABLE_EDITOR_LOAD_START,
@@ -175,4 +177,14 @@ export const editImages = payload => ({
 export const updateTableEditorRows = payload => ({
   type: UPDATE_TABLE_EDITOR_ROWS,
   payload
+});
+
+export const insertData = (data, cellsConfig) => ({
+  type: INSERT_DATA,
+  payload: {data, cellsConfig}
+});
+
+export const setTraitFiltersDisplaying = (groupId, enabled) => ({
+  type: SET_TRAIT_FILTERS_DISPLAYING,
+  payload: {groupId, enabled}
 });

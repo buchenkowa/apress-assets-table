@@ -27,7 +27,7 @@ class RemoveConfirmationDialog extends React.Component {
   }
 
   cancel = () => {
-    if (this.props.removeInProgrees) {
+    if (this.props.removeInProgress) {
       return;
     }
     this.props.dispatch(hideRemoveConfirmation());
@@ -184,13 +184,13 @@ class RemoveConfirmationDialog extends React.Component {
     return (
       <Dialog
         className='is-remove-confirmation'
-        closable={!props.removeInProgrees}
+        closable={!props.removeInProgress}
         visible={props.removeRowConfirmOpen}
         onClose={this.cancel}
-        title={!props.removeInProgrees ?
+        title={!props.removeInProgress ?
           'Удалить выбранную группу ?' : 'Удаляем группу, пожалуйста ожидайте ...'}
       >
-        {props.removeInProgrees ? this.renderRemoveInProgress() : this.renderConfirmation() }
+        {props.removeInProgress ? this.renderRemoveInProgress() : this.renderConfirmation() }
       </Dialog>);
   }
 }
@@ -217,7 +217,7 @@ const mapStateToProps = state => ({
   isLoaded: state.tree.isLoaded,
   config: state.config,
   isFetching: state.remove.isFetching,
-  removeInProgrees: state.remove.removeInProgrees,
+  removeInProgress: state.remove.removeInProgress,
   processStatus: state.remove.processStatus,
   selectedNodeId: state.remove.selectedNodeId,
   save: state.save,
