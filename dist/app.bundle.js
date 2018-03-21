@@ -38193,7 +38193,11 @@ var Help = function (_React$Component) {
           _react2.default.createElement(
             'p',
             { className: b('header') },
-            '\u0421\u043F\u0440\u0430\u0432\u043A\u0430'
+            '\u0421\u043F\u0440\u0430\u0432\u043A\u0430',
+            _react2.default.createElement('div', {
+              className: 'e-help-close',
+              onClick: this.handlerClick
+            })
           ),
           _react2.default.createElement(
             'div',
