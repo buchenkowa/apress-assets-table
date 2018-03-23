@@ -45,7 +45,13 @@ class Help extends React.Component {
           <div className={b('button')} />
         </div>
         <div className={b('body')}>
-          <p className={b('header')}>Справка</p>
+          <p className={b('header')}>
+            Справка
+            <div
+              className='e-help-close'
+              onClick={this.handlerClick}
+            />
+          </p>
           <div className={b('search')}>
             <Search onChange={value => this.setState({filter: value})} />
           </div>
