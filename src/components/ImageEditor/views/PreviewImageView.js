@@ -1,34 +1,31 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import {previewImageViewPropType} from '../propTypes';
+import {previewImagePropType} from '../propTypes';
+import {noop} from '../../../utils';
 import '../styles/image-editor.scss';
 
 
-function PrewiewImageView({preview, actionType, disabled, onClick, onLoadError, onLoadSuccess}) {
-  const actionClassNames = classNames('action', {[actionType]: true});
+const PreviewImageView = ({preview, actionType, disabled, onClick, onLoadError, onLoadSuccess}) => (
+  <figure
+    className={classNames('preview', {disabled}, {[actionType]: actionType && !disabled})}
+    onClick={!disabled && onClick}
+  >
+    <img
+      alt='preview'
+      src={preview}
+      onError={onLoadError}
+      onLoad={onLoadSuccess}
+    />
+  </figure>
+);
 
-  return (
-    <div className='preview'>
-      <img
-        alt=''
-        src={preview}
-        onError={onLoadError}
-        onLoad={onLoadSuccess}
-      />
-      {onClick && actionType && !disabled &&
-        <div
-          onClick={onClick}
-          className={actionClassNames}
-        />
-      }
-      {disabled &&
-        <div className='disabled' />
-      }
-    </div>
-  );
-}
+PreviewImageView.propTypes = previewImagePropType;
 
-PrewiewImageView.propTypes = previewImageViewPropType;
+PreviewImageView.defaultProps = {
+  onClick: noop,
+  onLoadError: noop,
+  onLoadSuccess: noop
+};
 
-export default PrewiewImageView;
+export default PreviewImageView;
