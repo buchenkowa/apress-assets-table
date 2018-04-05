@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Trigger from 'rc-trigger';
 import _isEqual from 'lodash/isEqual';
+import Dropzone from 'react-dropzone';
 import 'rc-trigger/assets/index.css';
 import Price from './Price';
 import Exists from './Exists';
@@ -21,6 +22,13 @@ import {
   PathWithDragging,
   TextWithDragging
 } from './cellsWithDragging';
+import {
+  saveProductGroupImages as saveProductGroupImagesAction,
+  editProductGroupImages as editProductGroupImagesAction,
+  setRejectedFiles as setRejectedFilesAction
+} from '../actions/imageEditor';
+import {showImageEditor as showImageEditorAction} from '../dialogs/actions';
+import {imageEditorSettings} from '../ImageEditor/constants';
 
 const b = block('e-table');
 
@@ -54,9 +62,15 @@ class Body extends Component {
     })
   };
 
-  shouldComponentUpdate(nextProps) {
-    return !_isEqual(this.props, nextProps);
+  state = {
+    dragRowId: null
+  };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !_isEqual(this.props, nextProps) || !_isEqual(this.state, nextState);
   }
+
+  getRowId = row => (row.check ? row.check.common.id : row.check_related_products.common.id);
 
   isCurrentCellLastInSelection = (rowIndex, columnIndex) => {
     const {isDragging, cellDragged, cellTo, cellFrom} = this.props.table.selected;
@@ -85,6 +99,34 @@ class Body extends Component {
   };
 
   isRowChecked = rowId => this.props.table.checked.includes(rowId);
+
+  handleDrag = (rowId = null) => {
+    this.setState({dragRowId: rowId});
+  };
+
+  handleDrop = (acceptedFiles, rejectedFiles, row) => {
+    this.handleDrag();
+
+    const {editProductGroupImages, setRejectedFiles, saveProductGroupImages, showImageEditor} = this.props;
+    const {maxLength} = imageEditorSettings;
+    const existedImages = row.photo.common.images;
+    const unsavedImages = acceptedFiles.slice(0, maxLength);
+
+    editProductGroupImages({
+      productGroupId: this.getRowId(row),
+      productGroupName: row.name.common.text,
+      productGroupImages: existedImages,
+      columnName: 'photo'
+    });
+
+    setRejectedFiles({rejectedFiles});
+
+    if (existedImages.length + unsavedImages.length <= maxLength && !rejectedFiles.length) {
+      saveProductGroupImages({existedImages, unsavedImages});
+    } else {
+      showImageEditor();
+    }
+  };
 
   renderCell = (row, rowId, cell, columnIndex, rowIndex) => {
     const {placeholder, config, actions, table, readonly, isTouchDevice} = this.props;
@@ -158,18 +200,35 @@ class Body extends Component {
   };
 
   renderRow = (row, rowIndex) => {
-    const {table, readonly, actions, dispatch, scrollLeft} = this.props;
-    const rowId = row.check ? row.check.common.id : row.check_related_products.common.id;
+    const {table, readonly, actions, scrollLeft, tableContainer, dispatch} = this.props;
+    const rowId = this.getRowId(row);
     const rowHtml = (
-      <div
+      <Dropzone
         key={rowId}
         className={b('body-tr').is({
           checked: this.isRowChecked(rowId),
           new: String(rowId).includes('-')
-        })}
+        })()}
+        onDragEnter={() => { this.handleDrag(rowId); }}
+        onDragLeave={this.handleDrag}
+        onDrop={(acceptedFiles, rejectedFiles) => { this.handleDrop(acceptedFiles, rejectedFiles, row); }}
+        maxSize={imageEditorSettings.maxSize}
+        accept={imageEditorSettings.accept}
+        disableClick
       >
+        {this.state.dragRowId === rowId &&
+          <div
+            className='row-image-dropzone'
+            style={{
+              width: tableContainer ? tableContainer.offsetWidth - 6 : '100%',
+              left: scrollLeft
+            }}
+          >
+            Перетащите картинку в эту область
+          </div>
+        }
         {Object.keys(row).map((cell, index) => this.renderCell(row, rowId, cell, index, rowIndex))}
-      </div>
+      </Dropzone>
     );
 
     return readonly ? (rowHtml) : (
@@ -235,4 +294,11 @@ const mapStateToProps = state => ({
   cell: state.cell
 });
 
-export default connect(mapStateToProps)(Body);
+const mapDispatchToProps = {
+  editProductGroupImages: editProductGroupImagesAction,
+  setRejectedFiles: setRejectedFilesAction,
+  saveProductGroupImages: saveProductGroupImagesAction,
+  showImageEditor: showImageEditorAction
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Body);
