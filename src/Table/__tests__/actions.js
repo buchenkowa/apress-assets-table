@@ -23,4 +23,14 @@ describe('actions', () => {
       payload: someData
     });
   });
+
+  it('should create an action to insert data', () => {
+    const data = {};
+    const cellsConfig = {};
+
+    expect(tableActions.insertData(data, cellsConfig)).toEqual({
+      type: tableActions.INSERT_DATA,
+      payload: {data, cellsConfig}
+    });
+  });
 });

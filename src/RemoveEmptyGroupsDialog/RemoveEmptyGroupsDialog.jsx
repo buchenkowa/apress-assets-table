@@ -9,7 +9,7 @@ import {hideRemoveEmptyRowsConfirmation} from '../dialogs/actions';
 class RemoveEmptyGroupsDialog extends React.Component {
 
   cancel = () => {
-    if (this.props.removeInProgrees) {
+    if (this.props.removeInProgress) {
       return;
     }
     this.props.dispatch(hideRemoveEmptyRowsConfirmation());
@@ -36,14 +36,14 @@ class RemoveEmptyGroupsDialog extends React.Component {
 
     return (
       <Dialog
-        closable={!props.removeInProgrees}
+        closable={!props.removeInProgress}
         className='is-remove-confirmation'
         visible={props.removeEmptyRowConfirmOpen}
         onClose={this.cancel}
-        title={!props.removeInProgrees ? 'Удалить группы без товаров?' : 'Удаляем пустые группы...'}
+        title={!props.removeInProgress ? 'Удалить группы без товаров?' : 'Удаляем пустые группы...'}
       >
         {props.error && <p className='e-simple-error'>{props.error}</p>}
-        {!props.removeInProgrees ?
+        {!props.removeInProgress ?
           <div className='rc-dialog-full-width'>
             <section className='rc-dialog-button-container'>
               <Button
@@ -72,7 +72,7 @@ const mapStateToProps = state => ({
   removeEmptyRowConfirmOpen: state.dialogs.removeEmptyRowConfirmOpen,
   selectedRow: state.dialogs.selectedIds,
   removeRowConfirmOpen: state.dialogs.removeRowConfirmOpen,
-  removeInProgrees: state.remove.removeInProgrees,
+  removeInProgress: state.remove.removeInProgress,
   processStatus: state.remove.processStatus,
   error: state.remove.error,
 });

@@ -1,5 +1,5 @@
 import tableData from '../../../_mock/table/data.json';
-import {transformForServer, transformFromServer} from '../index';
+import {transformForServer, transformFromServer, getDisplayName} from '../index';
 
 describe('utils', () => {
   describe('transformForServer(records)', () => {
@@ -58,6 +58,26 @@ describe('utils', () => {
       };
 
       expect(transformFromServer(recordFromServer, tableData.new_row)).toEqual(record);
+    });
+  });
+
+  describe('getDisplayName(WrappedComponent)', () => {
+    it('should return displayName', () => {
+      const WrappedComponent = {displayName: 'WrappedComponent'};
+
+      expect(getDisplayName(WrappedComponent)).toBe(WrappedComponent.displayName);
+    });
+
+    it('should return name', () => {
+      const WrappedComponent = {name: 'WrappedComponent'};
+
+      expect(getDisplayName(WrappedComponent)).toBe(WrappedComponent.name);
+    });
+
+    it('should return default value', () => {
+      const WrappedComponent = {};
+
+      expect(getDisplayName(WrappedComponent)).toBe('Component');
     });
   });
 });

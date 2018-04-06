@@ -1,0 +1,17 @@
+@import '../../../styles/mixins/index';
+
+.e-table {
+  &-header-cell,
+  &-cell {
+    &.is-trait-filters-displaying { @include cell-width(140px); }
+  }
+  &-cell.is-trait-filters-displaying {
+    &.is-edit { padding-left: 2px; padding-right: 2px; }
+    .e-select { width: 100%; }
+  }
+  .pseudo-link { color: #61656f; font-style: italic; }
+}
+
+.e-select-drop-down.select-cell {
+  .rc-select-dropdown-menu-item { text-align: left; padding: 0 9px; }
+}

@@ -63,6 +63,11 @@ describe('reducer', () => {
       .toEqual({...initialState, withUnsavedChanges: true});
   });
 
+  it('should handle INSERT_DATA', () => {
+    expect(reducer(freezedInitialState, tableActions.insertData()))
+      .toEqual({...initialState, withUnsavedChanges: true});
+  });
+
   it('should handle TABLE_EDITOR_CELL_SELECT_END', () => {
     expect(reducer(freezedInitialState, {
       type: tableActions.TABLE_EDITOR_CELL_SELECT_END,

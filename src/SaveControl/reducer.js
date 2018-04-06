@@ -4,7 +4,8 @@ import {
   SAVE_CREATE_DIFF,
   SAVE_START,
   SAVE_DIFF,
-  CONTINUE_SAVE
+  CONTINUE_SAVE,
+  SUCCESS_REMOVE_MESSAGE
 } from './actions';
 import {
   TABLE_EDITOR_LOAD_SUCCESS,
@@ -16,7 +17,9 @@ import {
   TABLE_EDITOR_ROW_COPY,
   TABLE_EDITOR_ROW_COPY_SUCCESS,
   TABLE_EDITOR_CELL_SELECT_END,
-  UPDATE_TABLE_EDITOR_ROWS
+  UPDATE_TABLE_EDITOR_ROWS,
+  INSERT_DATA,
+  SET_TRAIT_FILTERS_DISPLAYING
 } from '../Table/actions';
 import rows from '../Table/rowReducer';
 
@@ -25,6 +28,7 @@ const initialState = {
   isError: false,
   prevState: [],
   isProgress: false,
+  isSuccess: false,
   fetchDiff: false,
   waitingState: [],
   saveState: []
@@ -45,6 +49,8 @@ export default function (state = initialState, action) {
     case TABLE_EDITOR_CELL_SELECT_END:
     case 'HISTORY_PREV':
     case 'HISTORY_NEXT':
+    case INSERT_DATA:
+    case SET_TRAIT_FILTERS_DISPLAYING:
       return {
         ...state,
         withUnsavedChanges: true
@@ -164,6 +170,7 @@ export default function (state = initialState, action) {
           ...state,
           saveState: [],
           isProgress: false,
+          isSuccess: true
         };
       }
 
@@ -203,6 +210,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         prevState: rows(state.prevState, action)
+      };
+
+    case SUCCESS_REMOVE_MESSAGE:
+      return {
+        ...state,
+        isSuccess: false
       };
 
     default:

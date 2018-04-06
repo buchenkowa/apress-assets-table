@@ -41,6 +41,9 @@ export default class App extends React.Component {
       url: {
         type: 'text',
         maxLen: 255
+      },
+      trait_filters_displaying: {
+        type: 'select'
       }
     };
 

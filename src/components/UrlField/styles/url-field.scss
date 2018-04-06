@@ -1,0 +1,12 @@
+@import '../../../styles/mixins/icons';
+
+
+.url-field-wrapper {
+  height: 40px; width: 100%; display: flex;
+  .url-field { width: 100%; padding: 0 10px; font-size: 14px; }
+  .button {
+    width: 40px; background: #028DD8; border: 0; color: #fff; cursor: pointer;
+    &:before { @include check-icon(#fff); content: ''; display: inline-block; height: 40px; width: 15px; }
+    &:disabled { opacity: .6; cursor: auto; }
+  }
+}

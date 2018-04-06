@@ -14,7 +14,8 @@ import {
   focusDown,
   focusUp,
   historyNext,
-  historyPrev
+  historyPrev,
+  insertData
 } from './actions';
 
 const b = block('e-table');
@@ -38,10 +39,12 @@ class Table extends Component {
       columns: PropTypes.arrayOf(PropTypes.object),
       isLoaded: PropTypes.bool
     }),
+    pastedData: PropTypes.string,
     isTouchDevice: PropTypes.bool
   };
 
   static defaultProps = {
+    pastedData: '',
     isTouchDevice: false
   };
 
@@ -51,6 +54,14 @@ class Table extends Component {
 
   componentDidMount() {
     this.$node.addEventListener('scroll', this.handleTableScroll, false);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {pastedData, config, edit} = nextProps;
+
+    if (pastedData.length && !edit) {
+      this.props.dispatch(insertData(pastedData, config));
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -78,7 +89,7 @@ class Table extends Component {
           dispatch(historyNext());
         }
       }
-      event.preventDefault();
+
       if (event.keyCode === 38) {
         dispatch(focusUp({rows: history.current}));
       } else {
@@ -141,4 +152,4 @@ const mapStateToProps = state => ({
   history: state.table.history,
 });
 
-export default connect(mapStateToProps)(Table);
+export default connect(mapStateToProps, null, null, {withRef: true})(Table);
