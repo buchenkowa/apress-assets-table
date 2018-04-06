@@ -22,7 +22,8 @@
     "no-plusplus": 0,
     "react/no-array-index-key": 0,
     "dot-notation": 0,
-    "no-lonely-if": 0
+    "no-lonely-if": 0,
+    "import/prefer-default-export": 0
   },
   "globals": {
     "CKEDITOR": true,

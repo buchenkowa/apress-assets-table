@@ -1,6 +1,6 @@
 import {getStateSetter, mockGroupsRequest} from '../../../../test/testUtils';
 import tableData from '../../../../_mock/table/data.json';
-import historyReducer from '../../reducers/history';
+import historyReducer, {addHistory} from '../../reducers/history';
 import rowReducer from '../../rowReducer';
 import * as tableActions from '../../actions';
 
@@ -63,6 +63,67 @@ describe('historyReducer', () => {
     )).toEqual({
       ...initialState,
       current: rowReducer(tableData.rows, action)
+    });
+  });
+
+  it('should handle INSERT_DATA', () => {
+    const action = tableActions.insertData();
+
+    expect(historyReducer(freezedInitialState, action))
+      .toEqual(addHistory(freezedInitialState, action));
+  });
+
+  describe('addHistory(state, action)', () => {
+    it('should add history for state.newRows', () => {
+      const action = {};
+
+      expect(addHistory(
+        setState({
+          newRows: tableData.rows
+        }),
+        action
+      )).toEqual({
+        ...initialState,
+        newRows: null,
+        prev: [initialState.current, ...initialState.prev],
+        current: rowReducer(tableData.rows, action),
+        next: []
+      });
+    });
+
+    it('should add history for state.current', () => {
+      const action = {};
+
+      expect(addHistory(
+        setState({
+          current: tableData.rows
+        }),
+        action
+      )).toEqual({
+        ...initialState,
+        newRows: null,
+        prev: [tableData.rows],
+        current: rowReducer(tableData.rows, action),
+        next: []
+      });
+    });
+
+    it('should be no more than 100 previous actions', () => {
+      const action = {};
+      const row = new Array(110).fill(tableData.rows[0]);
+
+      expect(addHistory(
+        setState({
+          current: row
+        }),
+        action
+      )).toEqual({
+        ...initialState,
+        newRows: null,
+        prev: [row, ...initialState.prev].slice(0, 100),
+        current: rowReducer(row, action),
+        next: []
+      });
     });
   });
 });

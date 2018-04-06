@@ -6,7 +6,10 @@ export {
   isEqual,
   get,
   has,
-  unset
+  unset,
+  merge,
+  pick,
+  noop
 } from 'lodash';
 
 export const api = axios.create({baseURL: ''});
@@ -89,6 +92,10 @@ export const transformFromServer = (record, templateRecord) => {
 
   return newRecord;
 };
+
+export function getDisplayName(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+}
 
 export const getCallback = (callback, withCallback) => (
   withCallback ? callback : null

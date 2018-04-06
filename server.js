@@ -115,6 +115,23 @@ app.get('/help', function root(req, res) {
   res.sendFile(__dirname + '/_mock/help.json');
 });
 
+app.get('/api/v1/companies/:company_id/product_groups/:product_group_id/recommended_images', (req, res) => {
+  const product_images = [];
+
+  for (let i = 0; i < req.query.count; i++) {
+    product_images.push({
+      image_styles: [{
+        name: 'original',
+        url: 'https://medialeaks.ru/wp-content/uploads/2017/03/photo_2016-09-23_10-51-07__d9lpq6n-600x413.jpg'
+      }]
+    });
+  }
+
+  setTimeout(() => {
+    res.json({product_images});
+  }, 1000);
+});
+
 const server = http.createServer(app);
 server.listen(process.env.PORT || 8080, function onListen() {
   const address = server.address();
