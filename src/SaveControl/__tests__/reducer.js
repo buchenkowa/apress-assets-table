@@ -13,7 +13,8 @@ describe('reducer', () => {
     isProgress: false,
     fetchDiff: false,
     waitingState: [],
-    saveState: []
+    saveState: [],
+    isSuccess: false
   };
   const setState = getStateSetter(initialState);
   const freezedInitialState = setState();
@@ -336,7 +337,7 @@ describe('reducer', () => {
 
     it('should handle a successful save', () => {
       expect(reducer(freezedInitialState, actions.saveSuccess()))
-        .toEqual({...initialState, saveState: [], isProgress: false});
+        .toEqual({...initialState, isSuccess: true});
     });
   });
 
