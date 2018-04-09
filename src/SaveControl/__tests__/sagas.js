@@ -1,3 +1,5 @@
+import {delay} from 'redux-saga';
+
 import {getStateSetter} from '../../../test/testUtils';
 import {put, call, select} from 'redux-saga/effects';
 import {cloneableGenerator} from 'redux-saga/utils';
@@ -15,6 +17,7 @@ import * as treeActions from '../../Tree/actions';
 import * as tableActions from '../../Table/actions';
 import * as errorActions from '../../Error/actions';
 import * as saveControlActions from '../actions';
+import {successRemoveMessageDelay} from '../constants';
 
 describe('SaveControl sagas', () => {
   const setState = getStateSetter({
@@ -24,7 +27,8 @@ describe('SaveControl sagas', () => {
     isProgress: false,
     fetchDiff: false,
     waitingState: [],
-    saveState: []
+    saveState: [],
+    isSuccess: false
   });
 
   describe('addCopiedRows(rows)', () => {
@@ -132,6 +136,10 @@ describe('SaveControl sagas', () => {
         expect(cloneSaveGenerator.next(setState()).value)
           .toEqual(put(saveSuccessAction));
         expect(cloneSaveGenerator.next().value)
+          .toEqual(call(delay, successRemoveMessageDelay));
+        expect(cloneSaveGenerator.next().value)
+          .toEqual(put({type: saveControlActions.SUCCESS_REMOVE_MESSAGE}));
+        expect(cloneSaveGenerator.next().value)
           .toEqual(call(continueSave));
         expect(cloneSaveGenerator.next().done).toEqual(true);
       });
@@ -141,6 +149,10 @@ describe('SaveControl sagas', () => {
           .toEqual(call(saveProcess, saveState));
         expect(cloneSaveGenerator.next({succeeded: false}).value)
           .toEqual(put(saveSuccessAction));
+        expect(cloneSaveGenerator.next().value)
+          .toEqual(call(delay, successRemoveMessageDelay));
+        expect(cloneSaveGenerator.next().value)
+          .toEqual(put({type: saveControlActions.SUCCESS_REMOVE_MESSAGE}));
         expect(cloneSaveGenerator.next().value)
           .toEqual(call(continueSave));
         expect(cloneSaveGenerator.next().done).toEqual(true);
@@ -162,6 +174,10 @@ describe('SaveControl sagas', () => {
         expect(cloneSaveGenerator.next().value)
           .toEqual(put(saveSuccessAction));
         expect(cloneSaveGenerator.next().value)
+          .toEqual(call(delay, successRemoveMessageDelay));
+        expect(cloneSaveGenerator.next().value)
+          .toEqual(put({type: saveControlActions.SUCCESS_REMOVE_MESSAGE}));
+        expect(cloneSaveGenerator.next().value)
           .toEqual(call(continueSave));
         expect(cloneSaveGenerator.next().done).toEqual(true);
       });
@@ -179,6 +195,10 @@ describe('SaveControl sagas', () => {
           .toEqual(put(treeLoadStartAction));
         expect(cloneSaveGenerator.next().value)
           .toEqual(put(saveSuccessAction));
+        expect(cloneSaveGenerator.next().value)
+          .toEqual(call(delay, successRemoveMessageDelay));
+        expect(cloneSaveGenerator.next().value)
+          .toEqual(put({type: saveControlActions.SUCCESS_REMOVE_MESSAGE}));
         expect(cloneSaveGenerator.next().value)
           .toEqual(call(continueSave));
         expect(cloneSaveGenerator.next().done).toEqual(true);
@@ -198,6 +218,10 @@ describe('SaveControl sagas', () => {
         expect(cloneSaveGenerator.next().value)
           .toEqual(put(saveSuccessAction));
         expect(cloneSaveGenerator.next().value)
+          .toEqual(call(delay, successRemoveMessageDelay));
+        expect(cloneSaveGenerator.next().value)
+          .toEqual(put({type: saveControlActions.SUCCESS_REMOVE_MESSAGE}));
+        expect(cloneSaveGenerator.next().value)
           .toEqual(call(continueSave));
         expect(cloneSaveGenerator.next().done).toEqual(true);
       });
@@ -212,6 +236,10 @@ describe('SaveControl sagas', () => {
         .toEqual(put(treeLoadStartAction));
       expect(saveGenerator.next().value)
         .toEqual(put(saveSuccessAction));
+      expect(saveGenerator.next().value)
+        .toEqual(call(delay, successRemoveMessageDelay));
+      expect(saveGenerator.next().value)
+        .toEqual(put({type: saveControlActions.SUCCESS_REMOVE_MESSAGE}));
       expect(saveGenerator.next().value)
         .toEqual(call(continueSave));
       expect(saveGenerator.next().done).toEqual(true);
