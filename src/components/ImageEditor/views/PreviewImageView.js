@@ -1,15 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import {previewImagePropType} from '../propTypes';
-import {noop} from '../../../utils';
+import {previewImageViewPropType} from '../propTypes';
+import {noop, getCallback} from '../../../utils';
 import '../styles/image-editor.scss';
 
 
 const PreviewImageView = ({preview, actionType, disabled, onClick, onLoadError, onLoadSuccess}) => (
   <figure
     className={classNames('preview', {disabled}, {[actionType]: actionType && !disabled})}
-    onClick={!disabled && onClick}
+    onClick={getCallback(onClick, !disabled)}
   >
     <img
       alt='preview'
@@ -20,7 +20,7 @@ const PreviewImageView = ({preview, actionType, disabled, onClick, onLoadError, 
   </figure>
 );
 
-PreviewImageView.propTypes = previewImagePropType;
+PreviewImageView.propTypes = previewImageViewPropType;
 
 PreviewImageView.defaultProps = {
   onClick: noop,

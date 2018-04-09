@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import PreviewImageView from './PreviewImageView';
-import {previewImagesBoxPropType} from '../propTypes';
+import {previewImagesBoxViewPropType} from '../propTypes';
 import {noop} from '../../../utils';
 
 
@@ -22,7 +22,7 @@ const PreviewImagesBoxView = ({previews, className, actionType, disabled, onPrev
   </div>
 );
 
-PreviewImagesBoxView.propTypes = previewImagesBoxPropType;
+PreviewImagesBoxView.propTypes = previewImagesBoxViewPropType;
 
 PreviewImagesBoxView.defaultProps = {
   onPreviewClick: noop,
