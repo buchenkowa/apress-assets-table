@@ -73,6 +73,9 @@
     display: flex;
     flex-direction: column; }
   .e-help-header {
+    display: flex;
+    justify-content: space-between;
+    white-space: nowrap;
     font-size: 18px;
     padding: 0 0 13px;
     margin: 0 35px 20px;
@@ -109,6 +112,11 @@
     font-size: 14px;
     color: #b4b5b8;
     margin: 15px 0; }
+  .e-help-close {
+    background: url("data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjYzFjMWMxIiB3aWR0aD0iMTc5MiIgaGVpZ2h0PSIxNzkyIiB2aWV3Qm94PSIwIDAgMTc5MiAxNzkyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xNDkwIDEzMjJxMCA0MC0yOCA2OGwtMTM2IDEzNnEtMjggMjgtNjggMjh0LTY4LTI4bC0yOTQtMjk0LTI5NCAyOTRxLTI4IDI4LTY4IDI4dC02OC0yOGwtMTM2LTEzNnEtMjgtMjgtMjgtNjh0MjgtNjhsMjk0LTI5NC0yOTQtMjk0cS0yOC0yOC0yOC02OHQyOC02OGwxMzYtMTM2cTI4LTI4IDY4LTI4dDY4IDI4bDI5NCAyOTQgMjk0LTI5NHEyOC0yOCA2OC0yOHQ2OCAyOGwxMzYgMTM2cTI4IDI4IDI4IDY4dC0yOCA2OGwtMjk0IDI5NCAyOTQgMjk0cTI4IDI4IDI4IDY4eiIvPjwvc3ZnPg==") 0%/contain no-repeat;
+    width: 20px;
+    height: 20px;
+    cursor: pointer; }
 @font-face {
   font-family: 'OpenSans';
   font-style: normal;
