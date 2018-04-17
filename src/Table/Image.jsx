@@ -12,6 +12,7 @@ import {block} from '../utils';
 import {mapFocusProps} from './utils';
 import TouchEditTool from '../components/Table/views/TouchEditTool';
 import DragTool from '../components/Table/views/DragTool';
+import Preloader from '../components/Preloader';
 
 
 const b = block('e-table');
@@ -31,7 +32,8 @@ class ImageCell extends Component {
       isFocus: PropTypes.bool,
       isLast: PropTypes.bool,
       isSelected: PropTypes.bool,
-      name: PropTypes.string
+      name: PropTypes.string,
+      id: PropTypes.number
     }),
     row: PropTypes.object,
     editProductGroupImages: PropTypes.func,
@@ -42,6 +44,8 @@ class ImageCell extends Component {
     handleStartSelection: PropTypes.func,
     handleSelection: PropTypes.func,
     showImageEditor: PropTypes.func,
+    duringSavingProductGroupImages: PropTypes.bool,
+    productGroupId: PropTypes.number
   };
 
   shouldComponentUpdate(nextProps) {
@@ -85,8 +89,17 @@ class ImageCell extends Component {
   };
 
   render() {
-    const {cell, handleCellClick, handleStartSelection, handleSelection, handleEndSelection, handleDrag} = this.props;
-    const {isLast, isFocus, isDragged, isSelected, classMix, data, isTouchDevice} = cell;
+    const {
+      cell,
+      handleCellClick,
+      handleStartSelection,
+      handleSelection,
+      handleEndSelection,
+      handleDrag,
+      duringSavingProductGroupImages,
+      productGroupId
+    } = this.props;
+    const {isLast, isFocus, isDragged, isSelected, classMix, data, isTouchDevice, id} = cell;
     const {binder, common: {images, copy_images_from: copyImagesFrom}} = data;
 
     const src = images && images.length && images[0].src;
@@ -114,7 +127,7 @@ class ImageCell extends Component {
         onDragStart={e => e.preventDefault}
         onSelect={e => e.preventDefault}
       >
-        {img}
+        {duringSavingProductGroupImages && productGroupId === id ? <Preloader /> : img}
         {isLast && !isTouchDevice &&
           <DragTool
             onMouseDown={handleDrag}
@@ -136,7 +149,11 @@ class ImageCell extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({...mapFocusProps(state.table.focus, ownProps)});
+const mapStateToProps = ({imageEditor: {duringSavingProductGroupImages, productGroupId}, table: {focus}}, ownProps) => ({
+  ...mapFocusProps(focus, ownProps),
+  duringSavingProductGroupImages,
+  productGroupId
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   editProductGroupImages: editProductGroupImagesAction,

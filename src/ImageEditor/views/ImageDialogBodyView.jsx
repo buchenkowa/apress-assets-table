@@ -5,8 +5,8 @@ import {connect} from 'react-redux';
 
 import {imageTypes} from '../../constants/imageEditor';
 import {PreviewImagesBoxView} from '../../components/ImageEditor/views/index';
-import Preloader from '../../components/Preloader/index';
-import UrlField from '../../components/UrlField/index';
+import Preloader from '../../components/Preloader';
+import UrlField from '../../components/UrlField';
 import ErrorMessageListContainer from '../containers/ErrorMessageListContainer';
 import RecommendedImagesView from './RecommendedImagesView';
 import {imageEditorSettings} from '../constants';
