@@ -58,7 +58,8 @@ class ImageEditor extends React.Component {
       haveMaximumImagesCount
     } = this.props;
 
-    if (!haveMaximumImagesCount && !duringLoadingRecommendedImages && !recommendedImagesWasLoaded && isImageEditorVisible) {
+    if (!haveMaximumImagesCount && !duringLoadingRecommendedImages && !recommendedImagesWasLoaded && isImageEditorVisible &&
+      !this.state.existedImages.length) {
       getRecommendedImages({productGroupId});
     }
 

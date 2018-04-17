@@ -2,22 +2,78 @@
 
 .e-image-editor {
   .preview-images-box {
-    display: flex; height: 80px; margin-bottom: 13px;
-    &.hidden { display: none; }
-  }
-  .preview {
-    width: 115px; height: 80px; position: relative; overflow: hidden; margin: 0 9px 0 0; display: flex; justify-content: center; align-items: center; cursor: pointer;
-    &:not(.disabled) {
-      &:hover:before { content: '';  position: absolute; background: rgba(31, 37, 50, .7); height: 100%; width: inherit; }
-      &:hover:after { content: ''; position: absolute; width: 36px; height: 36px; border-radius: 50%; }
-      &.remove:hover:after { @include trash-o-icon(#fff); }
-      &.add:hover:after { @include check-icon(#fff); }
-      &.remove:hover:after,
-      &.add:hover:after { background-size: 16px; background-color: #1f2532; }
+    margin-bottom: 13px;
+
+    &.hidden {
+      display: none;
     }
+  }
+
+  .preview {
+    width: 115px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 9px 0 0;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &:not(.disabled) {
+      &:hover:before {
+        background: rgba(31, 37, 50, .7);
+      }
+
+      &:hover:after {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      &.remove:hover:after {
+        @include trash-o-icon(#fff);
+      }
+
+      &.add:hover:after {
+        @include check-icon(#fff);
+      }
+
+      &.remove:hover:after,
+      &.add:hover:after {
+        background-size: 16px;
+        background-color: #1f2532;
+      }
+    }
+
     &.disabled {
       cursor: not-allowed;
-      &:after { content: '';  position: absolute; background: rgba(31, 37, 50, .5); height: 100%; width: inherit; }
+
+      &:after {
+        background: rgba(31, 37, 50, .5);
+      }
     }
+
+    &.disabled:after,
+    &:not(.disabled):hover:before,
+    &:not(.disabled):hover:after {
+      content: '';
+      position: absolute;
+    }
+
+    &:not(.disabled):hover:before,
+    &.disabled:after {
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: inherit;
+    }
+  }
+
+  .preview-images-box,
+  .preview {
+    display: flex;
+    height: 80px;
   }
 }
