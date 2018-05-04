@@ -163,6 +163,7 @@ export const getRowDifference = (currentState, previousState) => {
       case 'description':
       case 'detailed_description':
       case 'h1':
+      case 'html_block':
       case 'name':
       case 'page_description':
       case 'tag_title':
