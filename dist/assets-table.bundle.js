@@ -41607,8 +41607,6 @@ var _Actions2 = _interopRequireDefault(_Actions);
 
 var _actions = __webpack_require__(53);
 
-var remove = _interopRequireWildcard(_actions);
-
 var _cellsWithDragging = __webpack_require__(467);
 
 var _imageEditor = __webpack_require__(118);
@@ -41616,8 +41614,6 @@ var _imageEditor = __webpack_require__(118);
 var _actions2 = __webpack_require__(39);
 
 var _constants = __webpack_require__(75);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41798,7 +41794,7 @@ var Body = function (_Component) {
           actions = _this$props3.actions,
           scrollLeft = _this$props3.scrollLeft,
           tableContainer = _this$props3.tableContainer,
-          dispatch = _this$props3.dispatch;
+          removeGroup = _this$props3.removeGroup;
 
       var rowId = _this.getRowId(row);
       var rowHtml = _react2.default.createElement(
@@ -41865,10 +41861,10 @@ var Body = function (_Component) {
               name: 'delete',
               title: 'Удалить группу',
               onClick: function onClick() {
-                dispatch(remove.removeGroup({
+                return removeGroup({
                   id: rowId,
                   name: row.name.common.text
-                }));
+                });
               }
             }]
           }),
@@ -41908,7 +41904,6 @@ var Body = function (_Component) {
 Body.propTypes = {
   actions: _propTypes2.default.objectOf(_propTypes2.default.func),
   config: _propTypes2.default.objectOf(_propTypes2.default.object),
-  dispatch: _propTypes2.default.func,
   placeholder: _propTypes2.default.object,
   readonly: _propTypes2.default.bool,
   isTouchDevice: _propTypes2.default.bool,
@@ -41944,7 +41939,8 @@ var mapDispatchToProps = {
   editProductGroupImages: _imageEditor.editProductGroupImages,
   setRejectedFiles: _imageEditor.setRejectedFiles,
   saveProductGroupImages: _imageEditor.saveProductGroupImages,
-  showImageEditor: _actions2.showImageEditor
+  showImageEditor: _actions2.showImageEditor,
+  removeGroup: _actions.removeGroup
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Body);
