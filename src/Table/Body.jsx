@@ -15,7 +15,7 @@ import {
   swap
 } from '../utils';
 import Actions from '../Actions/Actions';
-import * as remove from '../remove/actions';
+import {removeGroup as removeGroupAction} from '../remove/actions';
 import {
   CheckWithDragging,
   ImageWithDragging,
@@ -37,7 +37,6 @@ class Body extends Component {
   static propTypes= {
     actions: PropTypes.objectOf(PropTypes.func),
     config: PropTypes.objectOf(PropTypes.object),
-    dispatch: PropTypes.func,
     placeholder: PropTypes.object,
     readonly: PropTypes.bool,
     isTouchDevice: PropTypes.bool,
@@ -200,7 +199,7 @@ class Body extends Component {
   };
 
   renderRow = (row, rowIndex) => {
-    const {table, readonly, actions, scrollLeft, tableContainer, dispatch} = this.props;
+    const {table, readonly, actions, scrollLeft, tableContainer, removeGroup} = this.props;
     const rowId = this.getRowId(row);
     const rowHtml = (
       <Dropzone
@@ -257,12 +256,10 @@ class Body extends Component {
             {
               name: 'delete',
               title: 'Удалить группу',
-              onClick: () => {
-                dispatch(remove.removeGroup({
-                  id: rowId,
-                  name: row.name.common.text,
-                }));
-              }
+              onClick: () => removeGroup({
+                id: rowId,
+                name: row.name.common.text,
+              })
             },
           ]}
         />}
@@ -298,7 +295,8 @@ const mapDispatchToProps = {
   editProductGroupImages: editProductGroupImagesAction,
   setRejectedFiles: setRejectedFilesAction,
   saveProductGroupImages: saveProductGroupImagesAction,
-  showImageEditor: showImageEditorAction
+  showImageEditor: showImageEditorAction,
+  removeGroup: removeGroupAction
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Body);
