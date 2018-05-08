@@ -1449,7 +1449,7 @@ li.rc-select-dropdown-menu-item-divider {
     max-width: 270px;
     min-width: 270px;
     width: 270px; }
-  .e-table-header-cell.is-detailed-description, .e-table-cell.is-detailed-description {
+  .e-table-header-cell.is-html-block, .e-table-header-cell.is-detailed-description, .e-table-cell.is-html-block, .e-table-cell.is-detailed-description {
     max-width: 280px;
     min-width: 280px;
     width: 280px; }

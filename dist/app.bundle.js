@@ -41111,6 +41111,7 @@ var getRowDifference = exports.getRowDifference = function getRowDifference(curr
       case 'description':
       case 'detailed_description':
       case 'h1':
+      case 'html_block':
       case 'name':
       case 'page_description':
       case 'tag_title':
@@ -67292,6 +67293,10 @@ var App = function (_React$Component) {
         },
         trait_filters_displaying: {
           type: 'select'
+        },
+        html_block: {
+          type: 'text',
+          maxLen: 20000
         }
       };
 
