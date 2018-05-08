@@ -66,6 +66,7 @@
   &-cell {
     &.is-check { @include cell-width(60px); padding: 10px 14px 10px 30px; cursor: default; }
     &.is-description { @include cell-width(270px); }
+    &.is-html-block,
     &.is-detailed-description {  @include cell-width(280px); }
     &.is-h1 { @include cell-width(180px); }
     &.is-name { @include cell-width(200px); }
