@@ -3,10 +3,14 @@
 
 .url-field-wrapper {
   height: 40px; width: 100%; display: flex;
-  .url-field { width: 100%; padding: 0 10px; font-size: 14px; }
+  .url-field {
+    width: 100%; padding: 0 10px; font-size: 14px;
+    &:focus { border: 1px solid #028dd8; border-right: 0; }
+  }
   .button {
     width: 40px; background: #028DD8; border: 0; color: #fff; cursor: pointer;
     &:before { @include check-icon(#fff); content: ''; display: inline-block; height: 40px; width: 15px; }
     &:disabled { opacity: .6; cursor: auto; }
+    &:hover { background: #0277bd; }
   }
 }

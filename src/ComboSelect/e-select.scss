@@ -1,6 +1,7 @@
 @import '../styles/mixins/icons';
 
 .e-select {
+  position: absolute; top: 0; right: 0;
   .rc-select {
     &-selection,
     &-selection:hover { border-radius: 0; background: #fff; border: solid 1px #e0e0e0; font-size: 12px; box-shadow: none; font-family: 'OpenSans'; }
