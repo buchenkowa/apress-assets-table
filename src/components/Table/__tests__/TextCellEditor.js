@@ -122,21 +122,32 @@ describe('TextCellEditor', () => {
   });
 
   describe('getEventHandlers()', () => {
-    it('should return an empty object in read-only mode', () => {
-      const freezedProps = setProps();
+    it('should return an object that consists of three handlers with null values in read-only mode', () => {
+      const freezedProps = setProps({isEdit: false});
       const wrapper = getShallowWrapper(TextCellEditor, freezedProps);
       const handlers = wrapper.instance().getEventHandlers();
+      const expected = [null, null, null];
 
-      expect(Object.keys(handlers).length).toBe(0);
+      expect(Object.values(handlers)).toEqual(expected);
     });
 
     it('should return the object with event handlers in edit mode', () => {
-      const freezedProps = setProps({isEdit: true});
+      const freezedProps = setProps({isEdit: true, isTouchDevice: false});
       const wrapper = getShallowWrapper(TextCellEditor, freezedProps);
       const handlers = wrapper.instance().getEventHandlers();
-      const expected = ['onBlur', 'onKeyDown', 'onInput'];
+      const expected = ['onKeyDown', 'onInput', 'onBlur'].sort();
 
-      expect(Object.keys(handlers)).toEqual(expected);
+      expect(Object.keys(handlers).sort()).toEqual(expected);
+    });
+
+    it('should return the object with event handlers in mobile edit mode', () => {
+      const freezedProps = setProps({isEdit: true, isTouchDevice: true});
+      const wrapper = getShallowWrapper(TextCellEditor, freezedProps);
+      const handlers = wrapper.instance().getEventHandlers();
+      const expected = ['onKeyDown', 'onInput', 'onBlur'].sort();
+
+      expect(Object.keys(handlers).sort()).toEqual(expected);
+      expect(handlers.onBlur).toBe(null);
     });
   });
 

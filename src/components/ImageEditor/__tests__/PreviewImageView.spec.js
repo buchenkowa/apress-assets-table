@@ -10,7 +10,8 @@ describe('PreviewImageView', () => {
     const props = {
       preview: 'preview',
       onLoadError: jest.fn(),
-      onLoadSuccess: jest.fn()
+      onLoadSuccess: jest.fn(),
+      onClick: jest.fn()
     };
     let image;
 
@@ -35,124 +36,59 @@ describe('PreviewImageView', () => {
       image.simulate('load');
       expect(props.onLoadSuccess).toHaveBeenCalledTimes(1);
     });
-  });
 
-  describe('action area', () => {
-    describe('all props defined', () => {
-      const props = {
-        preview: 'preview',
-        onClick: jest.fn(),
-        actionType: previewImageActionTypes.add
-      };
-      let element;
+    describe('props.disabled', () => {
+      describe('props.disabled is true', () => {
+        let rootElement;
 
-      beforeAll(() => {
-        const wrapper = getShallowWrapper(PreviewImageView, props);
-        const rootElement = wrapper.find(className);
+        beforeEach(() => {
+          const wrapper = getShallowWrapper(PreviewImageView, Object.assign(props, {disabled: true}));
+          rootElement = wrapper.find(className);
+        });
 
-        element = rootElement.find('.action');
+        it('should disabled preview', () => {
+          expect(rootElement.hasClass('disabled')).toBe(true);
+        });
+
+        it('should not call props.onClick', () => {
+          rootElement.simulate('click');
+          expect(props.onClick).toHaveBeenCalledTimes(0);
+        });
       });
 
-      it('should render the action area', () => {
-        expect(element).toHaveLength(1);
-        expect(element.hasClass(props.actionType)).toBeTruthy();
-        expect(element.prop('onClick')).toEqual(props.onClick);
-      });
-    });
+      describe('props.disabled is false', () => {
+        let rootElement;
 
-    describe('props.actionType and props.onClick are undefined', () => {
-      const props = {
-        preview: 'preview'
-      };
-      let element;
+        beforeEach(() => {
+          const wrapper = getShallowWrapper(PreviewImageView, Object.assign(props, {disabled: false}));
+          rootElement = wrapper.find(className);
+        });
 
-      beforeAll(() => {
-        const wrapper = getShallowWrapper(PreviewImageView, props);
-        const rootElement = wrapper.find(className);
+        it('should not disabled preview', () => {
+          expect(rootElement.hasClass('disabled')).toBe(false);
+        });
 
-        element = rootElement.find('.action');
-      });
-
-      it('should not render action area', () => {
-        expect(element).toHaveLength(0);
+        it('should call props.onClick', () => {
+          rootElement.simulate('click');
+          expect(props.onClick).toHaveBeenCalledTimes(1);
+        });
       });
     });
 
-    describe('props.actionType is undefined', () => {
-      const props = {
-        preview: 'preview',
-        onClick: jest.fn()
-      };
-      let element;
+    describe('props.actionType', () => {
+      describe('props.actionType is true and props.disabled is false', () => {
+        it('should add the action area class', () => {
+          const wrapper = getShallowWrapper(
+            PreviewImageView,
+            Object.assign(props, {
+              disabled: false,
+              actionType: previewImageActionTypes.add
+            })
+          );
+          const rootElement = wrapper.find(className);
 
-      beforeAll(() => {
-        const wrapper = getShallowWrapper(PreviewImageView, props);
-        const rootElement = wrapper.find(className);
-
-        element = rootElement.find('.action');
-      });
-
-      it('should not render action area', () => {
-        expect(element).toHaveLength(0);
-      });
-    });
-
-    describe('props.actionType is undefined', () => {
-      const props = {
-        preview: 'preview',
-        actionType: previewImageActionTypes.add
-      };
-      let element;
-
-      beforeAll(() => {
-        const wrapper = getShallowWrapper(PreviewImageView, props);
-        const rootElement = wrapper.find(className);
-
-        element = rootElement.find('.action');
-      });
-
-      it('should not render action area', () => {
-        expect(element).toHaveLength(0);
-      });
-    });
-  });
-
-  describe('disabled area', () => {
-    describe('props.disabled is true', () => {
-      const props = {
-        preview: 'preview',
-        disabled: true
-      };
-      let element;
-
-      beforeAll(() => {
-        const wrapper = getShallowWrapper(PreviewImageView, props);
-        const rootElement = wrapper.find(className);
-
-        element = rootElement.find('.disabled');
-      });
-
-      it('should disabled preview', () => {
-        expect(element).toHaveLength(1);
-      });
-    });
-
-    describe('props.disabled is false', () => {
-      const props = {
-        preview: 'preview',
-        disabled: false
-      };
-      let element;
-
-      beforeAll(() => {
-        const wrapper = getShallowWrapper(PreviewImageView, props);
-        const rootElement = wrapper.find(className);
-
-        element = rootElement.find('.disabled');
-      });
-
-      it('should not disabled preview', () => {
-        expect(element).toHaveLength(0);
+          expect(rootElement.hasClass(previewImageActionTypes.add)).toBe(true);
+        });
       });
     });
   });
