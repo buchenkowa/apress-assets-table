@@ -98,4 +98,26 @@ describe('imageEditor actions', () => {
       });
     });
   });
+
+  describe('setRejectedFiles', () => {
+    it('should create an action to set rejected files', () => {
+      const rejectedFiles = [];
+
+      expect(imageEditorActions.setRejectedFiles({rejectedFiles})).toEqual({
+        type: imageEditorActionTypes.SET_REJECTED_FILES,
+        payload: {rejectedFiles}
+      });
+    });
+  });
+
+  describe('updateHaveMaximumImagesCount', () => {
+    it('should create an action to update haveMaximumImagesCount', () => {
+      const haveMaximumImagesCount = true;
+
+      expect(imageEditorActions.updateHaveMaximumImagesCount({haveMaximumImagesCount})).toEqual({
+        type: imageEditorActionTypes.UPDATE_HAVE_MAXIMUM_IMAGES_COUNT,
+        payload: {haveMaximumImagesCount}
+      });
+    });
+  });
 });

@@ -1,25 +1,35 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import _isEqual from 'lodash/isEqual';
+import PropTypes from 'prop-types';
+
+import {isEqual} from '../utils';
+
+import {imageEditorSettings} from '../ImageEditor/constants';
 import ImageEditor from '../ImageEditor/ImageEditor';
 import RemoveConfirmationDialog from '../RemoveConfirmationDialog/RemoveConfirmationDialog';
 import RemoveEmptyGroupsDialog from '../RemoveEmptyGroupsDialog/RemoveEmptyGroupsDialog';
 import RemoveMassConfirmDialog from '../RemoveMassConfirmDialog/RemoveMassConfirmDialog';
 
-// TODo: Запилить сюда экшены удалений
-
 class ContainerDialog extends React.Component {
+  static propTypes = {
+    removeRowConfirmOpen: PropTypes.bool,
+    removeRowsConfirmOpen: PropTypes.bool,
+    removeEmptyRowConfirmOpen: PropTypes.bool
+  };
+
   shouldComponentUpdate(nextProps) {
-    return !_isEqual(this.props, nextProps);
+    return !isEqual(this.props, nextProps);
   }
 
   render() {
+    const {removeRowConfirmOpen, removeRowsConfirmOpen, removeEmptyRowConfirmOpen} = this.props;
+
     return (
       <div>
-        {this.props.removeRowConfirmOpen && <RemoveConfirmationDialog /> }
-        {this.props.removeRowsConfirmOpen && <RemoveMassConfirmDialog />}
-        {this.props.removeEmptyRowConfirmOpen && <RemoveEmptyGroupsDialog />}
-        <ImageEditor maxLength={1} maxSize={2e+6} />
+        {removeRowConfirmOpen && <RemoveConfirmationDialog /> }
+        {removeRowsConfirmOpen && <RemoveMassConfirmDialog />}
+        {removeEmptyRowConfirmOpen && <RemoveEmptyGroupsDialog />}
+        <ImageEditor {...imageEditorSettings} />
       </div>
     );
   }

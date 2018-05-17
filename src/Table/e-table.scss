@@ -11,7 +11,7 @@
   }
   &-tr { display: flex; position: relative; background-color: #f8f8f8; border-bottom: 1px solid #e0e0e0; align-items: center; height: 40px; box-sizing: border-box; }
   &-body-tr {
-    display: flex; border-bottom: 1px solid #e0e0e0; transition: background .5s; background: #fff;
+    display: flex; border-bottom: 1px solid #e0e0e0; transition: background .5s; background: #fff; position: relative;
     &:hover { background: #f8f8f8; }
     &:last-child {
       .e-table-cell-text + .cke,
@@ -24,6 +24,10 @@
     }
     &.is-checked { background: rgba(163, 189, 73, .11); }
     &.is-new { background: #f3fbff; }
+    .row-image-dropzone {
+      display: flex; position: absolute; height: 100%; width: 896px; align-items: center; justify-content: center; background: rgba(255, 255, 255, .92); z-index: 40; left: 0; border: 2px dashed #028dd8; color: #1f2532; font-size: 14px;
+      &:before { @include cloud-upload-icon(#61656f); content: ''; display: block; width: 32px; height: 32px; margin-right: 25px; }
+    }
   }
   &-body { display: block; overflow-y: auto; overflow-x: hidden; width: 100%; height: calc(100% - 40px); }
   &-cell {

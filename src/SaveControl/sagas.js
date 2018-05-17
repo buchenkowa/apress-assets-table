@@ -11,6 +11,7 @@ import {
 } from '../Table/actions';
 import {ERROR_REMOVE} from '../Error/actions';
 import * as saveControlActions from './actions';
+import {successRemoveMessageDelay} from './constants';
 
 let newId = -100000;
 
@@ -389,7 +390,7 @@ export function* save() {
     }
 
     yield put(saveControlActions.saveSuccess({error: false}));
-    yield delay(3000);
+    yield call(delay, successRemoveMessageDelay);
     yield put({type: saveControlActions.SUCCESS_REMOVE_MESSAGE});
     yield call(continueSave);
   } catch (err) {

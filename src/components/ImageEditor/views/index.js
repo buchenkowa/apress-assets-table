@@ -1,5 +1,2 @@
-import PreviewImageView from './PreviewImageView';
-import PreviewImagesBoxView from './PreviewImagesBoxView';
-
-
-export {PreviewImageView, PreviewImagesBoxView};
+export {default as PreviewImageView} from './PreviewImageView';
+export {default as PreviewImagesBoxView} from './PreviewImagesBoxView';
