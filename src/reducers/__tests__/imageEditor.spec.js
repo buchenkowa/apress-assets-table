@@ -12,7 +12,9 @@ describe('imageEditor reducer', () => {
     duringSavingProductGroupImages: false,
     duringLoadingRecommendedImages: false,
     errorSavingProductGroupImages: false,
-    recommendedImagesWasLoaded: false
+    recommendedImagesWasLoaded: false,
+    haveMaximumImagesCount: false,
+    rejectedFiles: []
   };
   const setState = getStateSetter(initialState);
   const freezedInitialState = setState();
@@ -109,6 +111,34 @@ describe('imageEditor reducer', () => {
         freezedInitialState,
         imageEditorActions.clearImageEditor()
       )).toEqual(initialState);
+    });
+  });
+
+  describe('SET_REJECTED_FILES', () => {
+    it('should handle SET_REJECTED_FILES', () => {
+      const rejectedFiles = [];
+
+      expect(imageEditorReducer(
+        freezedInitialState,
+        imageEditorActions.setRejectedFiles({rejectedFiles})
+      )).toEqual({
+        ...initialState,
+        rejectedFiles
+      });
+    });
+  });
+
+  describe('UPDATE_HAVE_MAXIMUM_IMAGES_COUNT', () => {
+    it('should handle UPDATE_HAVE_MAXIMUM_IMAGES_COUNT', () => {
+      const haveMaximumImagesCount = true;
+
+      expect(imageEditorReducer(
+        freezedInitialState,
+        imageEditorActions.updateHaveMaximumImagesCount({haveMaximumImagesCount})
+      )).toEqual({
+        ...initialState,
+        haveMaximumImagesCount
+      });
     });
   });
 });
