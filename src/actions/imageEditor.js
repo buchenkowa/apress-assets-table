@@ -44,3 +44,13 @@ export const successLoadingRecommendedImages = ({recommendedImages}) => ({
 export const errorLoadingRecommendedImages = () => ({
   type: imageEditorActionsTypes.ERROR_LOADING_RECOMMENDED_IMAGES
 });
+
+export const setRejectedFiles = ({rejectedFiles}) => ({
+  type: imageEditorActionsTypes.SET_REJECTED_FILES,
+  payload: {rejectedFiles}
+});
+
+export const updateHaveMaximumImagesCount = ({haveMaximumImagesCount}) => ({
+  type: imageEditorActionsTypes.UPDATE_HAVE_MAXIMUM_IMAGES_COUNT,
+  payload: {haveMaximumImagesCount}
+});

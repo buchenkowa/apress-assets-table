@@ -22,8 +22,8 @@
   }
   &-preview-box { display: flex; }
   &-error { color: #dc6263; margin-bottom: 20px; }
-  &-preloader.e-preloader { height: 140px; }
-  &-subtitle { margin-bottom: 20px; }
+  &-preloader.preloader { height: 140px; }
+  &-subtitle { margin-bottom: 20px; font-weight: normal; margin-top: 0; }
   .url-field-wrapper { margin-top: 35px; }
   .rc-dialog-footer { padding-top: 20px; }
   .question-icon {

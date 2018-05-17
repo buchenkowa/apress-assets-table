@@ -109,7 +109,7 @@ class Table extends Component {
   };
 
   render() {
-    const {table, selectFilter, selectSort, actions, countRow, config, placeholder, readonly} = this.props;
+    const {table, selectFilter, selectSort, actions, countRow, config, placeholder, readonly, tableContainer} = this.props;
 
     return (
       <div
@@ -138,6 +138,7 @@ class Table extends Component {
               scrollLeft={this.state.scrollLeft}
               readonly={readonly}
               isTouchDevice={this.props.isTouchDevice}
+              tableContainer={tableContainer}
             />
           </div> :
           <div className='e-spinner' />

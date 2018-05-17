@@ -30,11 +30,10 @@ class TextCellEditor extends Component {
 
   getEventHandlers = () => {
     const {isEdit, isTouchDevice} = this.props;
-
     return {
-      onKeyDown: getCallback(this.handleKeyDown, isEdit),
-      onInput: getCallback(this.handleInput, isEdit),
-      onBlur: getCallback(this.save, isEdit && !isTouchDevice)
+      onKeyDown: getCallback(e => this.handleKeyDown(e), isEdit),
+      onInput: getCallback(e => this.handleInput(e), isEdit),
+      onBlur: getCallback(() => this.save(), isEdit && !isTouchDevice)
     };
   };
 

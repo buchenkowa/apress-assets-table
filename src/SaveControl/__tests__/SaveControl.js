@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow, mount, render} from 'enzyme';
 import SaveControl from '../SaveControl';
-import * as actions from '../actions';
+
 
 describe('SaveControl', () => {
   const message = {
@@ -13,6 +13,7 @@ describe('SaveControl', () => {
   it('should render a SaveControl state success', () => {
     const wrapper = shallow(
       <SaveControl
+        isSuccess={true}
         message={message}
       />
     );

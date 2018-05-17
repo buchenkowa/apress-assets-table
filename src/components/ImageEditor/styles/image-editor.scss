@@ -2,26 +2,78 @@
 
 .e-image-editor {
   .preview-images-box {
-    display: flex; height: 80px; margin-bottom: 13px;
-    &.hidden { display: none; }
+    margin-bottom: 13px;
+
+    &.hidden {
+      display: none;
+    }
   }
+
   .preview {
-    width: 115px; height: 80px; position: relative; overflow: hidden; margin-right: 9px;
-    &,
-    .action {
-      display: flex; justify-content: center; align-items: center;
+    width: 115px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 9px 0 0;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &:not(.disabled) {
+      &:hover:before {
+        background: rgba(31, 37, 50, .7);
+      }
+
+      &:hover:after {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      &.remove:hover:after {
+        @include trash-o-icon(#fff);
+      }
+
+      &.add:hover:after {
+        @include check-icon(#fff);
+      }
+
+      &.remove:hover:after,
+      &.add:hover:after {
+        background-size: 16px;
+        background-color: #1f2532;
+      }
     }
-    &:hover .action { visibility: visible; }
-    .action,
-    .disabled { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
-    .action {
-      background: rgba(31, 37, 50, .7); visibility: hidden; cursor: pointer;
-      &:after { width: 36px; height: 36px; border-radius: 100px; content: ''; }
-      &.remove:after { @include trash-o-icon(#fff); }
-      &.add:after { @include check-icon(#fff); }
-      &.remove:after,
-      &.add:after { background-size: 16px; background-color: #1f2532; }
+
+    &.disabled {
+      cursor: not-allowed;
+
+      &:after {
+        background: rgba(31, 37, 50, .5);
+      }
     }
-    .disabled { background: rgba(31, 37, 50, .5); }
+
+    &.disabled:after,
+    &:not(.disabled):hover:before,
+    &:not(.disabled):hover:after {
+      content: '';
+      position: absolute;
+    }
+
+    &:not(.disabled):hover:before,
+    &.disabled:after {
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: inherit;
+    }
+  }
+
+  .preview-images-box,
+  .preview {
+    display: flex;
+    height: 80px;
   }
 }
