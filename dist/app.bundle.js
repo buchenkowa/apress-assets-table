@@ -40806,6 +40806,7 @@ var RecommendedImagesView = function RecommendedImagesView(props) {
         items: [{
           title: _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: app.config.imageEditor.imageSelectTextZone } })
         }],
+        trigger: ['hover'],
         onVisibleChange: onChangeVisibilityTextZone,
         mix: 'textzone',
         disableItemClick: true
