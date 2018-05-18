@@ -27,6 +27,7 @@ const RecommendedImagesView = (props) => {
       items={[{
         title: <div dangerouslySetInnerHTML={{__html: app.config.imageEditor.imageSelectTextZone}} />
       }]}
+      trigger={['hover']}
       onVisibleChange={onChangeVisibilityTextZone}
       mix='textzone'
       disableItemClick

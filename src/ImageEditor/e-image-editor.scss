@@ -41,9 +41,25 @@
 }
 
 .e-dropdown-menu.textzone {
-  left: -30px;
+  left: 0;
+  top: 4px;
+  border-radius: 3px;
+  max-width: 250px;
+  max-height: 250px;
+  padding: 20px 15px;
+
+  &:before,
+  &:after { border: 0; }
+
   .e-dropdown-menu-menu-item {
-    height: auto; background: none; cursor: auto; text-transform: none; line-height: initial;
+    height: auto;
+    background: none;
+    cursor: auto;
+    text-transform: none;
+    line-height: 16px;
+    font-size: 11px;
+    color: #1f2532;
+    padding: 0;
     p { margin: 0; min-height: 1em; }
   }
 }
