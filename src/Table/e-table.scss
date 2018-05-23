@@ -69,9 +69,11 @@
   &-header-cell,
   &-cell {
     &.is-check { @include cell-width(60px); padding: 10px 14px 10px 30px; cursor: default; }
-    &.is-description { @include cell-width(270px); }
+    &.is-description,
+    &.is-description-for-facets { @include cell-width(270px); }
     &.is-html-block,
-    &.is-detailed-description {  @include cell-width(280px); }
+    &.is-detailed-description,
+    &.is-detailed-description-for-facets {  @include cell-width(280px); }
     &.is-h1 { @include cell-width(180px); }
     &.is-name { @include cell-width(200px); }
     &.is-page-description {  @include cell-width(270px); }
