@@ -14,12 +14,12 @@
     display: flex; border-bottom: 1px solid #e0e0e0; transition: background .5s; background: #fff; position: relative;
     &:hover { background: #f8f8f8; }
     &:last-child {
-      .e-table-cell-text + .cke,
+      .e-table-cell-text ~ .cke,
       .e-table-cell-text { top: auto; bottom: 0; }
     }
     &:first-child .e-table-cell {
       border-top: 0;
-      .e-table-cell-text + .cke,
+      .e-table-cell-text ~ .cke,
       .e-table-cell-text { top: 0; bottom: auto; }
     }
     &.is-checked { background: rgba(163, 189, 73, .11); }
@@ -54,15 +54,15 @@
       &:after { display: none; }
     }
     &:after { height: 50px; width: 1px; background-color: #e0e0e0; position: absolute; content: ''; right: -1px; top: 50%; margin-top: -25px; }
-    &:last-child {
+    &:nth-last-child(2) {
       &:after { width: 0; }
       #{$root} {
-        &-cell-text.is-edit + .cke,
+        &-cell-text.is-edit ~ .cke,
         &-cell-text.is-edit { right: 0; left: auto; }
       }
     }
     &:first-child #{$root} {
-      &-cell-text.is-edit + .cke,
+      &-cell-text.is-edit ~ .cke,
       &-cell-text.is-edit { right: auto; left: 0; }
     }
   }
@@ -126,16 +126,16 @@
   }
   &-cell-text {
     overflow: hidden; text-overflow: ellipsis; max-height: 50px; user-select: text;
-    + .cke,
+    ~ .cke,
     &.is-edit {
       font-size: 14px; background: #fff; box-sizing: border-box; max-height: 150px; height: 150px; width: 380px; outline: none; z-index: 9; position: absolute; left: 0; top: 0; border: solid 1px #028dd8; overflow: unset;
       textarea { height: 100%; padding: 20px; }
     }
-    + .cke:after,
+    ~ .cke:after,
     &:after { content: attr(data-charactersLeft); position: absolute; right: 10px; bottom: 10px; font-size: 12px; }
-    + .cke[data-charactersLeft='0']:after,
+    ~.cke[data-charactersLeft='0']:after,
     &[data-charactersLeft='0']:after { color: #dc6263; }
-    + .cke {
+    ~ .cke {
       width: 707px; padding: 0; border: 1px solid #b6b6b6; height: auto; max-height: 5000px;
       &:after { bottom: 4px; }
       .cke_top.cke_reset_all { padding-right: 2px; }
