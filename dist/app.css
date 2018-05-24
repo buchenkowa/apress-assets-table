@@ -1479,11 +1479,11 @@ li.rc-select-dropdown-menu-item-divider {
     width: 60px;
     padding: 10px 14px 10px 30px;
     cursor: default; }
-  .e-table-header-cell.is-description, .e-table-cell.is-description {
+  .e-table-header-cell.is-description, .e-table-header-cell.is-description-for-facets, .e-table-cell.is-description, .e-table-cell.is-description-for-facets {
     max-width: 270px;
     min-width: 270px;
     width: 270px; }
-  .e-table-header-cell.is-html-block, .e-table-header-cell.is-detailed-description, .e-table-cell.is-html-block, .e-table-cell.is-detailed-description {
+  .e-table-header-cell.is-html-block, .e-table-header-cell.is-detailed-description, .e-table-header-cell.is-detailed-description-for-facets, .e-table-cell.is-html-block, .e-table-cell.is-detailed-description, .e-table-cell.is-detailed-description-for-facets {
     max-width: 280px;
     min-width: 280px;
     width: 280px; }
