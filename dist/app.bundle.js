@@ -42455,6 +42455,8 @@ var getRowDifference = exports.getRowDifference = function getRowDifference(curr
 
       case 'description':
       case 'detailed_description':
+      case 'description_for_facets':
+      case 'detailed_description_for_facets':
       case 'h1':
       case 'html_block':
       case 'name':
