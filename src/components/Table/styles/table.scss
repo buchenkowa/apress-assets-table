@@ -7,7 +7,12 @@
   }
   &-cell.is-trait-filters-displaying {
     &.is-edit { padding-left: 2px; padding-right: 2px; }
-    .e-select { width: 100%; }
+    .e-select {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
   }
   .pseudo-link { color: #61656f; font-style: italic; }
 }
