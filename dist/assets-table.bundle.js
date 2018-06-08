@@ -1583,7 +1583,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 var global    = __webpack_require__(24)
   , core      = __webpack_require__(11)
-  , ctx       = __webpack_require__(120)
+  , ctx       = __webpack_require__(119)
   , hide      = __webpack_require__(47)
   , PROTOTYPE = 'prototype';
 
@@ -2855,7 +2855,7 @@ var _reactDndHtml5Backend = __webpack_require__(687);
 
 var _reactDndHtml5Backend2 = _interopRequireDefault(_reactDndHtml5Backend);
 
-var _throttle2 = __webpack_require__(114);
+var _throttle2 = __webpack_require__(137);
 
 var _throttle3 = _interopRequireDefault(_throttle2);
 
@@ -4637,7 +4637,7 @@ module.exports = Map;
 /* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var MapCache = __webpack_require__(125),
+var MapCache = __webpack_require__(124),
     setCacheAdd = __webpack_require__(358),
     setCacheHas = __webpack_require__(359);
 
@@ -4726,81 +4726,6 @@ module.exports = isArrayLike;
 
 /***/ }),
 /* 114 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var debounce = __webpack_require__(205),
-    isObject = __webpack_require__(36);
-
-/** Error message constants. */
-var FUNC_ERROR_TEXT = 'Expected a function';
-
-/**
- * Creates a throttled function that only invokes `func` at most once per
- * every `wait` milliseconds. The throttled function comes with a `cancel`
- * method to cancel delayed `func` invocations and a `flush` method to
- * immediately invoke them. Provide `options` to indicate whether `func`
- * should be invoked on the leading and/or trailing edge of the `wait`
- * timeout. The `func` is invoked with the last arguments provided to the
- * throttled function. Subsequent calls to the throttled function return the
- * result of the last `func` invocation.
- *
- * **Note:** If `leading` and `trailing` options are `true`, `func` is
- * invoked on the trailing edge of the timeout only if the throttled function
- * is invoked more than once during the `wait` timeout.
- *
- * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
- * until to the next tick, similar to `setTimeout` with a timeout of `0`.
- *
- * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
- * for details over the differences between `_.throttle` and `_.debounce`.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Function
- * @param {Function} func The function to throttle.
- * @param {number} [wait=0] The number of milliseconds to throttle invocations to.
- * @param {Object} [options={}] The options object.
- * @param {boolean} [options.leading=true]
- *  Specify invoking on the leading edge of the timeout.
- * @param {boolean} [options.trailing=true]
- *  Specify invoking on the trailing edge of the timeout.
- * @returns {Function} Returns the new throttled function.
- * @example
- *
- * // Avoid excessively updating the position while scrolling.
- * jQuery(window).on('scroll', _.throttle(updatePosition, 100));
- *
- * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.
- * var throttled = _.throttle(renewToken, 300000, { 'trailing': false });
- * jQuery(element).on('click', throttled);
- *
- * // Cancel the trailing throttled invocation.
- * jQuery(window).on('popstate', throttled.cancel);
- */
-function throttle(func, wait, options) {
-  var leading = true,
-      trailing = true;
-
-  if (typeof func != 'function') {
-    throw new TypeError(FUNC_ERROR_TEXT);
-  }
-  if (isObject(options)) {
-    leading = 'leading' in options ? !!options.leading : leading;
-    trailing = 'trailing' in options ? !!options.trailing : trailing;
-  }
-  return debounce(func, wait, {
-    'leading': leading,
-    'maxWait': wait,
-    'trailing': trailing
-  });
-}
-
-module.exports = throttle;
-
-
-/***/ }),
-/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5330,7 +5255,7 @@ exports['default'] = KeyCode;
 module.exports = exports['default'];
 
 /***/ }),
-/* 116 */
+/* 115 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5389,7 +5314,7 @@ function fsmIterator(fsm, q0) {
 }
 
 /***/ }),
-/* 117 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5481,7 +5406,7 @@ var hideTooltip = exports.hideTooltip = function hideTooltip() {
 };
 
 /***/ }),
-/* 118 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5587,7 +5512,7 @@ var updateHaveMaximumImagesCount = exports.updateHaveMaximumImagesCount = functi
 };
 
 /***/ }),
-/* 119 */
+/* 118 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -5597,7 +5522,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 120 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
@@ -5622,7 +5547,7 @@ module.exports = function(fn, that, length){
 };
 
 /***/ }),
-/* 121 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var pIE            = __webpack_require__(65)
@@ -5643,10 +5568,10 @@ exports.f = __webpack_require__(33) ? gOPD : function getOwnPropertyDescriptor(O
 };
 
 /***/ }),
+/* 121 */,
 /* 122 */,
 /* 123 */,
-/* 124 */,
-/* 125 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var mapCacheClear = __webpack_require__(349),
@@ -5684,7 +5609,7 @@ module.exports = MapCache;
 
 
 /***/ }),
-/* 126 */
+/* 125 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5727,7 +5652,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 127 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5748,7 +5673,7 @@ var imageTypes = exports.imageTypes = {
 };
 
 /***/ }),
-/* 128 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(285);
@@ -5766,11 +5691,11 @@ for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList'
 }
 
 /***/ }),
+/* 128 */,
 /* 129 */,
 /* 130 */,
 /* 131 */,
-/* 132 */,
-/* 133 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5966,7 +5891,7 @@ function endDrag() {
 }
 
 /***/ }),
-/* 134 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6013,7 +5938,7 @@ function removeTarget(targetId) {
 }
 
 /***/ }),
-/* 135 */
+/* 134 */
 /***/ (function(module, exports) {
 
 /**
@@ -6033,7 +5958,7 @@ module.exports = baseUnary;
 
 
 /***/ }),
-/* 136 */
+/* 135 */
 /***/ (function(module, exports) {
 
 /**
@@ -6057,7 +5982,7 @@ module.exports = setToArray;
 
 
 /***/ }),
-/* 137 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isArrayLike = __webpack_require__(113),
@@ -6093,6 +6018,81 @@ function isArrayLikeObject(value) {
 }
 
 module.exports = isArrayLikeObject;
+
+
+/***/ }),
+/* 137 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var debounce = __webpack_require__(205),
+    isObject = __webpack_require__(36);
+
+/** Error message constants. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/**
+ * Creates a throttled function that only invokes `func` at most once per
+ * every `wait` milliseconds. The throttled function comes with a `cancel`
+ * method to cancel delayed `func` invocations and a `flush` method to
+ * immediately invoke them. Provide `options` to indicate whether `func`
+ * should be invoked on the leading and/or trailing edge of the `wait`
+ * timeout. The `func` is invoked with the last arguments provided to the
+ * throttled function. Subsequent calls to the throttled function return the
+ * result of the last `func` invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the throttled function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.throttle` and `_.debounce`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to throttle.
+ * @param {number} [wait=0] The number of milliseconds to throttle invocations to.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=true]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new throttled function.
+ * @example
+ *
+ * // Avoid excessively updating the position while scrolling.
+ * jQuery(window).on('scroll', _.throttle(updatePosition, 100));
+ *
+ * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.
+ * var throttled = _.throttle(renewToken, 300000, { 'trailing': false });
+ * jQuery(element).on('click', throttled);
+ *
+ * // Cancel the trailing throttled invocation.
+ * jQuery(window).on('popstate', throttled.cancel);
+ */
+function throttle(func, wait, options) {
+  var leading = true,
+      trailing = true;
+
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  if (isObject(options)) {
+    leading = 'leading' in options ? !!options.leading : leading;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+  return debounce(func, wait, {
+    'leading': leading,
+    'maxWait': wait,
+    'trailing': trailing
+  });
+}
+
+module.exports = throttle;
 
 
 /***/ }),
@@ -6937,7 +6937,7 @@ module.exports = !__webpack_require__(33) && !__webpack_require__(46)(function()
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(119);
+var cof = __webpack_require__(118);
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
   return cof(it) == 'String' ? it.split('') : Object(it);
 };
@@ -7345,7 +7345,7 @@ module.exports = isLength;
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseIsTypedArray = __webpack_require__(324),
-    baseUnary = __webpack_require__(135),
+    baseUnary = __webpack_require__(134),
     nodeUtil = __webpack_require__(356);
 
 /* Node.js helper references. */
@@ -8690,7 +8690,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _throttle2 = __webpack_require__(114);
+var _throttle2 = __webpack_require__(137);
 
 var _throttle3 = _interopRequireDefault(_throttle2);
 
@@ -8918,7 +8918,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _throttle2 = __webpack_require__(114);
+var _throttle2 = __webpack_require__(137);
 
 var _throttle3 = _interopRequireDefault(_throttle2);
 
@@ -10986,7 +10986,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _imageEditor = __webpack_require__(127);
+var _imageEditor = __webpack_require__(126);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12322,7 +12322,7 @@ module.exports = __webpack_require__(11).Symbol;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(105);
-__webpack_require__(128);
+__webpack_require__(127);
 module.exports = __webpack_require__(104).f('iterator');
 
 /***/ }),
@@ -12371,7 +12371,7 @@ module.exports = function(IS_INCLUDES){
 /***/ (function(module, exports, __webpack_require__) {
 
 // getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(119)
+var cof = __webpack_require__(118)
   , TAG = __webpack_require__(20)('toStringTag')
   // ES3 wrong here
   , ARG = cof(function(){ return arguments; }()) == 'Arguments';
@@ -12425,7 +12425,7 @@ module.exports = __webpack_require__(24).document && document.documentElement;
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.2 IsArray(argument)
-var cof = __webpack_require__(119);
+var cof = __webpack_require__(118);
 module.exports = Array.isArray || function isArray(arg){
   return cof(arg) == 'Array';
 };
@@ -12545,7 +12545,7 @@ module.exports = {
   set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
     function(test, buggy, set){
       try {
-        set = __webpack_require__(120)(Function.call, __webpack_require__(121).f(Object.prototype, '__proto__').set, 2);
+        set = __webpack_require__(119)(Function.call, __webpack_require__(120).f(Object.prototype, '__proto__').set, 2);
         set(test, []);
         buggy = !(test instanceof Array);
       } catch(e){ buggy = true; }
@@ -12742,7 +12742,7 @@ var global         = __webpack_require__(24)
   , createDesc     = __webpack_require__(58)
   , _create        = __webpack_require__(96)
   , gOPNExt        = __webpack_require__(181)
-  , $GOPD          = __webpack_require__(121)
+  , $GOPD          = __webpack_require__(120)
   , $DP            = __webpack_require__(28)
   , $keys          = __webpack_require__(48)
   , gOPD           = $GOPD.f
@@ -12990,9 +12990,9 @@ var _intersection = __webpack_require__(637);
 
 var _intersection2 = _interopRequireDefault(_intersection);
 
-var _dragDrop = __webpack_require__(133);
+var _dragDrop = __webpack_require__(132);
 
-var _registry = __webpack_require__(134);
+var _registry = __webpack_require__(133);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13085,7 +13085,7 @@ exports.default = dragOffset;
 exports.getSourceClientOffset = getSourceClientOffset;
 exports.getDifferenceFromInitialOffset = getDifferenceFromInitialOffset;
 
-var _dragDrop = __webpack_require__(133);
+var _dragDrop = __webpack_require__(132);
 
 var initialState = {
   initialSourceClientOffset: null,
@@ -13555,7 +13555,7 @@ var SetCache = __webpack_require__(111),
     arrayIncludes = __webpack_require__(197),
     arrayIncludesWith = __webpack_require__(198),
     arrayMap = __webpack_require__(200),
-    baseUnary = __webpack_require__(135),
+    baseUnary = __webpack_require__(134),
     cacheHas = __webpack_require__(112);
 
 /** Used as the size to enable large array optimizations. */
@@ -14027,7 +14027,7 @@ var SetCache = __webpack_require__(111),
     arrayIncludesWith = __webpack_require__(198),
     cacheHas = __webpack_require__(112),
     createSet = __webpack_require__(624),
-    setToArray = __webpack_require__(136);
+    setToArray = __webpack_require__(135);
 
 /** Used as the size to enable large array optimizations. */
 var LARGE_ARRAY_SIZE = 200;
@@ -14134,7 +14134,7 @@ var Symbol = __webpack_require__(81),
     eq = __webpack_require__(73),
     equalArrays = __webpack_require__(163),
     mapToArray = __webpack_require__(354),
-    setToArray = __webpack_require__(136);
+    setToArray = __webpack_require__(135);
 
 /** Used to compose bitmasks for value comparisons. */
 var COMPARE_PARTIAL_FLAG = 1,
@@ -15207,7 +15207,7 @@ module.exports = stackHas;
 
 var ListCache = __webpack_require__(69),
     Map = __webpack_require__(110),
-    MapCache = __webpack_require__(125);
+    MapCache = __webpack_require__(124);
 
 /** Used as the size to enable large array optimizations. */
 var LARGE_ARRAY_SIZE = 200;
@@ -32549,7 +32549,7 @@ module.exports = stubFalse;
 
 var baseDifference = __webpack_require__(317),
     baseRest = __webpack_require__(82),
-    isArrayLikeObject = __webpack_require__(137);
+    isArrayLikeObject = __webpack_require__(136);
 
 /**
  * Creates an array excluding all given values using
@@ -32921,7 +32921,7 @@ var _reactDom = __webpack_require__(22);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _KeyCode = __webpack_require__(115);
+var _KeyCode = __webpack_require__(114);
 
 var _KeyCode2 = _interopRequireDefault(_KeyCode);
 
@@ -35864,7 +35864,7 @@ function runSaga(storeInterface, saga) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = takeEvery;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fsmIterator__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fsmIterator__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__io__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__channel__ = __webpack_require__(56);
 
@@ -35902,7 +35902,7 @@ function takeEvery(patternOrChannel, worker) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = takeLatest;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fsmIterator__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fsmIterator__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__io__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__channel__ = __webpack_require__(56);
 
@@ -35950,7 +35950,7 @@ function takeLatest(patternOrChannel, worker) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = throttle;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fsmIterator__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fsmIterator__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__io__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__channel__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__buffers__ = __webpack_require__(90);
@@ -38181,7 +38181,7 @@ var _reactRedux = __webpack_require__(10);
 
 var _actions = __webpack_require__(39);
 
-var _imageEditor = __webpack_require__(118);
+var _imageEditor = __webpack_require__(117);
 
 var _Dialog = __webpack_require__(85);
 
@@ -38507,7 +38507,7 @@ var _pluralizeRu2 = _interopRequireDefault(_pluralizeRu);
 
 var _constants = __webpack_require__(75);
 
-var _imageEditor = __webpack_require__(127);
+var _imageEditor = __webpack_require__(126);
 
 var _index = __webpack_require__(177);
 
@@ -38650,7 +38650,7 @@ var _classnames2 = _interopRequireDefault(_classnames);
 
 var _reactRedux = __webpack_require__(10);
 
-var _imageEditor = __webpack_require__(127);
+var _imageEditor = __webpack_require__(126);
 
 var _index = __webpack_require__(177);
 
@@ -38899,7 +38899,7 @@ var _classnames2 = _interopRequireDefault(_classnames);
 
 var _reactRedux = __webpack_require__(10);
 
-var _imageEditor = __webpack_require__(127);
+var _imageEditor = __webpack_require__(126);
 
 var _index = __webpack_require__(177);
 
@@ -40404,7 +40404,7 @@ exports.save = save;
 
 var _effects = __webpack_require__(37);
 
-var _reduxSaga = __webpack_require__(126);
+var _reduxSaga = __webpack_require__(125);
 
 var _isEqual2 = __webpack_require__(12);
 
@@ -41147,7 +41147,7 @@ var _SetItem = __webpack_require__(453);
 
 var _SetItem2 = _interopRequireDefault(_SetItem);
 
-var _actions = __webpack_require__(117);
+var _actions = __webpack_require__(116);
 
 __webpack_require__(599);
 
@@ -41330,7 +41330,7 @@ var _extends2 = __webpack_require__(9);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actions = __webpack_require__(117);
+var _actions = __webpack_require__(116);
 
 var actionsType = _interopRequireWildcard(_actions);
 
@@ -41417,11 +41417,11 @@ exports.changeCategoryView = changeCategoryView;
 
 var _effects = __webpack_require__(37);
 
-var _reduxSaga = __webpack_require__(126);
+var _reduxSaga = __webpack_require__(125);
 
 var _utils = __webpack_require__(7);
 
-var _actions = __webpack_require__(117);
+var _actions = __webpack_require__(116);
 
 var actions = _interopRequireWildcard(_actions);
 
@@ -41613,7 +41613,7 @@ var _actions = __webpack_require__(53);
 
 var _cellsWithDragging = __webpack_require__(467);
 
-var _imageEditor = __webpack_require__(118);
+var _imageEditor = __webpack_require__(117);
 
 var _actions2 = __webpack_require__(39);
 
@@ -42571,7 +42571,7 @@ var _redux = __webpack_require__(63);
 
 var _actions = __webpack_require__(39);
 
-var _imageEditor = __webpack_require__(118);
+var _imageEditor = __webpack_require__(117);
 
 var _utils = __webpack_require__(7);
 
@@ -43168,10 +43168,6 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _throttle2 = __webpack_require__(114);
-
-var _throttle3 = _interopRequireDefault(_throttle2);
-
 var _reactRedux = __webpack_require__(10);
 
 var _isEqual2 = __webpack_require__(12);
@@ -43194,8 +43190,7 @@ var _actions = __webpack_require__(14);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint react/no-unused-prop-types: 0 */
-var b = (0, _utils.block)('e-table');
+var b = (0, _utils.block)('e-table'); /* eslint react/no-unused-prop-types: 0 */
 
 var Table = function (_Component) {
   (0, _inherits3.default)(Table, _Component);
@@ -43213,11 +43208,9 @@ var Table = function (_Component) {
 
     return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Table.__proto__ || (0, _getPrototypeOf2.default)(Table)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       scrollLeft: 0
-    }, _this.tableScroll = function () {
+    }, _this.handleTableScroll = function () {
       _this.setState({ scrollLeft: _this.$node.scrollLeft });
-    }, _this.handleTableScroll = (0, _throttle3.default)(function () {
-      _this.tableScroll();
-    }, 500), _this.handleKeyDown = function (event) {
+    }, _this.handleKeyDown = function (event) {
       var _this$props = _this.props,
           edit = _this$props.edit,
           history = _this$props.history,
@@ -43296,6 +43289,7 @@ var Table = function (_Component) {
           placeholder = _props.placeholder,
           readonly = _props.readonly,
           tableContainer = _props.tableContainer;
+      var scrollLeft = this.state.scrollLeft;
 
 
       return _react2.default.createElement(
@@ -43310,7 +43304,12 @@ var Table = function (_Component) {
         },
         table.isLoaded ? _react2.default.createElement(
           'div',
-          { className: b('wrapper') },
+          {
+            className: b('wrapper'),
+            style: {
+              width: this.$node.clientWidth + scrollLeft
+            }
+          },
           _react2.default.createElement(
             'div',
             { className: b('header') },
@@ -43328,7 +43327,7 @@ var Table = function (_Component) {
             placeholder: placeholder,
             actions: actions,
             $rootNode: this.$node,
-            scrollLeft: this.state.scrollLeft,
+            scrollLeft: scrollLeft,
             readonly: readonly,
             isTouchDevice: this.props.isTouchDevice,
             tableContainer: tableContainer
@@ -46794,7 +46793,7 @@ exports.deleteEmptyGroups = deleteEmptyGroups;
 
 var _effects = __webpack_require__(37);
 
-var _reduxSaga = __webpack_require__(126);
+var _reduxSaga = __webpack_require__(125);
 
 var _utils = __webpack_require__(7);
 
@@ -47405,7 +47404,7 @@ var _actions = __webpack_require__(14);
 
 var tableActions = _interopRequireWildcard(_actions);
 
-var _imageEditor = __webpack_require__(118);
+var _imageEditor = __webpack_require__(117);
 
 var imageEditorActions = _interopRequireWildcard(_imageEditor);
 
@@ -47576,7 +47575,7 @@ exports.pollingOnlineStoreImportStatus = pollingOnlineStoreImportStatus;
 
 var _effects = __webpack_require__(37);
 
-var _reduxSaga = __webpack_require__(126);
+var _reduxSaga = __webpack_require__(125);
 
 var _onlineStoreImport = __webpack_require__(242);
 
@@ -47783,7 +47782,7 @@ module.exports = __webpack_require__(11).Array.from;
 /* 516 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(128);
+__webpack_require__(127);
 __webpack_require__(105);
 module.exports = __webpack_require__(525);
 
@@ -47791,7 +47790,7 @@ module.exports = __webpack_require__(525);
 /* 517 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(128);
+__webpack_require__(127);
 __webpack_require__(105);
 module.exports = __webpack_require__(526);
 
@@ -47924,7 +47923,7 @@ module.exports = __webpack_require__(11).isIterable = function(it){
 
 "use strict";
 
-var ctx            = __webpack_require__(120)
+var ctx            = __webpack_require__(119)
   , $export        = __webpack_require__(27)
   , toObject       = __webpack_require__(59)
   , call           = __webpack_require__(523)
@@ -47982,7 +47981,7 @@ __webpack_require__(66)('freeze', function($freeze){
 
 // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
 var toIObject                 = __webpack_require__(29)
-  , $getOwnPropertyDescriptor = __webpack_require__(121).f;
+  , $getOwnPropertyDescriptor = __webpack_require__(120).f;
 
 __webpack_require__(66)('getOwnPropertyDescriptor', function(){
   return function getOwnPropertyDescriptor(it, key){
@@ -49341,7 +49340,7 @@ var _reducers = __webpack_require__(572);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
-var _dragDrop = __webpack_require__(133);
+var _dragDrop = __webpack_require__(132);
 
 var dragDropActions = _interopRequireWildcard(_dragDrop);
 
@@ -49780,7 +49779,7 @@ var _asap = __webpack_require__(423);
 
 var _asap2 = _interopRequireDefault(_asap);
 
-var _registry = __webpack_require__(134);
+var _registry = __webpack_require__(133);
 
 var _getNextUniqueId = __webpack_require__(575);
 
@@ -50139,9 +50138,9 @@ var _without = __webpack_require__(373);
 
 var _without2 = _interopRequireDefault(_without);
 
-var _dragDrop = __webpack_require__(133);
+var _dragDrop = __webpack_require__(132);
 
-var _registry = __webpack_require__(134);
+var _registry = __webpack_require__(133);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -50264,7 +50263,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = refCount;
 
-var _registry = __webpack_require__(134);
+var _registry = __webpack_require__(133);
 
 function refCount() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
@@ -51737,7 +51736,7 @@ var SetCache = __webpack_require__(111),
     arrayIncludes = __webpack_require__(197),
     arrayIncludesWith = __webpack_require__(198),
     arrayMap = __webpack_require__(200),
-    baseUnary = __webpack_require__(135),
+    baseUnary = __webpack_require__(134),
     cacheHas = __webpack_require__(112);
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
@@ -51940,7 +51939,7 @@ module.exports = baseXor;
 /* 621 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isArrayLikeObject = __webpack_require__(137);
+var isArrayLikeObject = __webpack_require__(136);
 
 /**
  * Casts `value` to an empty array if it's not an array like object.
@@ -52051,7 +52050,7 @@ module.exports = createAssigner;
 
 var Set = __webpack_require__(195),
     noop = __webpack_require__(369),
-    setToArray = __webpack_require__(136);
+    setToArray = __webpack_require__(135);
 
 /** Used as references for various `Number` constants. */
 var INFINITY = 1 / 0;
@@ -52531,7 +52530,7 @@ module.exports = keysIn;
 /* 639 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var MapCache = __webpack_require__(125);
+var MapCache = __webpack_require__(124);
 
 /** Error message constants. */
 var FUNC_ERROR_TEXT = 'Expected a function';
@@ -52613,7 +52612,7 @@ module.exports = memoize;
 var baseFlatten = __webpack_require__(318),
     baseRest = __webpack_require__(82),
     baseUniq = __webpack_require__(327),
-    isArrayLikeObject = __webpack_require__(137);
+    isArrayLikeObject = __webpack_require__(136);
 
 /**
  * Creates an array of unique values, in order, from all given arrays using
@@ -52645,7 +52644,7 @@ module.exports = union;
 var arrayFilter = __webpack_require__(196),
     baseRest = __webpack_require__(82),
     baseXor = __webpack_require__(620),
-    isArrayLikeObject = __webpack_require__(137);
+    isArrayLikeObject = __webpack_require__(136);
 
 /**
  * Creates an array of unique values that is the
@@ -53598,7 +53597,7 @@ var _reactDom = __webpack_require__(22);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _KeyCode = __webpack_require__(115);
+var _KeyCode = __webpack_require__(114);
 
 var _KeyCode2 = _interopRequireDefault(_KeyCode);
 
@@ -54767,7 +54766,7 @@ var _createReactClass = __webpack_require__(30);
 
 var _createReactClass2 = _interopRequireDefault(_createReactClass);
 
-var _KeyCode = __webpack_require__(115);
+var _KeyCode = __webpack_require__(114);
 
 var _KeyCode2 = _interopRequireDefault(_KeyCode);
 
@@ -55075,7 +55074,7 @@ var _SubPopupMenu = __webpack_require__(661);
 
 var _SubPopupMenu2 = _interopRequireDefault(_SubPopupMenu);
 
-var _KeyCode = __webpack_require__(115);
+var _KeyCode = __webpack_require__(114);
 
 var _KeyCode2 = _interopRequireDefault(_KeyCode);
 
@@ -55520,7 +55519,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _KeyCode = __webpack_require__(115);
+var _KeyCode = __webpack_require__(114);
 
 var _KeyCode2 = _interopRequireDefault(_KeyCode);
 
@@ -62223,7 +62222,7 @@ var _imageEditor2 = __webpack_require__(502);
 
 var _imageEditor3 = _interopRequireDefault(_imageEditor2);
 
-var _imageEditor4 = __webpack_require__(118);
+var _imageEditor4 = __webpack_require__(117);
 
 var imageEditorActions = _interopRequireWildcard(_imageEditor4);
 
@@ -62279,7 +62278,7 @@ var _reducer13 = __webpack_require__(455);
 
 var _reducer14 = _interopRequireDefault(_reducer13);
 
-var _actions9 = __webpack_require__(117);
+var _actions9 = __webpack_require__(116);
 
 var switchCategoryAction = _interopRequireWildcard(_actions9);
 

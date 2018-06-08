@@ -1,7 +1,6 @@
 /* eslint react/no-unused-prop-types: 0 */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import _throttle from 'lodash/throttle';
 import {connect} from 'react-redux';
 import _isEqual from 'lodash/isEqual';
 import Header from './Header';
@@ -72,9 +71,9 @@ class Table extends Component {
     this.$node.removeEventListener('scroll', this.handleTableScroll, false);
   }
 
-  tableScroll = () => { this.setState({scrollLeft: this.$node.scrollLeft}); }
-
-  handleTableScroll = _throttle(() => { this.tableScroll(); }, 500);
+  handleTableScroll = () => {
+    this.setState({scrollLeft: this.$node.scrollLeft});
+  };
 
   handleKeyDown = (event) => {
     const {edit, history, dispatch} = this.props;
@@ -110,6 +109,7 @@ class Table extends Component {
 
   render() {
     const {table, selectFilter, selectSort, actions, countRow, config, placeholder, readonly, tableContainer} = this.props;
+    const {scrollLeft} = this.state;
 
     return (
       <div
@@ -119,7 +119,12 @@ class Table extends Component {
         className={b.mix(`is-columns-${table.columns.length}`)}
       >
         {table.isLoaded ?
-          <div className={b('wrapper')}>
+          <div
+            className={b('wrapper')}
+            style={{
+              width: this.$node.clientWidth + scrollLeft
+            }}
+          >
             <div className={b('header')}>
               <Header
                 table={table}
@@ -135,7 +140,7 @@ class Table extends Component {
               placeholder={placeholder}
               actions={actions}
               $rootNode={this.$node}
-              scrollLeft={this.state.scrollLeft}
+              scrollLeft={scrollLeft}
               readonly={readonly}
               isTouchDevice={this.props.isTouchDevice}
               tableContainer={tableContainer}
