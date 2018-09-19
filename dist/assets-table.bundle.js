@@ -38098,11 +38098,6 @@ var Header = function Header(props) {
           'a',
           { className: b('sub-nav-lnk'), href: props.instructionHref },
           '\u0418\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u044F'
-        ),
-        _react2.default.createElement(
-          'a',
-          { className: b('sub-nav-lnk').mix('is-to-site'), href: props.toSiteHref },
-          '\u041D\u0430 \u0441\u0430\u0439\u0442'
         )
       )
     )
@@ -38113,7 +38108,6 @@ Header.propTypes = {
   toggler: _propTypes2.default.bool,
   selectedGroupsCount: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
   instructionHref: _propTypes2.default.string,
-  toSiteHref: _propTypes2.default.string,
   onToggle: _propTypes2.default.func,
   onCallProductsAndGroups: _propTypes2.default.func,
   onDeleteEmptyGroup: _propTypes2.default.func,
