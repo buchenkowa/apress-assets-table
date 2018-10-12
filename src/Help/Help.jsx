@@ -42,7 +42,9 @@ class Help extends React.Component {
     return (
       <div className={b.is({open: this.state.open})}>
         <div className={b('button-wrapper')} onClick={this.handlerClick}>
-          <div className={b('button')} />
+          <div className={b('button')}>
+            <div className={b('button-title')}>Справка</div>
+          </div>
         </div>
         <div className={b('body')}>
           <p className={b('header')}>

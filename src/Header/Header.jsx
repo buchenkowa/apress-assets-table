@@ -75,7 +75,6 @@ const Header = props =>
     <section className={b('box-4')}>
       <nav className={b('sub-nav')}>
         <a className={b('sub-nav-lnk')} href={props.instructionHref}>Инструкция</a>
-        <a className={b('sub-nav-lnk').mix('is-to-site')} href={props.toSiteHref}>На сайт</a>
       </nav>
     </section>
   </header>;
@@ -84,7 +83,6 @@ Header.propTypes = {
   toggler: PropTypes.bool,
   selectedGroupsCount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   instructionHref: PropTypes.string,
-  toSiteHref: PropTypes.string,
   onToggle: PropTypes.func,
   onCallProductsAndGroups: PropTypes.func,
   onDeleteEmptyGroup: PropTypes.func,

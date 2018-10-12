@@ -2,14 +2,21 @@
 
 .e-help {
   $root: &;
-  font-family: 'OpenSans'; transition: all .5s; position: fixed; top: 32px; right: 0; box-shadow: -4px 0px 7px 0 rgba(0, 0, 0, .15); width: 10px; height: calc(100vh - 32px); background: #fff; z-index: 2351;
+  font-family: 'OpenSans'; transition: all .5s; position: fixed; top: 32px; right: 0; box-shadow: -4px 0px 7px 0 rgba(0, 0, 0, .15); width: 10px; height: calc(100vh - 32px); background: #fff; z-index: 20;
   & * { box-sizing: border-box; }
   &.is-open { width: 440px; }
   &-button-wrapper {
-    cursor: pointer; position: absolute; left: -20px; top: 90px; -webkit-filter: drop-shadow(-4px 0 2px rgba(0, 0, 0, .15)); -moz-filter: drop-shadow(-4px 0 2px rgba(0, 0, 0, .15)); -ms-filter: drop-shadow(-4px 0 2px rgba(0, 0, 0, .15)); -o-filter: drop-shadow(-4px 0 2px rgba(0, 0, 0, .15));
-    &:after { @include info-circle-icon(); border-radius: 50%; transform: translateX(-30%)translateY(-50%); content: ''; width: 24px; height: 24px; position: absolute; left: 50%; top: 50%; }
+    position: absolute; left: -32px; top: 80px; filter: drop-shadow(-4px 0 3px rgba(0, 0, 0, .15)); cursor: pointer; user-select: none;
+    &:after { @include info-circle-icon(); content: ''; width: 24px; height: 24px; position: absolute; left: -6px; top: 0; }
   }
-  &-button { @include help-mask(); width: 22px; height: 80px; background: #fff; box-shadow: -5px 0 7px 0 rgba(0, 0, 0, .15); border-radius: 25px 0 0 25px; }
+  &-button {
+    width: 35px; background: #fff; box-shadow: -5px 0 7px 0 rgba(0, 0, 0, .15); border-radius: 25px 0 0 25px;
+    &:before,
+    &:after { content: ''; position: absolute; width: 25px; height: 33px; right: -27px; border: solid #fff; }
+    &:before { top: -29px; border-width: 0 30px 30px 0; border-bottom-right-radius: 60px; clip: rect(auto 30px 30px auto); }
+    &:after { bottom: -28px; border-width: 0px 30px 0 0; border-top-right-radius: 100%; clip: rect(0px 30px auto auto); }
+    &-title { height: 115px; margin-left: 8px; writing-mode: tb-rl; text-align: center; transform: rotate(180deg); font-weight: bold; font-size: 13px; color: #a3bd49; padding-bottom: 8px; }
+  }
   &-body { height: 100%; padding: 30px 0; overflow: hidden; display: flex; flex-direction: column; }
   &-header { display: flex; justify-content: space-between; white-space: nowrap; font-size: 18px; padding: 0 0 13px; margin: 0 35px 20px; border-bottom: 1px solid #e0e0e0; color: #1f2532; font-weight: bold; }
   &-title {
@@ -17,6 +24,7 @@
     &:hover { color: #00a6ff; }
   }
   &-container {
+    white-space: nowrap;
     &:first-child #{$root} {
       &-title { margin-top: 0; }
     }
