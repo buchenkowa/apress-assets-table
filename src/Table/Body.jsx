@@ -8,7 +8,7 @@ import 'rc-trigger/assets/index.css';
 import Price from './Price';
 import Exists from './Exists';
 import CheckRelatedProducts from './CheckRelatedProducts';
-import {SelectCellContainer} from '../components/Table/containers';
+import {SelectCellContainer, PopupCellContainer} from '../components/Table/containers';
 import {
   block,
   inRange,
@@ -192,6 +192,13 @@ class Body extends Component {
           option.value === dataRow.data.common.enabled
         )}
         handleSelect={actions.setTraitFiltersDisplaying}
+      />,
+      popup: <PopupCellContainer
+        key={key}
+        cell={dataRow}
+        options={traitFiltersDisplayingOptions}
+        activeOption={Object.values(dataRow.data.common).join(' x ')}
+        handleSelect={actions.setProductProportiesDisplaying}
       />
     };
 

@@ -19,7 +19,8 @@ import {
   TABLE_EDITOR_CELL_SELECT_END,
   UPDATE_TABLE_EDITOR_ROWS,
   INSERT_DATA,
-  SET_TRAIT_FILTERS_DISPLAYING
+  SET_TRAIT_FILTERS_DISPLAYING,
+  SET_PRODUCT_PROPORTIES_DISPLAYING
 } from '../Table/actions';
 import rows from '../Table/rowReducer';
 
@@ -51,6 +52,7 @@ export default function (state = initialState, action) {
     case 'HISTORY_NEXT':
     case INSERT_DATA:
     case SET_TRAIT_FILTERS_DISPLAYING:
+    case SET_PRODUCT_PROPORTIES_DISPLAYING:
       return {
         ...state,
         withUnsavedChanges: true

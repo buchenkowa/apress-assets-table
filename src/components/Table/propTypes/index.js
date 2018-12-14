@@ -22,3 +22,20 @@ export const selectCellViewPropType = PropTypes.shape({
   handleSelect: PropTypes.func.isRequired,
   setEditState: PropTypes.func.isRequired
 });
+
+export const popupCellContainerPropType = PropTypes.shape({
+  cell: cellPropType.isRequired,
+  options: PropTypes.array.isRequired,
+  activeOption: PropTypes.object.isRequired,
+  handleSelect: PropTypes.func.isRequired
+});
+
+export const popupCellViewPropType = PropTypes.shape({
+  isEdit: PropTypes.bool.isRequired,
+  isFocus: PropTypes.bool.isRequired,
+  classMix: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  activeOption: PropTypes.object.isRequired,
+  handleSelect: PropTypes.func.isRequired,
+  setEditState: PropTypes.func.isRequired
+});

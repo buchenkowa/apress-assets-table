@@ -1,4 +1,5 @@
 import SelectCellView from './SelectCellView';
+import PopupCellView from './PopupCellView';
 
 
-export {SelectCellView};
+export {SelectCellView, PopupCellView};

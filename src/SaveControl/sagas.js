@@ -125,12 +125,21 @@ export const getPhotoDifference = (currentState, previousState) => {
 const getTraitFiltersDisplayingDifference = (currentState, previousState) => {
   const currentEnabled = currentState.trait_filters_displaying.common.enabled;
   const previousEnabled = previousState.trait_filters_displaying.common.enabled;
-
   return (currentEnabled !== previousEnabled) ? {
     trait_filters_displaying: {
       common: {
         enabled: currentEnabled
       }
+    }
+  } : null;
+};
+
+const getProductProportiesDisplayingDifference = (currentState, previousState) => {
+  const currentEnabled = currentState.product_properties.common;
+  const previousEnabled = previousState.product_properties.common;
+  return (JSON.stringify(currentEnabled) !== JSON.stringify(previousEnabled)) ? {
+    product_properties: {
+      common: currentEnabled
     }
   } : null;
 };
@@ -180,6 +189,12 @@ export const getRowDifference = (currentState, previousState) => {
         differenceRow = {
           ...differenceRow,
           ...getTraitFiltersDisplayingDifference(currentState, previousState)
+        };
+        break;
+      case 'product_properties':
+        differenceRow = {
+          ...differenceRow,
+          ...getProductProportiesDisplayingDifference(currentState, previousState)
         };
         break;
 

@@ -9,7 +9,8 @@ import {
   TABLE_EDITOR_SET_IMAGES,
   TABLE_EDITOR_ROW_COPY_SUCCESS,
   UPDATE_TABLE_EDITOR_ROWS,
-  SET_TRAIT_FILTERS_DISPLAYING
+  SET_TRAIT_FILTERS_DISPLAYING,
+  SET_PRODUCT_PROPORTIES_DISPLAYING
 } from './actions';
 
 let newId = -1;
@@ -198,6 +199,22 @@ export default function rows(state = [], action) {
                 ...cell.common,
                 enabled: action.payload.enabled
               }
+            }
+          };
+        }
+        return row;
+      });
+
+    case SET_PRODUCT_PROPORTIES_DISPLAYING:
+      return state.map((row) => {
+        if (row.check.common.id === action.payload.groupId) {
+          const cell = row.product_properties;
+
+          return {
+            ...row,
+            product_properties: {
+              ...cell,
+              common: action.payload.proporties
             }
           };
         }
