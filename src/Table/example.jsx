@@ -45,6 +45,9 @@ export default class App extends React.Component {
       trait_filters_displaying: {
         type: 'select'
       },
+      product_properties: {
+        type: 'product_properties_popup'
+      },
       html_block: {
         type: 'text',
         maxLen: 20000

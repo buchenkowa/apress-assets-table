@@ -38,6 +38,8 @@ export const UPDATE_TABLE_EDITOR_ROWS = 'UPDATE_TABLE_EDITOR_ROWS';
 export const INSERT_DATA = 'INSERT_DATA';
 export const SET_TRAIT_FILTERS_DISPLAYING = 'SET_TRAIT_FILTERS_DISPLAYING';
 
+export const SET_PRODUCT_PROPORTIES_DISPLAYING = 'SET_PRODUCT_PROPORTIES_DISPLAYING';
+
 export const load = (payload = {}) => ({
   type: TABLE_EDITOR_LOAD_START,
   payload
@@ -187,4 +189,12 @@ export const insertData = (data, cellsConfig) => ({
 export const setTraitFiltersDisplaying = (groupId, enabled) => ({
   type: SET_TRAIT_FILTERS_DISPLAYING,
   payload: {groupId, enabled}
+});
+
+export const setProductProportiesDisplaying = (groupId, dataProporties) => ({
+  type: SET_PRODUCT_PROPORTIES_DISPLAYING,
+  payload: {
+    groupId,
+    proporties: dataProporties
+  }
 });
