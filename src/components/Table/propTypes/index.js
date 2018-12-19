@@ -25,7 +25,6 @@ export const selectCellViewPropType = PropTypes.shape({
 
 export const popupProportiesCellContainerPropType = PropTypes.shape({
   cell: cellPropType.isRequired,
-  options: PropTypes.array.isRequired,
   activeOption: PropTypes.object.isRequired,
   handleSelect: PropTypes.func.isRequired
 });
@@ -34,7 +33,6 @@ export const popupProportiesCellViewPropType = PropTypes.shape({
   isEdit: PropTypes.bool.isRequired,
   isFocus: PropTypes.bool.isRequired,
   classMix: PropTypes.string.isRequired,
-  options: PropTypes.array.isRequired,
   activeOption: PropTypes.object.isRequired,
   handleSelect: PropTypes.func.isRequired,
   setEditState: PropTypes.func.isRequired
