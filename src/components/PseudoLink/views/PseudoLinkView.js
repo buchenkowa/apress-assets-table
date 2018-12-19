@@ -6,12 +6,14 @@ import '../styles/pseudo-link.scss';
 
 function PseudoLinkView({onClick, text}) {
   return (
-    <span
-      className='pseudo-link'
-      onClick={onClick}
-    >
-      {text}
-    </span>
+    <div>
+      <span
+        className='pseudo-link'
+        onClick={onClick}
+      >
+        {text}
+      </span>
+    </div>
   );
 }
 

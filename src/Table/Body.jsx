@@ -127,6 +127,16 @@ class Body extends Component {
     }
   };
 
+  returnCellTextProporties = (dataRow) => {
+    const str = [];
+    Object.keys(dataRow.data.common).forEach((item) => {
+      if (app.config.productPropertiesMeasure[item]) {
+        str.push(`${dataRow.data.common[item]}(${app.config.productPropertiesMeasure[item].measure})`);
+      }
+    });
+    return str.join(' x ');
+  }
+
   renderCell = (row, rowId, cell, columnIndex, rowIndex) => {
     const {placeholder, config, actions, table, readonly, isTouchDevice} = this.props;
     const {focus, selected} = table;
@@ -196,7 +206,7 @@ class Body extends Component {
       product_properties_popup: <PopupProportiesCellContainer
         key={key}
         cell={dataRow}
-        activeOption={Object.values(dataRow.data.common).join(' x ')}
+        activeOption={this.returnCellTextProporties(dataRow)}
         handleSelect={actions.setProductProportiesDisplaying}
       />
     };

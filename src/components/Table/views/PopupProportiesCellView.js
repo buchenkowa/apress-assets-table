@@ -15,7 +15,7 @@ function PopupProportiesCellView(props) {
     'is-edit': isEdit,
     [`is-${classMix}`]: true
   });
-  const text = activeOption.length ? activeOption : 'указать вес и габариты';
+  const text = activeOption.length ? activeOption : 'Указать вес и габариты';
   return (
     <div className={selectCellClassNames}>
       {isEdit ? (
