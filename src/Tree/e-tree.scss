@@ -8,7 +8,7 @@
       max-height: 0; transition: max-height .5s cubic-bezier(0.45, 0.05, 0.55, 0.95); overflow: hidden;
       .e-tree-item-title { max-width: 180px; }
       .e-tree-item {
-        padding: 0 0 0 60px; font-weight: normal; border-bottom: solid 1px #e0e0e0 !important;
+        padding: 0 0 0 60px; font-weight: normal; border-bottom: solid 1px #e0e0e0;
         &:before { position: absolute; content: ''; width: 10px; height: 10px; box-sizing: border-box; border-bottom: solid 1px #e0e0e0; border-left: solid 1px #e0e0e0; left: 40px; top: 11px; }
       }
     }
@@ -42,12 +42,19 @@
       .e-tree-arrow { transform: rotate(90deg); }
       + .e-tree-list { max-height: unset; }
     }
-    &:after { content: attr(data-count); padding: 0 0 0 2px; vertical-align: top; position: absolute; }
+    &:after { content: attr(data-count); top: 0; right: 30px; position: absolute; }
     &.is-center > .e-tree-drag:before,
     &.is-bottom > .e-tree-drag:before,
-    &.is-top > .e-tree-drag:before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;  border-top: solid 2px #000; }
-    &.is-bottom > .e-tree-drag:before { border-bottom: solid 2px #000; border-top: 0; }
-    &.is-center > .e-tree-drag:before { border: solid 2px #000; }
+    &.is-top > .e-tree-drag:before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;  border-top: solid 2px #028dd8; }
+    &.is-bottom > .e-tree-drag:before { border-bottom: solid 2px #028dd8; border-top: 0; }
+    &.is-center > .e-tree-drag:before { border: solid 1px #028dd8; }
+    &.is-bottom {
+      .e-tree-wrap { border-bottom: 1px solid #028dd8; }
+    }
+    &.is-center { border: 1px solid #028dd8 !important; }
+    &.is-top {
+      .e-tree-wrap { border-top: 1px solid #028dd8; }
+    }
   }
   &-item-title { display: inline-block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 210px; vertical-align: top; }
   &-item-wrapper:last-child .e-tree-item:last-child { border: 0; }

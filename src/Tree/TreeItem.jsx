@@ -187,9 +187,11 @@ class TreeItem extends Component {
           className={expandable ? b('arrow') : ''}
           onClick={e => this.hendlerClickExpanded(e)}
         />
-        <span className={b('item-title')}>{name}</span>
-        {hasSettingsNode && (!hover || (hover && !hover.id)) && this.renderSettingsMenu()}
-        <span className={b('drag')} />
+        <div className={b('wrap')}>
+          <span className={b('item-title')}>{name}</span>
+          {hasSettingsNode && (!hover || (hover && !hover.id)) && this.renderSettingsMenu()}
+          <span className={b('drag')} />
+        </div>
       </div>
     ));
   }
@@ -218,7 +220,6 @@ const nodeTarget = {
 
   hover: _debounce((props, monitor, component) => {
     const id = monitor.getItem() && monitor.getItem().id;
-
     if (props.id !== id) {
       const elemPosition = findDOMNode(component).getBoundingClientRect();
       const cursorPosition = monitor.getClientOffset();

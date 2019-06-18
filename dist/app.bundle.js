@@ -46662,12 +46662,16 @@ var TreeItem = function (_Component) {
           }
         }),
         _import.React.createElement(
-          'span',
-          { className: (0, _import.b)('item-title') },
-          name
-        ),
-        hasSettingsNode && (!hover || hover && !hover.id) && this.renderSettingsMenu(),
-        _import.React.createElement('span', { className: (0, _import.b)('drag') })
+          'div',
+          { className: (0, _import.b)('wrap') },
+          _import.React.createElement(
+            'span',
+            { className: (0, _import.b)('item-title') },
+            name
+          ),
+          hasSettingsNode && (!hover || hover && !hover.id) && this.renderSettingsMenu(),
+          _import.React.createElement('span', { className: (0, _import.b)('drag') })
+        )
       )));
     }
   }]);
@@ -46732,7 +46736,6 @@ var nodeTarget = {
 
   hover: (0, _import._debounce)(function (props, monitor, component) {
     var id = monitor.getItem() && monitor.getItem().id;
-
     if (props.id !== id) {
       var elemPosition = (0, _import.findDOMNode)(component).getBoundingClientRect();
       var cursorPosition = monitor.getClientOffset();
